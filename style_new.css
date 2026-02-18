@@ -86,3 +86,35 @@
     color: #000;
     border-color: #000;
 }
+
+/* 메인 페이지 중앙 정렬 */
+.main-container {
+    display: flex;
+    flex-direction: column; /* 위아래로 배치 */
+    align-items: center;    /* 가로축 중앙 정렬 */
+    justify-content: center; /* 세로축 중앙 정렬 (필요시) */
+    min-height: 80vh;       /* 화면 높이의 80% 정도 차지하여 수직으로도 여유를 줌 */
+    text-align: center;
+}
+
+.main-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.gallery-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; /* 알약 모양 버튼 */
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.gallery-btn:hover {
+    background-color: #555;
+    transform: scale(1.05); /* 마우스 올리면 살짝 커짐 */
+}
