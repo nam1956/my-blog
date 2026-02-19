@@ -118,3 +118,55 @@
     background-color: #555;
     transform: scale(1.05); /* 마우스 올리면 살짝 커짐 */
 }
+
+/* 메인 메뉴 그리드 */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열로 배치 */
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.menu-card {
+    width: 200px;
+    height: 150px;
+    background-color: #f0f0f0;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    background-color: #333;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* 상단 메뉴바 (상시 유지) */
+.side-menu {
+    text-align: center;
+    padding: 20px 0;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    position: sticky; /* 스크롤 내려도 위쪽에 고정 */
+    top: 0;
+    z-index: 100;
+}
+
+.side-menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+}
+
+.side-menu a.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+}

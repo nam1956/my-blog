@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 새 갤러리</title>
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+    <nav class="side-menu">
+    <a href="index.html">🏠 홈</a>
+    <a href="gallery_friends.html">👥 친구</a>
+    <a href="gallery_family.html">🏠 가족</a>
+    <a href="gallery_hiking.html" class="active">⛰️ 등반</a>
+    <a href="gallery_memory.html">🕰️ 추억</a>
+</nav>
+
+<div class="gallery-content">
+    <h2>⛰️ 등반 사진첩</h2>
+    <div class="gallery">
+        <img src="images/hiking1.jpg" class="gallery-img">
+    </div>
+</div>
+
+    <div class="gallery">
+        <img src="images/1734864762489.jpg" alt="이미지1" class="gallery-img">
+        <img src="images/1702725039459.jpg" alt="이미지2" class="gallery-img">
+        <img src="images/1693572425301.png" alt="이미지3" class="gallery-img">
+        <img src="images/1690807904186.jpg" alt="이미지4" class="gallery-img">
+    </div>
+    <div class="pagination">
+        <a href="gallery_new.html" class="active">1</a>
+        <a href="gallery.html">2</a>
+        <a href="gallery2.html">3</a>
+        <a href="gallery3.html">4</a>
+        <a href="gallery4.html">5</a>
+    </div>
+    <div class="navigation"> 
+            <a href="index.html" class="back-link">메인으로 돌아가기</a>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <script src="script_new.js"></script>
+</body>
+</html>
