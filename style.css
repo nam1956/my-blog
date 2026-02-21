@@ -1,68 +1,125 @@
-/* 1. 기본 설정 (body의 flex를 제거하여 쏠림 방지) */
+/* 1. 기본 초기화 */
+* {
+    box-sizing: border-box; /* 너비 계산을 정확하게 */
+}
+
 body {
     font-family: 'Malgun Gothic', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f7fa;
+    background-color: #f0f2f5; /* 전체 배경을 연한 회색으로 */
 }
 
-/* 2. 사이드 메뉴 (갤러리 페이지에서만 작동하도록 고정) */
+/* 2. 사이드 메뉴 (PC에서만 왼쪽 고정) */
 .side-menu {
     width: 200px;
     background-color: #333;
     color: white;
     height: 100vh;
     padding: 20px;
-    position: fixed; /* 왼쪽 벽에 딱 붙임 */
+    position: fixed;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
-/* 3. 갤러리 페이지 본문 (메뉴 너비만큼 왼쪽을 비워줌) */
+.side-menu a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid #444;
+}
+
+.side-menu a.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 3. 갤러리 본문 영역 (중요!) */
 .gallery-content {
-    margin-left: 240px; /* 메뉴(200px) + 여유공간(40px) */
-    padding: 20px;
+    margin-left: 200px; /* 메뉴 너비만큼 확실히 띄움 */
+    padding: 40px;
+    min-height: 100vh;
 }
 
-/* 4. [핵심] 메인 페이지 (index.html 전용 - 중앙 정렬) */
+/* 4. 메인 페이지 전용 (index.html) */
 .main-container {
+    margin-left: 0 !important; /* 메인에선 왼쪽 여백 제거 */
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;    /* 가로 중앙 */
-    justify-content: center;/* 세로 중앙 */
-    min-height: 100vh;      /* 화면 전체 높이 사용 */
-    width: 100%;            /* 화면 전체 너비 사용 */
-    margin: 0;              /* 왼쪽 쏠림 강제 해제 */
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    box-sizing: border-box;
 }
 
-/* 5. 메인 메뉴 그리드 (반응형 너비) */
+/* 5. 메뉴 그리드 및 카드 */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 90%;
-    max-width: 500px; /* PC에서 너무 커지지 않게 */
+    max-width: 500px;
 }
 
-/* 6. 메뉴 카드 디자인 */
 .menu-card {
-    width: 100%;            /* 칸 너비에 맞게 유연하게 */
-    aspect-ratio: 4 / 3;    /* 직사각형 비율 유지 */
-    background-color: white;
-    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: white;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    background: #333;
+}
+
+.menu-card:hover .card-text {
+    color: white;
 }
 
 .card-text {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
+}
+
+/* 6. 스마트폰 반응형 (화면이 작아질 때) */
+@media (max-width: 768px) {
+    .side-menu {
+        width: 100%;
+        height: auto;
+        position: relative; /* 폰에서는 왼쪽에 고정하지 않음 */
+    }
+    .gallery-content {
+        margin-left: 0; /* 폰에서는 본문을 중앙으로 */
+        padding: 20px;
+    }
+    .menu-grid {
+        grid-template-columns: 1fr; /* 폰에서는 한 줄에 버튼 하나 */
+    }
+}
+
+/* (나머지 검색창, 갤러리 이미지 스타일은 기존과 동일) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
 }
