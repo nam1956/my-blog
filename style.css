@@ -123,3 +123,39 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+
+/* 갤러리 페이지 내부 요소 중앙 정렬 */
+.gallery-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 내부의 모든 요소를 가로 중앙으로 */
+    width: calc(100% - 200px); /* 전체에서 메뉴 너비를 뺀 나머지 */
+}
+
+/* 검색창 컨테이너 중앙 정렬 */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 검색창을 중앙으로 */
+    margin-bottom: 30px;
+}
+
+/* 갤러리 그리드 자체가 중앙에 오도록 */
+.gallery {
+    width: 100%;
+    max-width: 1000px; /* 너무 넓어지지 않게 */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+/* 숫자 페이지네이션 버튼 중앙 정렬 */
+.pagination-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 버튼들을 가로 중앙으로 */
+    gap: 10px;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
