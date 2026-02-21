@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 새 갤러리</title>
-    <link rel="stylesheet" href="style_new.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="side-menu">
@@ -17,7 +17,12 @@
 
 <div class="gallery-content">
     <h2>⛰️ 친구들과의 사진첩</h2>
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="날짜, 제목, 태그로 검색..." onkeyup="handleSearch()">
+</div>
     <div class="gallery">
+    </div>
+    <div id="pagination" class="pagination-container">
     </div>
     <div class="navigation"> 
             <a href="index.html" class="back-link">메인으로 돌아가기</a>
