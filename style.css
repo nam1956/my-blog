@@ -1,54 +1,56 @@
-/* 기본 설정 */
+/* 1. 기본 설정 (body의 flex를 제거하여 쏠림 방지) */
 body {
     font-family: 'Malgun Gothic', sans-serif;
     margin: 0;
     padding: 0;
-    /* display: flex; <- 이 줄을 삭제했습니다. 페이지 쏠림의 주범입니다. */
+    background-color: #f5f7fa;
 }
 
-/* 사이드 메뉴 스타일 (갤러리 페이지용) */
+/* 2. 사이드 메뉴 (갤러리 페이지에서만 작동하도록 고정) */
 .side-menu {
     width: 200px;
     background-color: #333;
     color: white;
     height: 100vh;
     padding: 20px;
-    position: fixed; /* 왼쪽 고정 */
+    position: fixed; /* 왼쪽 벽에 딱 붙임 */
     left: 0;
     top: 0;
+    z-index: 100;
 }
 
-/* 갤러리 컨텐츠 영역 (메뉴가 있는 페이지용) */
+/* 3. 갤러리 페이지 본문 (메뉴 너비만큼 왼쪽을 비워줌) */
 .gallery-content {
-    margin-left: 240px; /* 메뉴 너비만큼 확보 */
+    margin-left: 240px; /* 메뉴(200px) + 여유공간(40px) */
     padding: 20px;
 }
 
-/* [중요] 메인 페이지 전체 정렬 (index.html 전용) */
+/* 4. [핵심] 메인 페이지 (index.html 전용 - 중앙 정렬) */
 .main-container {
-    width: 100%;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;    /* 가로 중앙 */
     justify-content: center;/* 세로 중앙 */
+    min-height: 100vh;      /* 화면 전체 높이 사용 */
+    width: 100%;            /* 화면 전체 너비 사용 */
+    margin: 0;              /* 왼쪽 쏠림 강제 해제 */
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     box-sizing: border-box;
 }
 
-/* 메뉴 그리드 (반응형 너비) */
+/* 5. 메인 메뉴 그리드 (반응형 너비) */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 유지 */
+    grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
     gap: 20px;
     width: 90%;
-    max-width: 500px; /* PC에서도 너무 커지지 않게 */
+    max-width: 500px; /* PC에서 너무 커지지 않게 */
 }
 
-/* 메뉴 카드 디자인 */
+/* 6. 메뉴 카드 디자인 */
 .menu-card {
-    width: 100%; /* 칸에 맞게 꽉 채움 */
-    aspect-ratio: 4 / 3; /* 고정 너비 대신 비율 사용 (너비 문제 해결) */
+    width: 100%;            /* 칸 너비에 맞게 유연하게 */
+    aspect-ratio: 4 / 3;    /* 직사각형 비율 유지 */
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -60,26 +62,7 @@ body {
 }
 
 .card-text {
-    font-size: 1.5rem; /* 모바일 고려하여 살짝 조정 */
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
 }
-
-.menu-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    background-color: #333;
-}
-
-.menu-card:hover .card-text {
-    color: white;
-}
-
-/* 스마트폰 전용 추가 설정 */
-@media (max-width: 480px) {
-    .menu-grid {
-        grid-template-columns: 1fr; /* 폰에서는 한 줄에 하나씩 */
-    }
-}
-
-/* (이하 갤러리, 검색창, 모달 스타일은 그대로 유지하시면 됩니다) */
