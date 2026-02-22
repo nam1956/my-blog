@@ -164,7 +164,7 @@ body {
 .modal {
     display: none; /* 평소에는 숨김 */
     position: fixed;
-    z-index: 2000; /* 메뉴보다 위에 뜨도록 숫자를 키움 */
+    z-index: 99999; /* 메뉴보다 위에 뜨도록 숫자를 키움 */
     left: 0; top: 0;
     width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.9);
