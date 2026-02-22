@@ -53,34 +53,3 @@ const photoData = [
     { filename: "14476015 (3).jpg", date: "2025-05-05", title: "ww", tags: "하하", category: "memory" },
     { filename: "16185714.jpg", date: "2026-03-03", title: "xx", tags: "하하", category: "hiking" }
 ];
-
-/**
- * 대량의 사진 데이터를 photoData 배열에 추가하는 함수
- * @param {string} date - 날짜 (YYYY-MM-DD)
- * @param {string} title - 제목
- * @param {string} category - 카테고리 (hiking, family 등)
- * @param {string} prefix - 파일명 앞부분 (예: 20060528_dobong)
- * @param {number} count - 사진 수량
- * @param {string} tags - 검색용 태그
- */
-function addPhotoBatch(date, title, category, prefix, count, tags) {
-    for (let i = 1; i <= count; i++) {
-        const fileNumber = String(i).padStart(3, '0');
-        photoData.push({
-            filename: `${prefix}_${fileNumber}.JPG`,
-            date: date,
-            title: title,
-            tags: tags,
-            category: category
-        });
-    }
-}
-
-// --- DVD 데이터 추가 구역 ---
-
-// 1. 2006년 5월 28일 도봉산 오봉 (90장)
-addPhotoBatch("2006-05-28", "도봉산 오봉 등반", "hiking", "20060528_dobong", 90, "등반, 도봉산, 오봉, 산행");
-
-// 2. 2006년 5월 21일 감악산 설귀암 4차 (사진 수량을 확인한 후 아래 0 부분을 수정하세요!)
-// 수량을 확인하신 후 addPhotoBatch("2006-05-21", "감악산 설귀암 4차", "hiking", "바꾼파일명앞부분", 수량, "태그");
-// 예: addPhotoBatch("2006-05-21", "감악산 설귀암 4차", "hiking", "20060521_gamak", 100, "감악산, 설귀암, 등반");
