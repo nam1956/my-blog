@@ -89,3 +89,25 @@ function renderPagination() {
         pagination.appendChild(btn);
     }
 }
+
+// 사진을 크게 보여주는 함수
+function openModal(imgSrc) {
+    const modal = document.getElementById("imageModal"); // HTML의 ID와 일치시킴
+    const modalImg = document.getElementById("imgFull"); // HTML의 ID와 일치시킴
+    
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+}
+
+// 닫기 버튼 클릭 시 모달 닫기
+document.querySelector(".close").onclick = function() {
+    document.getElementById("imageModal").style.display = "none";
+}
+
+// 모달 바깥쪽(배경) 클릭 시 모달 닫기
+window.onclick = function(event) {
+    const modal = document.getElementById("imageModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
