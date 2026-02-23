@@ -1,4 +1,4 @@
-// script_new.js
+// script.js
 
 let currentPage = 1;      // 현재 페이지
 const photosPerPage = 8;  // 한 페이지에 보여줄 사진 수
@@ -70,7 +70,7 @@ function displayPage(page) {
     renderPagination(); // 하단 버튼 다시 그리기
 }
 
-// 4. 페이지네이션 버튼 생성 함수
+/// 4. 페이지네이션 버튼 생성 함수 (슬라이딩 윈도우 방식)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = '';
@@ -78,16 +78,51 @@ function renderPagination() {
     const totalPages = Math.ceil(filteredList.length / photosPerPage);
     if (totalPages <= 1) return; // 1페이지뿐이면 버튼 안 만듦
 
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        btn.className = (i === currentPage) ? 'active' : '';
-        btn.onclick = () => {
-            displayPage(i);
-            window.scrollTo(0, 0); // 페이지 이동 시 상단으로 이동
-        };
-        pagination.appendChild(btn);
+    const maxButtons = 5; // 현재 페이지 주변에 보여줄 숫자의 개수 (예: 5개씩)
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+    // 마지막 페이지 근처일 때 시작 페이지 조정 (항상 5개가 보이도록)
+    if (endPage - startPage + 1 < maxButtons) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
     }
+
+    // [처음으로] + [첫 페이지] 버튼
+    if (startPage > 1) {
+        addPageButton(1, pagination);
+        if (startPage > 2) {
+            const dots = document.createElement('span');
+            dots.innerText = '...';
+            pagination.appendChild(dots);
+        }
+    }
+
+    // 숫자 버튼들 (startPage부터 endPage까지)
+    for (let i = startPage; i <= endPage; i++) {
+        addPageButton(i, pagination, i === currentPage);
+    }
+
+    // [마지막 페이지] + [끝으로] 버튼
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const dots = document.createElement('span');
+            dots.innerText = '...';
+            pagination.appendChild(dots);
+        }
+        addPageButton(totalPages, pagination);
+    }
+}
+
+// 버튼 생성을 도와주는 보조 함수 (renderPagination 내부에서 사용)
+function addPageButton(pageNumber, container, isActive = false) {
+    const btn = document.createElement('button');
+    btn.innerText = pageNumber;
+    if (isActive) btn.className = 'active';
+    btn.onclick = () => {
+        displayPage(pageNumber);
+        window.scrollTo(0, 0); // 페이지 이동 시 상단으로 스크롤
+    };
+    container.appendChild(btn);
 }
 
 // 사진을 크게 보여주는 함수

@@ -154,10 +154,21 @@ body {
 .pagination-container {
     width: 100%;
     display: flex;
-    justify-content: center; /* 버튼들을 가로 중앙으로 */
-    gap: 10px;
+    justify-content: center; 
+    flex-wrap: wrap;    /* ⭐ 숫자가 많거나 화면이 좁을 때 줄바꿈 허용 */
+    gap: 8px;           /* 버튼 사이 적당한 간격 */
     margin-top: 40px;
-    padding-bottom: 50px;
+    padding: 0 10px 50px 10px; /* 양옆 여백으로 모바일 대응 */
+}
+
+/* 줄임표(...) 스타일링 */
+.pagination-container span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    color: #666;
 }
 
 /* 모달창 배경 (어둡게) */
