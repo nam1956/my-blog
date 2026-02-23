@@ -203,3 +203,18 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* 현재 선택된 페이지 버튼 스타일 */
+.pagination-container button.active {
+    background-color: #333; /* 배경색을 진하게 */
+    color: #fff;            /* 글자색을 하얗게 */
+    border-color: #333;     /* 테두리도 같은 색으로 */
+    font-weight: bold;      /* 글자를 두껍게 */
+    cursor: default;        /* 클릭할 필요 없다는 표시 */
+}
+
+/* (선택 사항) 마우스를 올렸을 때의 효과도 있으면 좋겠죠? */
+.pagination-container button:hover:not(.active) {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
