@@ -47,6 +47,8 @@ function handleSearch() {
 // 3. 페이지별 사진 출력 함수
 function displayPage(page) {
     currentPage = page;
+    // 🚩 바로 여기에 이 한 줄을 끼워 넣으세요!
+    document.getElementById('totalPhotoCount').innerText = `총 ${filteredList.length}장의 사진이 있습니다`;
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
 

@@ -218,3 +218,22 @@ body {
     background-color: #f0f0f0;
     border-color: #999;
 }
+
+/* style.css 추가 */
+.gallery-header {
+    width: 100%;
+    max-width: 1200px; /* 갤러리 너비와 맞춤 */
+    margin: 20px auto 10px;
+    padding: 0 15px;
+    text-align: right; /* 오른쪽 정렬이 보통 세련되어 보입니다 */
+}
+
+#totalPhotoCount {
+    font-size: 0.9rem;
+    color: #666;
+    background: #f8f9fa;
+    padding: 5px 12px;
+    border-radius: 20px; /* 알약 모양 */
+    border: 1px solid #eee;
+    font-weight: 500;
+}
