@@ -54,9 +54,13 @@ function handleSearch() {
 // [추가] 화면 너비에 따라 페이지당 사진 개수를 결정하는 도우미 함수
 function getItemsPerPage() {
     const width = window.innerWidth;
-    if (width >= 1024) return 10; // 노트북/PC: 가로 5장 x 2줄 = 10장
-    if (width >= 768) return 8;   // 태블릿: 가로 4장 x 2줄 = 8장
-    return 6;                     // 모바일: 가로 3장 x 2줄 = 6장
+    if (width >= 1024) {
+        return 10; // 노트북 (5열 2행)
+    } else if (width >= 768) {
+        return 8;  // 태블릿 (4열 2행) -> 이 부분이 8인지 확인하세요!
+    } else {
+        return 6;  // 모바일 (3열 2행)
+    }
 }
 
 // 3. 페이지별 사진 출력 함수 (수정본)
