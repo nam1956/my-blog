@@ -51,18 +51,6 @@ function handleSearch() {
     displayPage(1); // 검색 결과의 1페이지부터 보여줌
 }
 
-// [추가] 화면 너비에 따라 페이지당 사진 개수를 결정하는 도우미 함수
-function getItemsPerPage() {
-    const width = window.innerWidth;
-    if (width >= 1024) {
-        return 10; // 노트북 (5열 2행)
-    } else if (width >= 768) {
-        return 8;  // 태블릿 (4열 2행) -> 이 부분이 8인지 확인하세요!
-    } else {
-        return 6;  // 모바일 (3열 2행)
-    }
-}
-
 // 3. 페이지별 사진 출력 함수 (수정본)
 function displayPage(page) {
     currentPage = page;
