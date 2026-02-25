@@ -1,26 +1,23 @@
 let currentPage = 1;
 let filteredList = [];
-let isTypingActive = false; // 타이핑 중복 실행 방지 변수
+let isTypingStarted = false;
 
-// 🚩 정확히 20장씩 출력하도록 설정
+// 🚩 사진 20장 출력 고정
 const ITEMS_PER_PAGE = 20;
 
 function startTypingEffect() {
-    if (isTypingActive) return;
-    const text = "소중한 순간들을 기록합니다.~";
+    if (isTypingStarted) return;
     const typingElement = document.querySelector(".typing-text");
-    
+    const text = "소중한 순간들을 기록합니다.~";
     if (typingElement) {
-        isTypingActive = true;
-        typingElement.innerHTML = ""; 
+        isTypingStarted = true;
+        typingElement.innerHTML = "";
         let index = 0;
         function typeWriter() {
             if (index < text.length) {
                 typingElement.innerHTML += text.charAt(index);
                 index++;
                 setTimeout(typeWriter, 120);
-            } else {
-                isTypingActive = false; // 완료 후 플래그 해제
             }
         }
         setTimeout(typeWriter, 600);
@@ -30,11 +27,8 @@ function startTypingEffect() {
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-    
     currentPage = page;
     gallery.innerHTML = '';
-
-    // 정확히 20개씩 자르기
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     const pageItems = filteredList.slice(start, end);
@@ -48,41 +42,75 @@ function displayPage(page) {
         `;
         gallery.appendChild(div);
     });
-    renderPagination();
+    renderPagination(); // 줄임표 로직이 포함된 함수 호출
+    updatePhotoCount();
 }
 
+// 🚩 [핵심] 줄임표 방식의 숫자네이션 함수
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
     pagination.innerHTML = '';
 
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
+    if (totalPages <= 1) return;
+
+    const range = 2; // 현재 페이지 앞뒤로 보여줄 숫자의 개수
+    let pages = [];
+
     for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        if (i === currentPage) btn.className = 'active';
-        btn.onclick = () => {
-            displayPage(i);
-            window.scrollTo(0, 0);
-        };
-        pagination.appendChild(btn);
+        // 처음, 끝, 현재 페이지 주변 숫자만 배열에 담기
+        if (i === 1 || i === totalPages || (i >= currentPage - range && i <= currentPage + range)) {
+            pages.push(i);
+        } else if (pages[pages.length - 1] !== "...") {
+            // 연속되지 않는 숫자가 나올 때 줄임표 추가
+            pages.push("...");
+        }
     }
+
+    pages.forEach(p => {
+        if (p === "...") {
+            const span = document.createElement('span');
+            span.innerText = "...";
+            span.style.padding = "10px";
+            pagination.appendChild(span);
+        } else {
+            const btn = document.createElement('button');
+            btn.innerText = p;
+            if (p === currentPage) btn.className = 'active';
+            btn.onclick = () => {
+                displayPage(p);
+                window.scrollTo(0, 0);
+            };
+            pagination.appendChild(btn);
+        }
+    });
 }
 
-// 초기화: 딱 한 번만 실행되도록 설정
-document.addEventListener('DOMContentLoaded', () => {
+function updatePhotoCount() {
+    const countElement = document.getElementById('totalPhotoCount');
+    if (countElement) countElement.innerText = `총 ${filteredList.length}장의 사진`;
+}
+
+function init() {
     const path = window.location.pathname;
     if (!path.includes('gallery')) {
         startTypingEffect();
     } else {
-        // 갤러리 페이지 데이터 로딩 (기존 로직 유지)
         let category = 'all';
         if (path.includes('hiking')) category = 'hiking';
         else if (path.includes('family')) category = 'family';
         else if (path.includes('friend')) category = 'friend';
         else if (path.includes('memory')) category = 'memory';
-        
         filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
         displayPage(1);
     }
-});
+}
+document.addEventListener('DOMContentLoaded', init);
+
+function openModal(src) {
+    const m = document.getElementById("imageModal");
+    const mi = document.getElementById("imgFull");
+    if(m && mi) { m.style.display = "block"; mi.src = src; }
+}
+window.onclick = (e) => { if (e.target.id == "imageModal") e.target.style.display = "none"; }
