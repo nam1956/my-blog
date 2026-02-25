@@ -1,13 +1,15 @@
-/* 1. 기본 초기화 */
+/* 1. 기본 초기화 및 화면 고정 */
 * {
-    box-sizing: border-box; /* 너비 계산을 정확하게 */
+    box-sizing: border-box;
 }
 
-body {
-    font-family: 'Malgun Gothic', sans-serif;
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5; /* 전체 배경을 연한 회색으로 */
+    width: 100%;
+    /* 메인에서 스크롤이 생기지 않도록 기본 설정 */
+    background-color: #f0f2f5;
+    font-family: 'Malgun Gothic', sans-serif;
 }
 
 /* 2. 사이드 메뉴 (PC에서만 왼쪽 고정) */
@@ -36,23 +38,34 @@ body {
     font-weight: bold;
 }
 
-/* 3. 갤러리 본문 영역 (중요!) */
+/* 3. 갤러리 본문 영역 */
 .gallery-content {
-    margin-left: 200px; /* 메뉴 너비만큼 확실히 띄움 */
+    margin-left: 200px;
     padding: 40px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 4. 메인 페이지 전용 (index.html) */
+/* 4. 메인 페이지 전용 (index.html) - 상/하 분리 방지 핵심 */
 .main-container {
-    margin-left: 0 !important; /* 메인에선 왼쪽 여백 제거 */
+    margin-left: 0 !important;
     width: 100%;
-    min-height: 100vh;
+    /* dvh는 주소창을 제외한 실제 화면 높이 */
+    height: 100vh;
+    height: 100dvh; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    /* 🚩 화면에 완전히 고정하여 아래 여백 차단 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000; 
+    overflow: hidden;
 }
 
 /* 5. 메뉴 그리드 및 카드 */
@@ -92,28 +105,34 @@ body {
     color: #333;
 }
 
-/* 6. 스마트폰 반응형 (화면이 작아질 때) */
+/* 6. 스마트폰 및 태블릿 반응형 */
 @media (max-width: 768px) {
     .side-menu {
         width: 100%;
         height: auto;
-        position: relative; /* 폰에서는 왼쪽에 고정하지 않음 */
+        position: relative;
     }
     .gallery-content {
-        margin-left: 0; /* 폰에서는 본문을 중앙으로 */
+        margin-left: 0;
         padding: 20px;
+        width: 100%;
     }
     .menu-grid {
-        grid-template-columns: 1fr; /* 폰에서는 한 줄에 버튼 하나 */
+        grid-template-columns: 1fr;
+    }
+    .main-title {
+        font-size: 2.2rem !important; /* 모바일에서 제목 크기 축소 */
     }
 }
 
-/* (나머지 검색창, 갤러리 이미지 스타일은 기존과 동일) */
+/* 7. 갤러리 그리드 및 이미지 스타일 */
 .gallery {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
 }
 
 .gallery-img {
@@ -122,79 +141,66 @@ body {
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-/* 갤러리 페이지 내부 요소 중앙 정렬 */
-.gallery-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 내부의 모든 요소를 가로 중앙으로 */
-    width: calc(100% - 200px); /* 전체에서 메뉴 너비를 뺀 나머지 */
+.gallery-img:hover {
+    transform: scale(1.02);
 }
 
-/* 검색창 컨테이너 중앙 정렬 */
+/* 8. 페이지네이션 및 검색창 */
 .search-container {
     width: 100%;
     display: flex;
-    justify-content: center; /* 검색창을 중앙으로 */
+    justify-content: center;
     margin-bottom: 30px;
 }
 
-/* 갤러리 그리드 자체가 중앙에 오도록 */
-.gallery {
-    width: 100%;
-    max-width: 1000px; /* 너무 넓어지지 않게 */
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-/* 숫자 페이지네이션 버튼 중앙 정렬 */
 .pagination-container {
     width: 100%;
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;    /* ⭐ 숫자가 많거나 화면이 좁을 때 줄바꿈 허용 */
-    gap: 8px;           /* 버튼 사이 적당한 간격 */
-    margin-top: 40px;
-    padding: 0 10px 50px 10px; /* 양옆 여백으로 모바일 대응 */
-}
-
-/* 줄임표(...) 스타일링 */
-.pagination-container span {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    color: #666;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 40px;
+    padding-bottom: 50px;
 }
 
-/* 모달창 배경 (어둡게) */
+.pagination-container button {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination-container button.active {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 9. 모달창 (크게 보기) */
 .modal {
-    display: none; /* 평소에는 숨김 */
+    display: none;
     position: fixed;
-    z-index: 99999; /* 메뉴보다 위에 뜨도록 숫자를 키움 */
+    z-index: 99999;
     left: 0; top: 0;
     width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.9);
-    cursor: pointer;
 }
 
-/* 크게 뜨는 사진 */
 .modal-content {
     margin: auto;
     display: block;
     max-width: 90%;
-    max-height: 90%;
+    max-height: 85%;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
     border: 3px solid white;
 }
 
-/* 닫기 버튼 (X) */
 .close {
     position: absolute;
     top: 20px; right: 35px;
@@ -204,28 +210,55 @@ body {
     cursor: pointer;
 }
 
-/* 현재 선택된 페이지 버튼 스타일 */
-.pagination-container button.active {
-    background-color: #333; /* 배경색을 진하게 */
-    color: #fff;            /* 글자색을 하얗게 */
-    border-color: #333;     /* 테두리도 같은 색으로 */
-    font-weight: bold;      /* 글자를 두껍게 */
-    cursor: default;        /* 클릭할 필요 없다는 표시 */
+/* 10. 제목 애니메이션 및 타이핑 효과 */
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: bouncePop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
 }
 
-/* (선택 사항) 마우스를 올렸을 때의 효과도 있으면 좋겠죠? */
-.pagination-container button:hover:not(.active) {
-    background-color: #f0f0f0;
-    border-color: #999;
+@keyframes bouncePop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-/* style.css 추가 */
+.typing-container {
+    height: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typing-text {
+    font-size: 1.2rem;
+    color: #444; /* 색상을 조금 더 진하게 조정 */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.typing-text::after {
+    content: '|';
+    margin-left: 5px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 상단 카운트 표시 */
 .gallery-header {
     width: 100%;
-    max-width: 1200px; /* 갤러리 너비와 맞춤 */
-    margin: 20px auto 10px;
-    padding: 0 15px;
-    text-align: right; /* 오른쪽 정렬이 보통 세련되어 보입니다 */
+    max-width: 1000px;
+    text-align: right;
+    margin-bottom: 10px;
 }
 
 #totalPhotoCount {
@@ -233,56 +266,6 @@ body {
     color: #666;
     background: #f8f9fa;
     padding: 5px 12px;
-    border-radius: 20px; /* 알약 모양 */
+    border-radius: 20px;
     border: 1px solid #eee;
-    font-weight: 500;
-}
-
-/* 7. 메인 페이지 제목 및 타이핑 효과 애니메이션 */
-
-/* 제목: 돌출 애니메이션 + 그림자 */
-.main-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #333;
-    margin-bottom: 10px;
-    /* 부드러운 다중 그림자 효과 */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 
-                 4px 4px 10px rgba(0,0,0,0.05);
-    
-    /* 돌출 애니메이션 적용 (1.5초 동안 한 번 실행) */
-    animation: bouncePop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes bouncePop {
-    0% { transform: scale(0.5); opacity: 0; }
-    60% { transform: scale(1.1); }
-    80% { transform: scale(0.95); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* 타이핑 문구 스타일 */
-.typing-container {
-    height: 30px; /* 문구가 나타날 때 화면이 들썩이지 않게 높이 고정 */
-    margin-bottom: 40px;
-}
-
-.typing-text {
-    font-size: 1.2rem;
-    color: #555;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
-/* 타이핑 커서 깜빡임 효과 */
-.typing-text::after {
-    content: '|';
-    margin-left: 5px;
-    color: #333;
-    animation: blink 0.8s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
 }
