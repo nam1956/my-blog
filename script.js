@@ -46,7 +46,7 @@ function displayPage(page) {
     });
     
     renderPagination();
-    document.getElementById('totalPhotoCount').innerText = `총 ${filteredList.length}장의 사진`;
+    document.getElementById('totalPhotoCount').innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
 }
 
 // 🚩 1 ... 5 6 7 ... 32 줄임표 로직
