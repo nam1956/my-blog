@@ -1,34 +1,14 @@
 let currentPage = 1;
 let filteredList = [];
-let isTypingStarted = false;
-
-// 🚩 사진 20장 출력 고정
-const ITEMS_PER_PAGE = 20;
-
-function startTypingEffect() {
-    if (isTypingStarted) return;
-    const typingElement = document.querySelector(".typing-text");
-    const text = "소중한 순간들을 기록합니다.~";
-    if (typingElement) {
-        isTypingStarted = true;
-        typingElement.innerHTML = "";
-        let index = 0;
-        function typeWriter() {
-            if (index < text.length) {
-                typingElement.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 120);
-            }
-        }
-        setTimeout(typeWriter, 600);
-    }
-}
+const ITEMS_PER_PAGE = 20; // 🚩 페이지당 20장 고정
 
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
+    
     currentPage = page;
     gallery.innerHTML = '';
+    
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     const pageItems = filteredList.slice(start, end);
@@ -42,11 +22,10 @@ function displayPage(page) {
         `;
         gallery.appendChild(div);
     });
-    renderPagination(); // 줄임표 로직이 포함된 함수 호출
-    updatePhotoCount();
+    renderPagination(); 
 }
 
-// 🚩 [핵심] 줄임표 방식의 숫자네이션 함수
+// 🚩 줄임표(1...5 6 7...60) 스마트 페이지네이션 로직
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -55,57 +34,68 @@ function renderPagination() {
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
     if (totalPages <= 1) return;
 
-    const range = 2; // 현재 페이지 앞뒤로 보여줄 숫자의 개수
-    let pages = [];
-
+    const delta = 2; // 현재 페이지 앞뒤로 보여줄 범위
+    const range = [];
     for (let i = 1; i <= totalPages; i++) {
-        // 처음, 끝, 현재 페이지 주변 숫자만 배열에 담기
-        if (i === 1 || i === totalPages || (i >= currentPage - range && i <= currentPage + range)) {
-            pages.push(i);
-        } else if (pages[pages.length - 1] !== "...") {
-            // 연속되지 않는 숫자가 나올 때 줄임표 추가
-            pages.push("...");
+        if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+            range.push(i);
         }
     }
 
-    pages.forEach(p => {
-        if (p === "...") {
-            const span = document.createElement('span');
-            span.innerText = "...";
-            span.style.padding = "10px";
-            pagination.appendChild(span);
-        } else {
-            const btn = document.createElement('button');
-            btn.innerText = p;
-            if (p === currentPage) btn.className = 'active';
-            btn.onclick = () => {
-                displayPage(p);
-                window.scrollTo(0, 0);
-            };
-            pagination.appendChild(btn);
+    let l;
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                createPageButton(l + 1, pagination);
+            } else if (i - l !== 1) {
+                const span = document.createElement('span');
+                span.innerText = "...";
+                span.className = "dots";
+                pagination.appendChild(span);
+            }
         }
-    });
+        createPageButton(i, pagination);
+        l = i;
+    }
 }
 
-function updatePhotoCount() {
-    const countElement = document.getElementById('totalPhotoCount');
-    if (countElement) countElement.innerText = `총 ${filteredList.length}장의 사진`;
+function createPageButton(pageNumber, container) {
+    const btn = document.createElement('button');
+    btn.innerText = pageNumber;
+    if (pageNumber === currentPage) btn.className = 'active';
+    btn.onclick = () => {
+        displayPage(pageNumber);
+        window.scrollTo(0, 0);
+    };
+    container.appendChild(btn);
 }
 
 function init() {
     const path = window.location.pathname;
-    if (!path.includes('gallery')) {
-        startTypingEffect();
+    const isGallery = path.includes('gallery');
+
+    if (!isGallery) {
+        // 타이핑 효과 로직 (기본 로직 유지)
+        const text = "소중한 순간들을 기록합니다.~";
+        const target = document.querySelector(".typing-text");
+        if(target) {
+            let i = 0;
+            function type() { if(i < text.length) { target.innerHTML += text[i++]; setTimeout(type, 120); } }
+            type();
+        }
     } else {
+        // 갤러리 로직
         let category = 'all';
         if (path.includes('hiking')) category = 'hiking';
         else if (path.includes('family')) category = 'family';
         else if (path.includes('friend')) category = 'friend';
         else if (path.includes('memory')) category = 'memory';
+        
         filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
         displayPage(1);
     }
 }
+
 document.addEventListener('DOMContentLoaded', init);
 
 function openModal(src) {
