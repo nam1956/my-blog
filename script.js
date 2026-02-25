@@ -3,7 +3,6 @@ let filteredList = [];
 let isTypingStarted = false;
 const ITEMS_PER_PAGE = 20;
 
-// 1. 초기화 및 타이핑 효과
 function init() {
     const path = window.location.pathname;
     if (!path.includes('gallery')) {
@@ -39,7 +38,6 @@ function startTypingEffect() {
     }
 }
 
-// 2. 갤러리 표시 (20장 고정)
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
@@ -52,7 +50,7 @@ function displayPage(page) {
     pageItems.forEach(photo => {
         const div = document.createElement('div');
         div.className = 'photo-item';
-        // 🚩 이미지 클릭 시 openModal 실행 유지
+        // 🚩 클릭 시 모달 열기 함수(openModal) 호출
         div.innerHTML = `
             <img src="images/${photo.filename}" class="gallery-img" onclick="openModal('images/${photo.filename}')">
             <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
@@ -63,7 +61,6 @@ function displayPage(page) {
     updatePhotoCount();
 }
 
-// 3. 스마트 숫자네이션 (1...5678...60)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -103,25 +100,35 @@ function createPageButton(p, container) {
     container.appendChild(btn);
 }
 
-// 4. 수량 표시 및 모달 기능 (복구)
 function updatePhotoCount() {
     const countElement = document.getElementById('totalPhotoCount');
     if (countElement) countElement.innerText = `TOTAL: ${filteredList.length} Photos`;
 }
 
+// 🚩 모달(팝업) 열기 함수
 function openModal(src) {
-    const m = document.getElementById("imageModal");
-    const mi = document.getElementById("imgFull");
-    if(m && mi) { 
-        m.style.display = "flex"; // 중앙 정렬을 위해 flex 사용
-        mi.src = src; 
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgFull");
+    if (modal && modalImg) {
+        modal.style.display = "flex";
+        modalImg.src = src;
+        document.body.style.overflow = "hidden"; // 배경 스크롤 방지
     }
 }
 
-// 모달 닫기 (검은 배경 클릭 시)
+// 🚩 모달 닫기 함수
+function closeModal() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
+
+// 배경 클릭 시 닫기
 window.onclick = (e) => {
-    const m = document.getElementById("imageModal");
-    if (e.target === m) { m.style.display = "none"; }
+    const modal = document.getElementById("imageModal");
+    if (e.target === modal) { closeModal(); }
 }
 
 document.addEventListener('DOMContentLoaded', init);
