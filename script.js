@@ -100,3 +100,27 @@ window.onclick = (e) => {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// 검색창 이벤트 연결 (실시간 필터링)
+document.addEventListener('input', (e) => {
+    if (e.target.id === 'searchInput') {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        // 현재 카테고리 내에서 검색어로 필터링
+        const category = window.location.pathname.includes('hiking') ? 'hiking' :
+                         window.location.pathname.includes('family') ? 'family' :
+                         window.location.pathname.includes('friend') ? 'friend' :
+                         window.location.pathname.includes('memory') ? 'memory' : 'all';
+
+        const baseList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
+        
+        // 제목이나 날짜에 검색어가 포함된 것만 추출
+        filteredList = baseList.filter(photo => 
+            photo.title.toLowerCase().includes(searchTerm) || 
+            photo.date.includes(searchTerm)
+        );
+
+        // 검색 후 무조건 1페이지부터 다시 보여줌
+        displayPage(1);
+    }
+});
