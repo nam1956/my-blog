@@ -8,30 +8,31 @@ function getItemsPerPage() {
 }
 
 // 2. 초기 실행 함수
-window.onload = () => {
+// [수정] 메인 페이지 판단 로직 통합
+function checkAndStartEffect() {
     const path = window.location.pathname;
-    
-    // [추가] 메인 인덱스 페이지인 경우 사진을 그리지 않고 타이핑 효과만 실행
-    // 파일명이 index.html이거나 경로가 끝나는 지점을 체크합니다.
-    if (path.endsWith('index.html') || path.endsWith('/') || path === '') {
-        startTypingEffect();
-        return; // 여기서 함수 종료 (하단 사진 그리기 방지)
+    const typingElement = document.querySelector(".typing-text");
+
+    // 1. 주소에 gallery가 없거나, index.html이 포함되어 있거나, typing-text 요소가 존재하면 메인으로 간주
+    if (!path.includes('gallery') || path.includes('index.html') || typingElement) {
+        if (typeof startTypingEffect === 'function') {
+            startTypingEffect();
+        }
+        // 메인에서는 갤러리를 그리지 않도록 강제 종료
+        const gallery = document.querySelector('.gallery');
+        if (gallery) gallery.style.display = 'none'; 
+        return; 
     }
 
-    // 갤러리 페이지일 경우 카테고리 판별
-    let category = 'all';
-    if (path.includes('hiking')) category = 'hiking';
-    else if (path.includes('family')) category = 'family';
-    else if (path.includes('friend')) category = 'friend';
-    else if (path.includes('memory')) category = 'memory';
+    // 2. 갤러리 페이지 로직 (기존 카테고리 판별 코드)
+    setupGalleryPage(path);
+}
 
-    // 데이터 필터링
-    filteredList = (category === 'all') 
-        ? photoData 
-        : photoData.filter(p => p.category === category);
+// 브라우저가 HTML 문서만 다 읽으면 바로 실행 (onload보다 빠르고 확실함)
+document.addEventListener('DOMContentLoaded', checkAndStartEffect);
 
-    displayPage(1); // 1페이지 보여주기
-};
+// 혹시 몰라서 기존 onload도 유지 (두 번 실행 방지는 내부적으로 처리됨)
+window.onload = checkAndStartEffect;
 
 // 3. 메인 페이지 타이핑 효과 함수
 function startTypingEffect() {
