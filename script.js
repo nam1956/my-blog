@@ -177,3 +177,29 @@ window.onclick = function(event) {
 window.addEventListener('resize', () => {
     displayPage(1); 
 });
+
+// 6. 메인 페이지 타이핑 효과 함수
+function startTypingEffect() {
+    const text = "소중한 순간들을 기록합니다.~";
+    const typingElement = document.querySelector(".typing-text");
+    
+    // 페이지에 .typing-text 요소가 있을 때만 실행 (메인 페이지만 실행됨)
+    if (typingElement) {
+        let index = 0;
+        typingElement.textContent = ""; // 초기화
+
+        function typeWriter() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150); // 타이핑 속도
+            }
+        }
+        
+        // 약간의 여유를 두고 시작 (제목 애니메이션과 겹치지 않게)
+        setTimeout(typeWriter, 600);
+    }
+}
+
+// 기존 window.onload에 추가하거나, 아래처럼 리스너를 하나 더 등록합니다.
+window.addEventListener('load', startTypingEffect);

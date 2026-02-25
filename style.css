@@ -237,3 +237,52 @@ body {
     border: 1px solid #eee;
     font-weight: 500;
 }
+
+/* 7. 메인 페이지 제목 및 타이핑 효과 애니메이션 */
+
+/* 제목: 돌출 애니메이션 + 그림자 */
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
+    /* 부드러운 다중 그림자 효과 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 
+                 4px 4px 10px rgba(0,0,0,0.05);
+    
+    /* 돌출 애니메이션 적용 (1.5초 동안 한 번 실행) */
+    animation: bouncePop 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bouncePop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.1); }
+    80% { transform: scale(0.95); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 타이핑 문구 스타일 */
+.typing-container {
+    height: 30px; /* 문구가 나타날 때 화면이 들썩이지 않게 높이 고정 */
+    margin-bottom: 40px;
+}
+
+.typing-text {
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* 타이핑 커서 깜빡임 효과 */
+.typing-text::after {
+    content: '|';
+    margin-left: 5px;
+    color: #333;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
