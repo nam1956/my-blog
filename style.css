@@ -1,52 +1,56 @@
-/* 기본 리셋 */
-* { box-sizing: border-box; }
-body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #f0f2f5; font-family: 'Malgun Gothic', sans-serif; }
+/* 전체 초기화 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; }
 
-/* [메인 페이지] 깨졌던 카드 메뉴 복구 */
-.main-container { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
-.main-title { font-size: 3rem; font-weight: 800; margin-bottom: 10px; color: #333; }
+/* 🚩 인덱스(메인) 페이지 메뉴 카드 복구 */
+.main-container { 
+    width: 100%; min-height: 100vh; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; background: #f0f2f5; 
+}
+.main-title { font-size: 3rem; margin-bottom: 10px; color: #333; }
 .typing-container { height: 30px; margin-bottom: 40px; }
-.typing-text { font-size: 1.3rem; font-weight: bold; color: #444; }
 
-.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 90%; max-width: 500px; }
+/* 메뉴를 격자 모양 카드 형태로 */
+.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 90%; max-width: 500px; margin-top: 20px; }
 .menu-card {
     background: white; border-radius: 15px; aspect-ratio: 4/3;
     display: flex; align-items: center; justify-content: center;
     text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
 }
-.menu-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.menu-card:hover { transform: translateY(-5px); background: #eee; }
 
-/* [갤러리] 사이드바 및 정렬 */
-.side-menu { width: 220px; background-color: #333; color: white; height: 100vh; padding: 30px 15px; position: fixed; left: 0; top: 0; z-index: 1000; }
-.side-menu a { display: flex; align-items: center; color: #ccc; text-decoration: none; padding: 15px 10px; font-size: 1rem; border-bottom: 1px solid #444; }
+/* 🚩 갤러리 레이아웃 */
+.side-menu { width: 220px; background: #333; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding: 30px 15px; z-index: 1000; }
+.side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; }
 
-.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-.gallery-header { width: 100%; max-width: 1100px; position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
+.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+.gallery-header { width: 100%; max-width: 1100px; position: relative; margin-bottom: 30px; text-align: center; }
 
-/* 🚩 쌈빡한 사진 수량 표시 */
+/* 🚩 우측 상단 테두리 수량 표시 */
 #totalPhotoCount {
-    position: absolute; right: 0; top: 0; padding: 8px 15px;
-    border: 2px solid #333; border-radius: 20px; font-weight: bold; font-size: 0.85rem; background: white;
+    position: absolute; right: 0; top: 0; padding: 8px 18px;
+    border: 2px solid #333; border-radius: 25px; background: white;
+    font-weight: bold; font-size: 0.9rem;
 }
 
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
-.photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
 .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; }
 
-/* 🚩 숫자네이션 중앙 정렬 */
-.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 40px 0; }
-.pagination-container button { min-width: 35px; height: 35px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
+/* 🚩 숫자네이션 중앙 정렬 & 줄임표 */
+.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; }
+.pagination-container button { min-width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
 .pagination-container button.active { background: #333; color: white; border-color: #333; }
 .pagination-container .dots { padding: 0 5px; font-weight: bold; color: #666; }
 
-/* 🚩 모달 (진짜 팝업) */
+/* 🚩 진짜 모달 팝업 */
 #imageModal {
     display: none; position: fixed; z-index: 3000; left: 0; top: 0;
-    width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+    width: 100%; height: 100%; background: rgba(0,0,0,0.95);
     justify-content: center; align-items: center;
 }
-#imgFull { max-width: 90%; max-height: 90vh; border: 3px solid white; border-radius: 5px; }
+#imgFull { max-width: 90%; max-height: 90vh; border: 4px solid white; border-radius: 5px; }
 
 @media (max-width: 768px) {
     .side-menu { width: 100%; height: auto; position: relative; }
