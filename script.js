@@ -3,6 +3,23 @@ let filteredList = [];
 let isTypingStarted = false;
 const ITEMS_PER_PAGE = 20;
 
+// 1. 초기화 및 타이핑 효과
+function init() {
+    const path = window.location.pathname;
+    if (!path.includes('gallery')) {
+        startTypingEffect();
+    } else {
+        let category = 'all';
+        if (path.includes('hiking')) category = 'hiking';
+        else if (path.includes('family')) category = 'family';
+        else if (path.includes('friend')) category = 'friend';
+        else if (path.includes('memory')) category = 'memory';
+        
+        filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
+        displayPage(1);
+    }
+}
+
 function startTypingEffect() {
     if (isTypingStarted) return;
     const typingElement = document.querySelector(".typing-text");
@@ -22,6 +39,7 @@ function startTypingEffect() {
     }
 }
 
+// 2. 갤러리 표시 (20장 고정)
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
@@ -34,6 +52,7 @@ function displayPage(page) {
     pageItems.forEach(photo => {
         const div = document.createElement('div');
         div.className = 'photo-item';
+        // 🚩 이미지 클릭 시 openModal 실행 유지
         div.innerHTML = `
             <img src="images/${photo.filename}" class="gallery-img" onclick="openModal('images/${photo.filename}')">
             <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
@@ -41,9 +60,10 @@ function displayPage(page) {
         gallery.appendChild(div);
     });
     renderPagination(); 
-    updatePhotoCount(); // 수량 표시 업데이트
+    updatePhotoCount();
 }
 
+// 3. 스마트 숫자네이션 (1...5678...60)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -83,32 +103,25 @@ function createPageButton(p, container) {
     container.appendChild(btn);
 }
 
+// 4. 수량 표시 및 모달 기능 (복구)
 function updatePhotoCount() {
     const countElement = document.getElementById('totalPhotoCount');
-    if (countElement) {
-        countElement.innerText = `TOTAL: ${filteredList.length} Photos`;
-    }
+    if (countElement) countElement.innerText = `TOTAL: ${filteredList.length} Photos`;
 }
-
-function init() {
-    const path = window.location.pathname;
-    if (!path.includes('gallery')) {
-        startTypingEffect();
-    } else {
-        let category = 'all';
-        if (path.includes('hiking')) category = 'hiking';
-        else if (path.includes('family')) category = 'family';
-        else if (path.includes('friend')) category = 'friend';
-        else if (path.includes('memory')) category = 'memory';
-        filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
-        displayPage(1);
-    }
-}
-document.addEventListener('DOMContentLoaded', init);
 
 function openModal(src) {
     const m = document.getElementById("imageModal");
     const mi = document.getElementById("imgFull");
-    if(m && mi) { m.style.display = "block"; mi.src = src; }
+    if(m && mi) { 
+        m.style.display = "flex"; // 중앙 정렬을 위해 flex 사용
+        mi.src = src; 
+    }
 }
-window.onclick = (e) => { if (e.target.id == "imageModal") e.target.style.display = "none"; }
+
+// 모달 닫기 (검은 배경 클릭 시)
+window.onclick = (e) => {
+    const m = document.getElementById("imageModal");
+    if (e.target === m) { m.style.display = "none"; }
+}
+
+document.addEventListener('DOMContentLoaded', init);
