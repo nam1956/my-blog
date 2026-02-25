@@ -1,75 +1,42 @@
-// 1. 변수 설정
-let currentPage = 1;      
-let filteredList = [];    
-let isTypingStarted = false; // [중요] 이중 타이핑 방지용 깃발
+let currentPage = 1;
+let filteredList = [];
+let isTypingActive = false; // 타이핑 중복 실행 방지 변수
 
-// 2. 한 페이지에 보여줄 사진 개수 (20장 고정)
-function getItemsPerPage() {
-    return 20; 
-}
+// 🚩 정확히 20장씩 출력하도록 설정
+const ITEMS_PER_PAGE = 20;
 
-// 3. 메인 페이지 타이핑 효과 함수
 function startTypingEffect() {
-    if (isTypingStarted) return; // 이미 시작했으면 또 안함
-    
+    if (isTypingActive) return;
     const text = "소중한 순간들을 기록합니다.~";
     const typingElement = document.querySelector(".typing-text");
     
     if (typingElement) {
-        isTypingStarted = true; 
-        typingElement.innerHTML = ""; // 일단 깨끗하게 지우기
+        isTypingActive = true;
+        typingElement.innerHTML = ""; 
         let index = 0;
-
         function typeWriter() {
             if (index < text.length) {
                 typingElement.innerHTML += text.charAt(index);
                 index++;
-                setTimeout(typeWriter, 150); 
+                setTimeout(typeWriter, 120);
+            } else {
+                isTypingActive = false; // 완료 후 플래그 해제
             }
         }
-        setTimeout(typeWriter, 800); // 제목 애니메이션 후 시작
+        setTimeout(typeWriter, 600);
     }
 }
-
-// 4. 초기 실행 (메인인지 갤러리인지 판단)
-function initPage() {
-    const path = window.location.pathname;
-    
-    // 주소에 gallery가 없으면 메인 페이지로 간주
-    if (!path.includes('gallery')) {
-        startTypingEffect();
-        return; 
-    }
-
-    // 갤러리 페이지일 경우 데이터 필터링 로직
-    let category = 'all';
-    if (path.includes('hiking')) category = 'hiking';
-    else if (path.includes('family')) category = 'family';
-    else if (path.includes('friend')) category = 'friend';
-    else if (path.includes('memory')) category = 'memory';
-
-    filteredList = (category === 'all') 
-        ? photoData 
-        : photoData.filter(p => p.category === category);
-
-    displayPage(1);
-}
-
-// [중요] 실행 명령을 딱 하나로 통일 (이중 실행 방지)
-document.addEventListener('DOMContentLoaded', initPage);
-
-// --- 아래는 갤러리 기능 (기존과 동일) ---
 
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-
+    
     currentPage = page;
-    const photosPerPage = getItemsPerPage(); 
     gallery.innerHTML = '';
 
-    const start = (page - 1) * photosPerPage;
-    const end = start + photosPerPage;
+    // 정확히 20개씩 자르기
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
     const pageItems = filteredList.slice(start, end);
 
     pageItems.forEach(photo => {
@@ -77,24 +44,19 @@ function displayPage(page) {
         div.className = 'photo-item';
         div.innerHTML = `
             <img src="images/${photo.filename}" class="gallery-img" onclick="openModal('images/${photo.filename}')">
-            <div class="photo-info">
-                <strong>${photo.title}</strong><br><span>${photo.date}</span>
-            </div>
+            <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
         `;
         gallery.appendChild(div);
     });
-
-    renderPagination(photosPerPage); 
+    renderPagination();
 }
 
-function renderPagination(photosPerPage) {
+function renderPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
     pagination.innerHTML = '';
 
-    const totalPages = Math.ceil(filteredList.length / photosPerPage);
-    if (totalPages <= 1) return;
-
+    const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
     for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement('button');
         btn.innerText = i;
@@ -107,16 +69,20 @@ function renderPagination(photosPerPage) {
     }
 }
 
-function openModal(imgSrc) {
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("imgFull");
-    if(modal && modalImg) {
-        modal.style.display = "block";
-        modalImg.src = imgSrc;
+// 초기화: 딱 한 번만 실행되도록 설정
+document.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname;
+    if (!path.includes('gallery')) {
+        startTypingEffect();
+    } else {
+        // 갤러리 페이지 데이터 로딩 (기존 로직 유지)
+        let category = 'all';
+        if (path.includes('hiking')) category = 'hiking';
+        else if (path.includes('family')) category = 'family';
+        else if (path.includes('friend')) category = 'friend';
+        else if (path.includes('memory')) category = 'memory';
+        
+        filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
+        displayPage(1);
     }
-}
-
-window.onclick = (event) => {
-    const modal = document.getElementById("imageModal");
-    if (event.target == modal) modal.style.display = "none";
-}
+});
