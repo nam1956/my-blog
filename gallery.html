@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 인생 갤러리</title>
     <link rel="stylesheet" href="style.css">
-    <div class="gallery-header">
-        <h2 id="gallery-title">제목</h2>
-        <span id="totalPhotoCount">총 0장</span>
-    </div>
 </head>
-
 <body>
     <nav class="side-menu">
         <a href="index.html">🏠 홈</a>
@@ -24,19 +18,15 @@
     <div class="gallery-content">
         <header class="gallery-header">
             <h2 id="gallery-title" class="title-effect">나의 갤러리</h2>
-            <p id="gallery-subtitle" class="typing-text"></p>
+            <span id="totalPhotoCount">총 0장의 사진이 있습니다</span>
         </header>
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="날짜, 제목 등으로 검색...">
         </div>
 
-        <div class="gallery-info">
-            <span id="totalPhotoCount">총 0장의 사진이 있습니다</span>
-        </div>
-
         <div class="gallery">
-        </div>
+            </div>
 
         <div id="pagination" class="pagination-container"></div>
     </div>
@@ -49,5 +39,4 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
