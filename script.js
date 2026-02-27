@@ -67,7 +67,7 @@ function displayPage(page) {
     renderPagination();
 }
 
-// [3] 페이지네이션 (줄임표 로직 유지)
+// [3] 페이지네이션
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
@@ -107,7 +107,7 @@ function addPageBtn(num, container) {
     container.appendChild(btn);
 }
 
-// [4] 모달 및 드래그 원본보기 제어 (업그레이드된 부분)
+// [4] 모달 및 강력한 드래그 제어 (한계 해결 로직)
 let isDragging = false;
 let startX, startY, scrollLeft, scrollTop;
 
@@ -117,8 +117,9 @@ function openModal(src) {
     if (m && mi) { 
         m.style.display = "flex"; 
         mi.src = src; 
-        mi.classList.remove('full-size'); // 초기화: 항상 화면 맞춤 크기로 시작
-        m.scrollTo(0, 0); // 스크롤 초기화
+        mi.classList.remove('full-size'); 
+        m.scrollLeft = 0;
+        m.scrollTop = 0;
     }
 }
 
@@ -127,43 +128,53 @@ function closeModal() {
     if (m) m.style.display = "none";
 }
 
-// 모달 내부 동작 설정
 const imgFull = document.getElementById('imgFull');
 const modal = document.getElementById('imageModal');
 
 if(imgFull && modal) {
-    // 사진 클릭 시 확대/축소 토글
+    // 사진 클릭 시 확대/축소
     imgFull.addEventListener('click', function(e) {
-        e.stopPropagation(); // 배경 클릭(닫기) 이벤트 방지
-        this.classList.toggle('full-size');
+        e.stopPropagation(); 
+        const isFull = this.classList.toggle('full-size');
+        if(!isFull) {
+            modal.scrollLeft = 0;
+            modal.scrollTop = 0;
+        }
     });
 
-    // 드래그 시작 (mousedown)
+    // 드래그 시작: 절대 좌표 추적 시작
     imgFull.addEventListener('mousedown', (e) => {
         if (!imgFull.classList.contains('full-size')) return;
         isDragging = true;
-        startX = e.pageX - modal.offsetLeft;
-        startY = e.pageY - modal.offsetTop;
+        imgFull.style.cursor = 'grabbing';
+        
+        // 브라우저 화면 기준 마우스 위치와 모달의 현재 스크롤 값 저장
+        startX = e.clientX; 
+        startY = e.clientY;
         scrollLeft = modal.scrollLeft;
         scrollTop = modal.scrollTop;
     });
-
-    // 드래그 중 (mousemove)
-    modal.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - modal.offsetLeft;
-        const y = e.pageY - modal.offsetTop;
-        const walkX = (x - startX); 
-        const walkY = (y - startY);
-        modal.scrollLeft = scrollLeft - walkX;
-        modal.scrollTop = scrollTop - walkY;
-    });
 }
 
-window.addEventListener('mouseup', () => { isDragging = false; });
+// 드래그 중: 마우스 이동량에 따라 사진 위치 이동 (전신 사진 끝까지 탐색 가능)
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    // 마우스가 실제 이동한 거리 계산
+    const walkX = e.clientX - startX;
+    const walkY = e.clientY - startY;
+    
+    // 스크롤 위치 업데이트 (반대 방향으로 밀어줌)
+    modal.scrollLeft = scrollLeft - walkX;
+    modal.scrollTop = scrollTop - walkY;
+});
 
-// 배경 클릭 시 닫기
+window.addEventListener('mouseup', () => { 
+    isDragging = false; 
+    if(imgFull) imgFull.style.cursor = 'grab';
+});
+
 window.onclick = (e) => { if (e.target === modal) closeModal(); }
 
 // [5] 실시간 검색
