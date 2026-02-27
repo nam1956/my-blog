@@ -2,43 +2,45 @@ let currentPage = 1;
 let filteredList = [];
 const ITEMS_PER_PAGE = 20;
 
+// [1] 초기화 함수: 페이지 성격 판별 및 데이터 준비
 function init() {
-    const path = window.location.pathname;
     const params = new URLSearchParams(window.location.search);
-    const category = params.get('type') || 'all'; 
+    const category = params.get('type'); // 주소창에서 ?type= 값 추출
 
-    // 1. 갤러리 페이지 로직 (?type= 이 있거나 파일명이 gallery인 경우)
-    if (path.includes('gallery') || params.has('type')) {
+    // 갤러리 모드: 주소창에 type이 있거나, 파일명에 gallery가 포함된 경우
+    if (category || window.location.pathname.includes('gallery')) {
+        const activeCategory = category || 'all';
         
-        // 데이터 필터링
-        filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
+        // 1. 데이터 필터링
+        filteredList = (activeCategory === 'all') 
+            ? photoData 
+            : photoData.filter(p => p.category === activeCategory);
         
-        // 제목 변경 (HTML에 있는 id="gallery-title"을 찾음)
+        // 2. 제목 변경 (titleMap 활용)
         const titleMap = {
-            'hiking': '🏔️ 등반 갤러리', 
-            'family': '🏠 가족 갤러리', 
-            'friend': '🤝 친구 갤러리', 
+            'hiking': '🏔️ 등반 사진첩',
+            'family': '🏠 가족 갤러리',
+            'friend': '🤝 친구 갤러리',
             'memory': '✨ 추억 저장소'
         };
         
         const titleTag = document.getElementById('gallery-title');
-        if (titleTag && titleMap[category]) {
-            titleTag.innerText = titleMap[category];
+        if (titleTag) {
+            titleTag.innerText = titleMap[activeCategory] || '나의 갤러리';
         }
 
+        // 3. 사진 출력 시작
         displayPage(1);
     } 
-    
-    // 2. 메인 페이지 로직 (타이핑 효과)
-    // path가 '/' 이거나 'index.html'인 경우, 혹은 gallery가 아닌 경우
-    if (!path.includes('gallery')) {
+    // 메인 페이지 모드: 그 외의 경우 (타이핑 효과)
+    else {
         const target = document.querySelector(".typing-text");
-        if(target) {
-            target.innerHTML = ""; // 기존 내용 초기화
+        if (target) {
+            target.innerHTML = ""; 
             let text = "소중한 순간들을 기록합니다.~";
             let i = 0;
             function type() { 
-                if(i < text.length) { 
+                if (i < text.length) { 
                     target.innerHTML += text[i++]; 
                     setTimeout(type, 120); 
                 } 
@@ -48,6 +50,7 @@ function init() {
     }
 }
 
+// [2] 사진 출력 함수
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
@@ -72,24 +75,22 @@ function displayPage(page) {
     
     renderPagination();
     
-    // 수량 표시 업데이트
     if (totalCountTag) {
         totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
     }
 }
 
+// [3] 페이지네이션 (줄임표 로직 포함)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
-    if (!pagination || totalPages <= 1) {
-        if(pagination) pagination.innerHTML = ''; // 페이지가 1개면 안보이게
-        return;
-    }
+    
+    if (!pagination) return;
     pagination.innerHTML = '';
+    if (totalPages <= 1) return;
 
     const sidePages = 2; 
     const range = [];
-    
     for (let i = 1; i <= totalPages; i++) {
         if (i === 1 || i === totalPages || (i >= currentPage - sidePages && i <= currentPage + sidePages)) {
             range.push(i);
@@ -124,19 +125,16 @@ function addPageBtn(num, container) {
     container.appendChild(btn);
 }
 
+// [4] 모달 기능
 function openModal(src) {
     const m = document.getElementById("imageModal");
     const mi = document.getElementById("imgFull");
-    if(m && mi) { 
-        m.style.display = "flex"; 
-        mi.src = src; 
-    }
+    if (m && mi) { m.style.display = "flex"; mi.src = src; }
 }
 
-// 모달 닫기 기능 (엑스 버튼 및 배경 클릭)
 function closeModal() {
     const m = document.getElementById("imageModal");
-    if(m) m.style.display = "none";
+    if (m) m.style.display = "none";
 }
 
 window.onclick = (e) => { 
@@ -144,7 +142,7 @@ window.onclick = (e) => {
     if (e.target === m) closeModal(); 
 }
 
-// 실시간 검색 이벤트
+// [5] 검색 기능
 document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();
@@ -157,9 +155,9 @@ document.addEventListener('input', (e) => {
             photo.title.toLowerCase().includes(searchTerm) || 
             photo.date.includes(searchTerm)
         );
-
         displayPage(1);
     }
 });
 
+// 페이지 로드 완료 시 실행
 document.addEventListener('DOMContentLoaded', init);
