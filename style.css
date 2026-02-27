@@ -2,7 +2,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; }
 
-/* 🚩 인덱스(메인) 페이지 메뉴 카드 */
+/* 🚩 인덱스(메인) 페이지 */
 .main-container { 
     width: 100%; min-height: 100vh; display: flex; flex-direction: column; 
     align-items: center; justify-content: center; background: #f0f2f5; 
@@ -23,7 +23,7 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .side-menu { width: 220px; background: #333; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding: 30px 15px; z-index: 1000; }
 .side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; }
 
-.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 .gallery-header { width: 100%; max-width: 1100px; margin-bottom: 20px; text-align: center; }
 
 /* 검색창 */
@@ -33,16 +33,15 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     margin: 20px auto 30px; display: block; outline: none; font-size: 1rem;
 }
 
-/* 🚩 수량 표시: 최우측 사진 위 라인에 맞춤 (핵심 수정) */
+/* 🚩 수량 표시: 사진 그리드와 동일 너비 상자 안에서 우측 정렬 */
 .count-wrapper {
-    width: 100%;
-    max-width: 1100px; /* 갤러리 그리드와 동일한 너비 */
-    display: flex;
-    justify-content: flex-end; /* 우측 끝 정렬 */
-    margin-bottom: 10px; /* 사진과의 간격 */
+    width: 100%; max-width: 1100px;
+    text-align: right; /* 내용을 오른쪽으로 밀어냄 */
+    margin-bottom: 10px;
 }
 
 #totalPhotoCount {
+    display: inline-block; /* 테두리가 글자 크기에 맞게 생기도록 설정 */
     padding: 5px 15px; 
     border: 1px solid #333; 
     border-radius: 20px; 
@@ -50,16 +49,15 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     font-weight: bold; 
     font-size: 0.85rem;
     color: #333;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* 갤러리 그리드 */
+/* 🚩 갤러리 그리드 */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
 .photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
 .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; }
 
-/* 숫자네이션 */
-.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; }
+/* 🚩 페이지네이션 (복구됨) */
+.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; padding-bottom: 50px; }
 .pagination-container button { min-width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
 .pagination-container button.active { background: #333; color: white; border-color: #333; }
 .pagination-container .dots { padding: 0 5px; font-weight: bold; color: #666; }
