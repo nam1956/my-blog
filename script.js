@@ -2,7 +2,7 @@ let currentPage = 1;
 let filteredList = [];
 const ITEMS_PER_PAGE = 20;
 
-// [1] 초기화 함수
+// [1] 초기화: 타이핑 효과 & 카테고리 판별 유지
 function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type');
@@ -42,7 +42,7 @@ function init() {
     }
 }
 
-// [2] 사진 출력 함수
+// [2] 사진 출력 및 수량 표시 유지
 function displayPage(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
@@ -67,7 +67,7 @@ function displayPage(page) {
     renderPagination();
 }
 
-// [3] 페이지네이션
+// [3] 줄임표 페이지네이션 로직 유지
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
@@ -107,7 +107,7 @@ function addPageBtn(num, container) {
     container.appendChild(btn);
 }
 
-// [4] 모달 및 강력한 드래그 제어 (한계 해결 로직)
+// [4] 모달 및 '무제한' 드래그 (이번에 수정된 핵심 파트)
 let isDragging = false;
 let startX, startY, scrollLeft, scrollTop;
 
@@ -132,7 +132,6 @@ const imgFull = document.getElementById('imgFull');
 const modal = document.getElementById('imageModal');
 
 if(imgFull && modal) {
-    // 사진 클릭 시 확대/축소
     imgFull.addEventListener('click', function(e) {
         e.stopPropagation(); 
         const isFull = this.classList.toggle('full-size');
@@ -142,13 +141,11 @@ if(imgFull && modal) {
         }
     });
 
-    // 드래그 시작: 절대 좌표 추적 시작
     imgFull.addEventListener('mousedown', (e) => {
         if (!imgFull.classList.contains('full-size')) return;
         isDragging = true;
         imgFull.style.cursor = 'grabbing';
-        
-        // 브라우저 화면 기준 마우스 위치와 모달의 현재 스크롤 값 저장
+        // 브라우저 절대 좌표 저장
         startX = e.clientX; 
         startY = e.clientY;
         scrollLeft = modal.scrollLeft;
@@ -156,16 +153,12 @@ if(imgFull && modal) {
     });
 }
 
-// 드래그 중: 마우스 이동량에 따라 사진 위치 이동 (전신 사진 끝까지 탐색 가능)
+// 전신 사진의 얼굴까지 무조건 도달하는 드래그 로직
 window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     e.preventDefault();
-    
-    // 마우스가 실제 이동한 거리 계산
     const walkX = e.clientX - startX;
     const walkY = e.clientY - startY;
-    
-    // 스크롤 위치 업데이트 (반대 방향으로 밀어줌)
     modal.scrollLeft = scrollLeft - walkX;
     modal.scrollTop = scrollTop - walkY;
 });
@@ -177,7 +170,7 @@ window.addEventListener('mouseup', () => {
 
 window.onclick = (e) => { if (e.target === modal) closeModal(); }
 
-// [5] 실시간 검색
+// [5] 실시간 검색 기능 유지
 document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();
