@@ -2,21 +2,18 @@ let currentPage = 1;
 let filteredList = [];
 const ITEMS_PER_PAGE = 20;
 
+// [1] 초기화 함수
 function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type');
     const path = window.location.pathname;
 
-    // [체크] 갤러리 페이지인지 확인 (URL 파라미터 우선)
     if (category || path.includes('gallery')) {
         const activeCategory = category || 'all';
-        
-        // 1. 카테고리 필터링 (data.js의 photoData 기준)
         filteredList = (activeCategory === 'all') 
             ? photoData 
             : photoData.filter(p => p.category === activeCategory);
 
-        // 2. 제목 변경 (titleMap)
         const titleMap = {
             'hiking': '🏔️ 등반 사진첩',
             'family': '🏠 가족 갤러리',
@@ -27,11 +24,8 @@ function init() {
         if (titleTag) {
             titleTag.innerText = titleMap[activeCategory] || '나의 인생 갤러리';
         }
-
         displayPage(1);
-    } 
-    // [체크] 메인 페이지 (index) 타이핑 효과
-    else {
+    } else {
         const target = document.querySelector(".typing-text");
         if (target) {
             target.innerHTML = "";
@@ -48,15 +42,14 @@ function init() {
     }
 }
 
+// [2] 사진 출력 함수
 function displayPage(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
-    
     if (!galleryContainer) return;
     
     currentPage = page;
     galleryContainer.innerHTML = '';
-    
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     
@@ -65,22 +58,16 @@ function displayPage(page) {
         div.className = 'photo-item';
         div.innerHTML = `
             <img src="images/${photo.filename}" class="gallery-img" onclick="openModal('images/${photo.filename}')">
-            <div class="photo-info">
-                <strong>${photo.title}</strong><br>
-                <span>${photo.date}</span>
-            </div>
+            <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
         `;
         galleryContainer.appendChild(div);
     });
     
-    // 수량 업데이트
-    if (totalCountTag) {
-        totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
-    }
+    if (totalCountTag) totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
     renderPagination();
 }
 
-// [핵심] 줄임표가 포함된 페이지네이션 로직
+// [3] 페이지네이션 (줄임표 로직 유지)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
@@ -120,10 +107,19 @@ function addPageBtn(num, container) {
     container.appendChild(btn);
 }
 
+// [4] 모달 및 드래그 원본보기 제어 (업그레이드된 부분)
+let isDragging = false;
+let startX, startY, scrollLeft, scrollTop;
+
 function openModal(src) {
     const m = document.getElementById("imageModal");
     const mi = document.getElementById("imgFull");
-    if (m && mi) { m.style.display = "flex"; mi.src = src; }
+    if (m && mi) { 
+        m.style.display = "flex"; 
+        mi.src = src; 
+        mi.classList.remove('full-size'); // 초기화: 항상 화면 맞춤 크기로 시작
+        m.scrollTo(0, 0); // 스크롤 초기화
+    }
 }
 
 function closeModal() {
@@ -131,12 +127,46 @@ function closeModal() {
     if (m) m.style.display = "none";
 }
 
-window.onclick = (e) => { 
-    const m = document.getElementById("imageModal");
-    if (e.target === m) closeModal(); 
+// 모달 내부 동작 설정
+const imgFull = document.getElementById('imgFull');
+const modal = document.getElementById('imageModal');
+
+if(imgFull && modal) {
+    // 사진 클릭 시 확대/축소 토글
+    imgFull.addEventListener('click', function(e) {
+        e.stopPropagation(); // 배경 클릭(닫기) 이벤트 방지
+        this.classList.toggle('full-size');
+    });
+
+    // 드래그 시작 (mousedown)
+    imgFull.addEventListener('mousedown', (e) => {
+        if (!imgFull.classList.contains('full-size')) return;
+        isDragging = true;
+        startX = e.pageX - modal.offsetLeft;
+        startY = e.pageY - modal.offsetTop;
+        scrollLeft = modal.scrollLeft;
+        scrollTop = modal.scrollTop;
+    });
+
+    // 드래그 중 (mousemove)
+    modal.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - modal.offsetLeft;
+        const y = e.pageY - modal.offsetTop;
+        const walkX = (x - startX); 
+        const walkY = (y - startY);
+        modal.scrollLeft = scrollLeft - walkX;
+        modal.scrollTop = scrollTop - walkY;
+    });
 }
 
-// 실시간 검색
+window.addEventListener('mouseup', () => { isDragging = false; });
+
+// 배경 클릭 시 닫기
+window.onclick = (e) => { if (e.target === modal) closeModal(); }
+
+// [5] 실시간 검색
 document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();
