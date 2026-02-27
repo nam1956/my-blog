@@ -4,18 +4,24 @@ const ITEMS_PER_PAGE = 20;
 
 function init() {
     const path = window.location.pathname;
-    // 갤러리 페이지인지 확인
+    
     if (path.includes('gallery')) {
-        let category = 'all';
-        if (path.includes('hiking')) category = 'hiking';
-        else if (path.includes('family')) category = 'family';
-        else if (path.includes('friend')) category = 'friend';
-        else if (path.includes('memory')) category = 'memory';
+        // --- 수정된 부분: URL 파라미터(?type=...)에서 카테고리 읽기 ---
+        const params = new URLSearchParams(window.location.search);
+        let category = params.get('type') || 'all'; 
         
         filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
+        
+        // 제목도 카테고리에 맞춰 자동으로 바꿔주면 더 좋겠죠?
+        const titleMap = {'hiking':'🏔️ 등반', 'family':'🏠 가족', 'friend':'🤝 친구', 'memory':'✨ 추억'};
+        if(titleMap[category]) {
+            const titleTag = document.querySelector('.main-title'); // 또는 h2
+            if(titleTag) titleTag.innerText = `${titleMap[category]} 갤러리`;
+        }
+
         displayPage(1);
     } else {
-        // 메인 페이지 타이핑 효과
+        // 메인 페이지 타이핑 효과 (기존 코드 유지)
         const target = document.querySelector(".typing-text");
         if(target) {
             let text = "소중한 순간들을 기록합니다.~";
@@ -56,22 +62,31 @@ function renderPagination() {
     if (!pagination || totalPages <= 1) return;
     pagination.innerHTML = '';
 
-    const delta = 2; // 현재 페이지 좌우로 보여줄 개수
+    const sidePages = 2; // 현재 페이지 좌우로 보여줄 개수
     const range = [];
+    
+    // 항상 보여줄 페이지 번호들을 계산
     for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+        if (
+            i === 1 ||                          // 첫 페이지
+            i === totalPages ||                 // 마지막 페이지
+            (i >= currentPage - sidePages && i <= currentPage + sidePages) // 현재 페이지 주변
+        ) {
             range.push(i);
         }
     }
 
-    let last;
+    let last = 0;
     for (let i of range) {
-        if (last) {
-            if (i - last === 2) { 
-                addPageBtn(last + 1, pagination); 
-            } else if (i - last !== 1) {
+        if (last > 0) {
+            if (i - last === 2) {
+                // 바로 다음 번호면 그냥 버튼 추가 (예: 1 다음에 2)
+                addPageBtn(last + 1, pagination);
+            } else if (i - last > 2) {
+                // 간격이 2보다 크면 줄임표 추가 (예: 1 다음에 ... 다음에 5)
                 const dots = document.createElement('span');
-                dots.innerText = "..."; dots.className = "dots";
+                dots.innerText = "...";
+                dots.className = "dots";
                 pagination.appendChild(dots);
             }
         }
@@ -106,21 +121,17 @@ document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();
         
-        // 현재 카테고리 내에서 검색어로 필터링
-        const category = window.location.pathname.includes('hiking') ? 'hiking' :
-                         window.location.pathname.includes('family') ? 'family' :
-                         window.location.pathname.includes('friend') ? 'friend' :
-                         window.location.pathname.includes('memory') ? 'memory' : 'all';
+        // --- 수정된 부분: 주소창 파라미터 확인 ---
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('type') || 'all';
 
         const baseList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
         
-        // 제목이나 날짜에 검색어가 포함된 것만 추출
         filteredList = baseList.filter(photo => 
             photo.title.toLowerCase().includes(searchTerm) || 
             photo.date.includes(searchTerm)
         );
 
-        // 검색 후 무조건 1페이지부터 다시 보여줌
         displayPage(1);
     }
 });

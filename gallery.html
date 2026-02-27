@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 인생 갤러리</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="side-menu">
+        <a href="index.html">🏠 홈</a>
+        <a href="gallery.html?type=friend">👥 친구</a>
+        <a href="gallery.html?type=family">🏠 가족</a>
+        <a href="gallery.html?type=hiking">⛰️ 등반</a>
+        <a href="gallery.html?type=memory">🕰️ 추억</a>
+    </nav>
+
+    <div class="gallery-content">
+        <header class="gallery-header">
+            <h2 id="gallery-title" class="title-effect">나의 갤러리</h2>
+            <p id="gallery-subtitle" class="typing-text"></p> </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="날짜, 제목 등으로 검색...">
+        </div>
+
+        <div class="gallery-info">
+            <span id="totalPhotoCount">총 0장의 사진이 있습니다</span>
+        </div>
+        
+        <div class="gallery">
+            </div>
+
+        <div id="pagination" class="pagination-container"></div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="imgFull">
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
