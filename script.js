@@ -4,29 +4,45 @@ const ITEMS_PER_PAGE = 20;
 
 function init() {
     const path = window.location.pathname;
-    
-    if (path.includes('gallery')) {
-        // --- 수정된 부분: URL 파라미터(?type=...)에서 카테고리 읽기 ---
-        const params = new URLSearchParams(window.location.search);
-        let category = params.get('type') || 'all'; 
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('type') || 'all'; 
+
+    // 1. 갤러리 페이지 로직 (?type= 이 있거나 파일명이 gallery인 경우)
+    if (path.includes('gallery') || params.has('type')) {
         
+        // 데이터 필터링
         filteredList = (category === 'all') ? photoData : photoData.filter(p => p.category === category);
         
-        // 제목도 카테고리에 맞춰 자동으로 바꿔주면 더 좋겠죠?
-        const titleMap = {'hiking':'🏔️ 등반', 'family':'🏠 가족', 'friend':'🤝 친구', 'memory':'✨ 추억'};
-        if(titleMap[category]) {
-            const titleTag = document.querySelector('.main-title'); // 또는 h2
-            if(titleTag) titleTag.innerText = `${titleMap[category]} 갤러리`;
+        // 제목 변경 (HTML에 있는 id="gallery-title"을 찾음)
+        const titleMap = {
+            'hiking': '🏔️ 등반 갤러리', 
+            'family': '🏠 가족 갤러리', 
+            'friend': '🤝 친구 갤러리', 
+            'memory': '✨ 추억 저장소'
+        };
+        
+        const titleTag = document.getElementById('gallery-title');
+        if (titleTag && titleMap[category]) {
+            titleTag.innerText = titleMap[category];
         }
 
         displayPage(1);
-    } else {
-        // 메인 페이지 타이핑 효과 (기존 코드 유지)
+    } 
+    
+    // 2. 메인 페이지 로직 (타이핑 효과)
+    // path가 '/' 이거나 'index.html'인 경우, 혹은 gallery가 아닌 경우
+    if (!path.includes('gallery')) {
         const target = document.querySelector(".typing-text");
         if(target) {
+            target.innerHTML = ""; // 기존 내용 초기화
             let text = "소중한 순간들을 기록합니다.~";
             let i = 0;
-            function type() { if(i < text.length) { target.innerHTML += text[i++]; setTimeout(type, 120); } }
+            function type() { 
+                if(i < text.length) { 
+                    target.innerHTML += text[i++]; 
+                    setTimeout(type, 120); 
+                } 
+            }
             type();
         }
     }
@@ -34,7 +50,10 @@ function init() {
 
 function displayPage(page) {
     const gallery = document.querySelector('.gallery');
+    const totalCountTag = document.getElementById('totalPhotoCount');
+    
     if (!gallery) return;
+    
     currentPage = page;
     gallery.innerHTML = '';
     
@@ -52,26 +71,27 @@ function displayPage(page) {
     });
     
     renderPagination();
-    document.getElementById('totalPhotoCount').innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
+    
+    // 수량 표시 업데이트
+    if (totalCountTag) {
+        totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
+    }
 }
 
-// 🚩 1 ... 5 6 7 ... 32 줄임표 로직
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
-    if (!pagination || totalPages <= 1) return;
+    if (!pagination || totalPages <= 1) {
+        if(pagination) pagination.innerHTML = ''; // 페이지가 1개면 안보이게
+        return;
+    }
     pagination.innerHTML = '';
 
-    const sidePages = 2; // 현재 페이지 좌우로 보여줄 개수
+    const sidePages = 2; 
     const range = [];
     
-    // 항상 보여줄 페이지 번호들을 계산
     for (let i = 1; i <= totalPages; i++) {
-        if (
-            i === 1 ||                          // 첫 페이지
-            i === totalPages ||                 // 마지막 페이지
-            (i >= currentPage - sidePages && i <= currentPage + sidePages) // 현재 페이지 주변
-        ) {
+        if (i === 1 || i === totalPages || (i >= currentPage - sidePages && i <= currentPage + sidePages)) {
             range.push(i);
         }
     }
@@ -80,10 +100,8 @@ function renderPagination() {
     for (let i of range) {
         if (last > 0) {
             if (i - last === 2) {
-                // 바로 다음 번호면 그냥 버튼 추가 (예: 1 다음에 2)
                 addPageBtn(last + 1, pagination);
             } else if (i - last > 2) {
-                // 간격이 2보다 크면 줄임표 추가 (예: 1 다음에 ... 다음에 5)
                 const dots = document.createElement('span');
                 dots.innerText = "...";
                 dots.className = "dots";
@@ -99,29 +117,37 @@ function addPageBtn(num, container) {
     const btn = document.createElement('button');
     btn.innerText = num;
     if (num === currentPage) btn.className = 'active';
-    btn.onclick = () => { displayPage(num); window.scrollTo(0, 0); };
+    btn.onclick = () => { 
+        displayPage(num); 
+        window.scrollTo({top: 0, behavior: 'smooth'}); 
+    };
     container.appendChild(btn);
 }
 
 function openModal(src) {
     const m = document.getElementById("imageModal");
     const mi = document.getElementById("imgFull");
-    if(m && mi) { m.style.display = "flex"; mi.src = src; }
+    if(m && mi) { 
+        m.style.display = "flex"; 
+        mi.src = src; 
+    }
+}
+
+// 모달 닫기 기능 (엑스 버튼 및 배경 클릭)
+function closeModal() {
+    const m = document.getElementById("imageModal");
+    if(m) m.style.display = "none";
 }
 
 window.onclick = (e) => { 
     const m = document.getElementById("imageModal");
-    if (e.target === m) m.style.display = "none"; 
+    if (e.target === m) closeModal(); 
 }
 
-document.addEventListener('DOMContentLoaded', init);
-
-// 검색창 이벤트 연결 (실시간 필터링)
+// 실시간 검색 이벤트
 document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();
-        
-        // --- 수정된 부분: 주소창 파라미터 확인 ---
         const params = new URLSearchParams(window.location.search);
         const category = params.get('type') || 'all';
 
@@ -135,3 +161,5 @@ document.addEventListener('input', (e) => {
         displayPage(1);
     }
 });
+
+document.addEventListener('DOMContentLoaded', init);
