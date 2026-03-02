@@ -7,7 +7,7 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .main-title { font-size: 3rem; margin-bottom: 10px; color: #333; display: inline-block; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: zoomInOut 4s ease-in-out infinite; }
 .typing-container { height: 30px; margin-bottom: 40px; }
 
-.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 90%; max-width: 500px; margin-top: 20px; }
+.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 90%; max-width: 500px; margin-top: 20px; }
 .menu-card { background: white; border-radius: 15px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
 .menu-card:hover { transform: translateY(-5px); background: #eee; }
 
