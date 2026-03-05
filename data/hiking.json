@@ -1,1 +1,21 @@
-_______________
+[
+  {
+    "filename": "20060514_surak_001.JPG",
+    "date": "2006-05-13 23:03:30",
+    "category": "hiking",
+    "keywords": "수락산,내원암"
+  },
+  {
+    "filename": "20060514_surak_002.JPG",
+    "date": "2006-05-13 23:05:47",
+    "category": "hiking",
+    "keywords": "수락산,내원암"
+  },
+  ... (중략: 주신 데이터를 이 형식으로 계속 추가하시면 됩니다) ...
+  {
+    "filename": "20060604_seorak_036.JPG",
+    "date": "2006-06-04 05:54:55",
+    "category": "hiking",
+    "keywords": "설악산,한편의시를위한길"
+  }
+]

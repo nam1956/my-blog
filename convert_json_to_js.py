@@ -1,39 +1,41 @@
 import json
 import os
 
-# 1. 재료 위치 확인 (data 폴더 안의 family.json)
-json_path = os.path.join('data', 'family.json')
-
-if not os.path.exists(json_path):
-    print(f"❌ 오류: '{json_path}' 파일을 찾을 수 없습니다. 폴더 위치를 확인하세요.")
-    exit()
-
-# 2. JSON 데이터 읽기
-with open(json_path, 'r', encoding='utf-8') as f:
-    json_data = json.load(f)
-
-final_list = []
-
-# 3. 데이터 변환 (사용자님의 JSON 구조에 맞춤)
-for item in json_data:
-    # 'category'를 제외하고 .jpg나 .png로 끝나는 실제 파일명만 골라냅니다.
-    keys = [k for k in item.keys() if k.lower().endswith(('.jpg', '.png', '.jpeg'))]
+def convert():
+    combined_data = []
+    data_folder = 'data'
     
-    if keys:
-        filename = keys[0]  # 실제 파일명 (예: IMG_1234.jpg)
-        date_info = item.get(filename, "날짜미상") # 그 파일명에 적힌 날짜 값
+    # 1. 처리할 파일 리스트와 각 카테고리별 사진 폴더 매핑
+    targets = [
+        {'file': 'family.json', 'path': 'images/result_family/'},
+        {'file': 'hiking.json', 'path': 'images/result_hiking/'}
+    ]
+    
+    for target in targets:
+        file_path = os.path.join(data_folder, target['file'])
         
-        final_list.append({
-            "filename": filename,
-            "date": date_info,
-            "title": "가족 추억",
-            "category": "family" # images/result_family 폴더로 연결됨
-        })
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                items = json.load(f)
+                for item in items:
+                    # 파일명 앞에 올바른 폴더 경로를 붙여줍니다.
+                    item['image_path'] = target['path'] + item['filename']
+                    combined_data.append(item)
+            print(f"✅ {target['file']} 로드 완료!")
+        else:
+            print(f"⚠️ {target['file']} 파일이 존재하지 않아 건너뜁니다.")
 
-# 4. 결과물(data.js)을 루트 폴더에 저장
-with open('data.js', 'w', encoding='utf-8') as f:
-    f.write("const photoData = ")
-    json.dump(final_list, f, ensure_ascii=False, indent=4)
-    f.write(";")
+    # 2. 날짜 기준 정렬 (최신순)
+    combined_data.sort(key=lambda x: x['date'], reverse=True)
 
-print(f"✅ 드디어 성공! 총 {len(final_list)}장의 정보를 data.js로 변환했습니다.")
+    # 3. data.js 파일로 저장
+    js_content = f"const galleryData = {json.dumps(combined_data, ensure_ascii=False, indent=2)};"
+    
+    with open('data.js', 'w', encoding='utf-8') as f:
+        f.write(js_content)
+    
+    print("-" * 30)
+    print(f"🚀 총 {len(combined_data)}개의 데이터가 data.js로 통합되었습니다!")
+
+if __name__ == "__main__":
+    convert()
