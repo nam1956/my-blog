@@ -2,7 +2,7 @@ let currentPage = 1;
 let filteredList = [];
 const ITEMS_PER_PAGE = 20;
 
-// [1] 초기화: 타이핑 효과 & 카테고리 판별 유지
+// [1] 초기화: 메인화면 타이핑 효과 또는 갤러리 사진 불러오기
 function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type');
@@ -10,26 +10,30 @@ function init() {
 
     if (category || path.includes('gallery')) {
         const activeCategory = category || 'all';
+        
         filteredList = (activeCategory === 'all') 
             ? photoData 
             : photoData.filter(p => p.category === activeCategory);
 
         const titleMap = {
-            'hiking': '🏔️ 등반 사진첩',
             'family': '🏠 가족 갤러리',
+            'hiking': '⛰️ 등반 사진첩',
             'friend': '🤝 친구 갤러리',
-            'memory': '✨ 추억 저장소'
+            'travel': '✈️ 여행 기록',
+            'interest': '💡 관심 저장소',
+            'memory': '🕰️ 추억 저장소'
         };
         const titleTag = document.getElementById('gallery-title');
         if (titleTag) {
             titleTag.innerText = titleMap[activeCategory] || '나의 인생 갤러리';
         }
         displayPage(1);
-    } else {
+    } 
+    else {
         const target = document.querySelector(".typing-text");
         if (target) {
             target.innerHTML = "";
-            let text = "소중한 순간들을 기록합니다.~";
+            let text = "소중한 순간들을 기록합니다. 함께 추억을 나누어 보아요.";
             let i = 0;
             function type() {
                 if (i < text.length) {
@@ -42,7 +46,7 @@ function init() {
     }
 }
 
-// [2] 사진 출력 및 수량 표시 유지
+// [2] 사진 출력: 화면에 사진 격자 생성 (경로 수정 완료)
 function displayPage(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
@@ -56,8 +60,13 @@ function displayPage(page) {
     filteredList.slice(start, end).forEach(photo => {
         const div = document.createElement('div');
         div.className = 'photo-item';
+        
+        // ★ 핵심 수정: images 폴더 안의 result_ 폴더를 가리키도록 변경 ★
+        const folderPath = `images/result_${photo.category}`;
+        const imgSrc = `${folderPath}/${photo.filename}`;
+
         div.innerHTML = `
-            <img src="images/${photo.filename}" class="gallery-img" onclick="openModal('images/${photo.filename}')">
+            <img src="${imgSrc}" class="gallery-img" onclick="openModal('${imgSrc}')" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
             <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
         `;
         galleryContainer.appendChild(div);
@@ -67,7 +76,7 @@ function displayPage(page) {
     renderPagination();
 }
 
-// [3] 줄임표 페이지네이션 로직 유지
+// [3] 페이지네이션 (기존과 동일)
 function renderPagination() {
     const pagination = document.getElementById('pagination');
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
@@ -107,7 +116,7 @@ function addPageBtn(num, container) {
     container.appendChild(btn);
 }
 
-// [4] 모달 및 '무제한' 드래그 (이번에 수정된 핵심 파트)
+// [4] 모달 및 드래그 (기존과 동일)
 let isDragging = false;
 let startX, startY, scrollLeft, scrollTop;
 
@@ -124,8 +133,7 @@ function openModal(src) {
 }
 
 function closeModal() {
-    const m = document.getElementById("imageModal");
-    if (m) m.style.display = "none";
+    document.getElementById("imageModal").style.display = "none";
 }
 
 const imgFull = document.getElementById('imgFull');
@@ -145,7 +153,6 @@ if(imgFull && modal) {
         if (!imgFull.classList.contains('full-size')) return;
         isDragging = true;
         imgFull.style.cursor = 'grabbing';
-        // 브라우저 절대 좌표 저장
         startX = e.clientX; 
         startY = e.clientY;
         scrollLeft = modal.scrollLeft;
@@ -153,24 +160,18 @@ if(imgFull && modal) {
     });
 }
 
-// 전신 사진의 얼굴까지 무조건 도달하는 드래그 로직
 window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    e.preventDefault();
     const walkX = e.clientX - startX;
     const walkY = e.clientY - startY;
     modal.scrollLeft = scrollLeft - walkX;
     modal.scrollTop = scrollTop - walkY;
 });
 
-window.addEventListener('mouseup', () => { 
-    isDragging = false; 
-    if(imgFull) imgFull.style.cursor = 'grab';
-});
-
+window.addEventListener('mouseup', () => { isDragging = false; if(imgFull) imgFull.style.cursor = 'zoom-in'; });
 window.onclick = (e) => { if (e.target === modal) closeModal(); }
 
-// [5] 실시간 검색 기능 유지
+// [5] 검색 기능 (기존과 동일)
 document.addEventListener('input', (e) => {
     if (e.target.id === 'searchInput') {
         const searchTerm = e.target.value.toLowerCase();

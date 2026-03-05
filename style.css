@@ -2,68 +2,56 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; }
 
-/* 인덱스 페이지 */
+/* 인덱스 페이지(메인) 스타일 */
 .main-container { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f0f2f5; }
-.main-title { font-size: 3rem; margin-bottom: 10px; color: #333; display: inline-block; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: zoomInOut 4s ease-in-out infinite; }
-.typing-container { height: 30px; margin-bottom: 40px; }
+.main-title { font-size: 3rem; margin-bottom: 10px; color: #333; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: zoomInOut 4s ease-in-out infinite; }
+.typing-container { height: 30px; margin-bottom: 40px; font-weight: bold; color: #555; }
 
-.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 90%; max-width: 500px; margin-top: 20px; }
+.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 90%; max-width: 500px; }
 .menu-card { background: white; border-radius: 15px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
 .menu-card:hover { transform: translateY(-5px); background: #eee; }
 
-/* 갤러리 레이아웃 */
+/* 갤러리 상세 레이아웃 */
 .side-menu { width: 220px; background: #333; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding: 30px 15px; z-index: 1000; }
-.side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; }
+.side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; transition: 0.3s; }
+.side-menu a:hover { color: white; background: #444; }
 
 .gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 .gallery-header { width: 100%; max-width: 1100px; margin-bottom: 20px; text-align: center; }
 
-#searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin: 20px auto 30px; display: block; outline: none; font-size: 1rem; }
+#searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px; outline: none; font-size: 1rem; }
 
-/* [수정] 수량 표시: 최우측 사진 라인에 맞춤 */
+/* 수량 표시: 우측 정렬 */
 .count-wrapper { width: 100%; max-width: 1100px; text-align: right; margin-bottom: 15px; }
-#totalPhotoCount { display: inline-block; padding: 5px 15px; border: 1px solid #333; border-radius: 20px; background: white; font-weight: bold; font-size: 0.85rem; color: #333; }
+#totalPhotoCount { display: inline-block; padding: 5px 15px; border: 1px solid #333; border-radius: 20px; background: white; font-weight: bold; font-size: 0.85rem; }
 
-/* 갤러리 그리드 */
+/* 사진 그리드 */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
 .photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+.gallery-img:hover { opacity: 0.8; }
+.photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; line-height: 1.4; }
 
-/* 페이지네이션 (복구 및 정렬) */
-.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; padding-bottom: 50px; }
-.pagination-container button { min-width: 40px; height: 40px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
+/* 페이지네이션 */
+.pagination-container { width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 50px 0; }
+.pagination-container button { min-width: 35px; height: 35px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
 .pagination-container button.active { background: #333; color: white; border-color: #333; }
-.pagination-container .dots { padding: 0 5px; font-weight: bold; color: #666; }
 
-/* 모달 */
-#imageModal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
-#imgFull { max-width: 90%; max-height: 90vh; border: 4px solid white; border-radius: 5px; }
+/* 큰 사진 모달 창 */
+.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto; justify-content: center; align-items: center; }
+.modal-content { cursor: zoom-in; transition: transform 0.3s ease; max-width: 90%; max-height: 90vh; border: 3px solid white; }
+.modal-content.full-size { max-width: none !important; max-height: none !important; cursor: grab; }
+.close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-@media (max-width: 768px) { .side-menu { width: 100%; height: auto; position: relative; } .gallery-content { margin-left: 0; } .menu-grid { grid-template-columns: 1fr; } }
-
+/* 메인 타이틀 애니메이션 */
 @keyframes zoomInOut {
-    0%, 100% { transform: scale(1); text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-    50% { transform: scale(1.15); text-shadow: 10px 20px 30px rgba(0,0,0,0.2); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
-/* 모달 내 이미지 스타일 수정 및 추가 */
-.modal-content {
-    cursor: zoom-in; /* 기본적으로 돋보기 모양 */
-    transition: transform 0.3s ease; /* 확대 시 부드러운 효과 */
-    max-width: 90%; 
-    max-height: 90vh;
-}
-
-/* 원본 보기 모드일 때 (클래스로 제어) */
-.modal-content.full-size {
-    max-width: none !important;
-    max-height: none !important;
-    cursor: grab; /* 잡고 움직일 수 있는 손바닥 모양 */
-    position: relative;
-}
-
-/* 모달 배경에 스크롤 허용 */
-#imageModal {
-    overflow: auto; /* 사진이 커지면 스크롤 발생 */
-    display: none;
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .side-menu { width: 100%; height: auto; position: relative; padding: 10px; }
+    .gallery-content { margin-left: 0; padding: 20px; }
+    .menu-grid { grid-template-columns: 1fr; }
 }
