@@ -9,17 +9,21 @@ function init() {
     // 데이터 로드 확인
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
-    // 배열 형태의 images가 있다면 개별 객체로 풀어서 평탄화
+    // 배열 형태의 images가 있다면 개별 객체로 풀어서 평탄화 (단일 항목은 그대로 유지)
     let expandedData = [];
     rawData.forEach(p => {
-        if (p.images && Array.isArray(p.images)) {
-            p.images.forEach(img => {
+        // 이미지가 배열로 주어진 경우
+        if (p.images && Array.isArray(p.images) && p.images.length > 0) {
+            p.images.forEach(imgFilename => {
                 expandedData.push({
-                    ...p,
-                    filename: img
+                    ...p,                // 기존 속성(category, theme, date 등) 유지
+                    filename: imgFilename, // 실제 이미지 파일명만 교체
+                    images: undefined    // 중복 방지를 위해 제거
                 });
             });
-        } else {
+        } 
+        // 기존처럼 filename 하나만 주어진 경우
+        else if (p.filename) {
             expandedData.push(p);
         }
     });
