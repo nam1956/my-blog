@@ -67,7 +67,7 @@ function displayPage(page) {
 
         div.innerHTML = `
             <img src="${imgSrc}" class="gallery-img" onclick="openModal('${imgSrc}')" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
-            <div class="photo-info"><strong>${photo.title}</strong><br><span>${photo.date}</span></div>
+            <div class="photo-info"><strong>${photo.theme}</strong><br><span>${photo.date}</span></div>
         `;
         galleryContainer.appendChild(div);
     });
