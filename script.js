@@ -9,8 +9,23 @@ function init() {
     // 데이터 로드 확인
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
+    // 배열 형태의 images가 있다면 개별 객체로 풀어서 평탄화
+    let expandedData = [];
+    rawData.forEach(p => {
+        if (p.images && Array.isArray(p.images)) {
+            p.images.forEach(img => {
+                expandedData.push({
+                    ...p,
+                    filename: img
+                });
+            });
+        } else {
+            expandedData.push(p);
+        }
+    });
+
     // 필터링 로직 강화 (카테고리가 없는 데이터는 'family'로 취급)
-    filteredList = rawData.filter(p => {
+    filteredList = expandedData.filter(p => {
         const itemCategory = p.category || 'family'; 
         return (category === 'all') || (itemCategory === category);
     });
