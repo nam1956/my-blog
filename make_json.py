@@ -46,8 +46,11 @@ def update_photo_database():
 
 if __name__ == "__main__":
     update_photo_database()
-
-    print("\n🚀 블로그 업데이트를 시작합니다 (Git Push)...")
+    
+    print("\n🔄 JSON 파일을 data.js로 변환합니다...")
+    os.system("python convert_json_to_js.py")
+    
+    print("\n🚀 Git에 변경사항을 자동으로 푸시합니다...")
     os.system("git add .")
-    os.system('git commit -m "사진 자동 업데이트"')
+    os.system('git commit -m "자동 업데이트"')
     os.system("git push")
