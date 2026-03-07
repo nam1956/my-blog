@@ -43,10 +43,10 @@ function init() {
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = titleMap[category] || '나의 인생 갤러리';
 
-    displayPage(1);
+    renderGallery(1);
 }
 
-function displayPage(page) {
+function renderGallery(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
     if (!galleryContainer) return;
@@ -68,18 +68,24 @@ function displayPage(page) {
         div.innerHTML = `
             <img src="${imgSrc}" 
                  class="gallery-img" 
-                 onclick="openModal('${imgSrc}')" 
                  onerror="handleImageError(this)">
             <div class="photo-info">
                 <strong>${photo.theme || '제목 없음'}</strong><br>
                 <span>${photo.date || ''}</span>
             </div>
         `;
+        
+        // img 요소에 명시적으로 onclick 할당
+        const img = div.querySelector('img');
+        if (img) {
+            img.onclick = function() { openModal(img.src); };
+        }
+        
         galleryContainer.appendChild(div);
     });
     
     if (totalCountTag) totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
-    renderPagination();
+    displayPagination();
 }
 
 // 대소문자(PNG/png) 및 경로 오류 복구 함수
@@ -100,5 +106,92 @@ function handleImageError(image) {
     }
 }
 
-// ... 나머지 renderPagination, openModal 등은 기존과 동일
-document.addEventListener('DOMContentLoaded', init);
+// 페이지네이션 버튼 생성 함수
+function displayPagination() {
+    const pagination = document.getElementById('pagination');
+    if (!pagination) return;
+    pagination.innerHTML = '';
+
+    const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
+    if (totalPages <= 1) return; // 1페이지뿐이면 버튼 안 만듦
+
+    const maxButtons = 5;
+    let startPage = currentPage - Math.floor(maxButtons / 2);
+    let endPage = currentPage + Math.floor(maxButtons / 2);
+
+    if (startPage < 1) {
+        startPage = 1;
+        endPage = Math.min(totalPages, maxButtons);
+    }
+    if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(1, totalPages - maxButtons + 1);
+    }
+
+    // [처음으로] + [첫 페이지] 버튼
+    if (startPage > 1) {
+        addPageButton(1, pagination);
+        if (startPage > 2) {
+            const dots = document.createElement('span');
+            dots.innerText = '...';
+            pagination.appendChild(dots);
+        }
+    }
+
+    // 숫자 버튼들
+    for (let i = startPage; i <= endPage; i++) {
+        addPageButton(i, pagination, i === currentPage);
+    }
+
+    // [마지막 페이지] + [끝으로] 버튼
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const dots = document.createElement('span');
+            dots.innerText = '...';
+            pagination.appendChild(dots);
+        }
+        addPageButton(totalPages, pagination);
+    }
+}
+
+// 버튼 생성을 도와주는 보조 함수
+function addPageButton(pageNumber, container, isActive = false) {
+    const btn = document.createElement('button');
+    btn.innerText = pageNumber;
+    if (isActive) btn.className = 'active';
+    btn.onclick = () => {
+        renderGallery(pageNumber);
+        window.scrollTo(0, 0); // 페이지 이동 시 상단으로 스크롤
+    };
+    container.appendChild(btn);
+}
+
+// 사진을 크게 보여주는 함수
+function openModal(imgSrc) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgFull");
+    if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+    }
+}
+
+// 모달 닫기 버튼 로직 및 외부 클릭 로직 (DOM 로드 후 할당)
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+
+    const closeBtn = document.querySelector(".close");
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            document.getElementById("imageModal").style.display = "none";
+        };
+    }
+
+    // 모달 바깥쪽(배경) 클릭 시 모달 닫기
+    window.onclick = function(event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+});
