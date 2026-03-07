@@ -62,18 +62,44 @@ function displayPage(page) {
         const div = document.createElement('div');
         div.className = 'photo-item';
         
-        const folderPath = `images/result_${photo.category}`;
+        const folderPath = `images/result_${photo.category || 'family'}`;
         const imgSrc = `${folderPath}/${photo.filename}`;
 
+        // ★ 대소문자 문제 해결용 에러 처리 로직 추가 ★
         div.innerHTML = `
-            <img src="${imgSrc}" class="gallery-img" onclick="openModal('${imgSrc}')" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
-            <div class="photo-info"><strong>${photo.theme || '제목 없음'}</strong><br><span>${photo.date || ''}</span></div>
+            <img src="${imgSrc}" 
+                 class="gallery-img" 
+                 onclick="openModal('${imgSrc}')" 
+                 onerror="handleImageError(this)">
+            <div class="photo-info">
+                <strong>${photo.theme || '제목 없음'}</strong><br>
+                <span>${photo.date || ''}</span>
+            </div>
         `;
         galleryContainer.appendChild(div);
     });
     
     if (totalCountTag) totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
     renderPagination();
+}
+
+// ★ 확장자가 대문자/소문자 섞여있을 때를 대비한 마법의 함수 ★
+function handleImageError(image) {
+    const originalSrc = image.src;
+    
+    // 이미 한 번 변환을 시도했다면 무한 루프 방지를 위해 중단
+    if (image.dataset.tried === "upper") {
+        image.src = 'https://via.placeholder.com/200?text=No+Image';
+        return;
+    }
+
+    // .png를 .PNG로, .jpg를 .JPG로 바꿔서 다시 시도
+    let newSrc = originalSrc;
+    if (originalSrc.endsWith('.png')) newSrc = originalSrc.replace('.png', '.PNG');
+    else if (originalSrc.endsWith('.jpg')) newSrc = originalSrc.replace('.jpg', '.JPG');
+    
+    image.dataset.tried = "upper";
+    image.src = newSrc;
 }
 
 // ... (나머지 renderPagination, openModal 등 함수는 기존과 동일하게 유지)
