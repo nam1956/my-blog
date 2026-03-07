@@ -46,3 +46,8 @@ def update_photo_database():
 
 if __name__ == "__main__":
     update_photo_database()
+
+    print("\n🚀 블로그 업데이트를 시작합니다 (Git Push)...")
+    os.system("git add .")
+    os.system('git commit -m "사진 자동 업데이트"')
+    os.system("git push")
