@@ -1,8 +1,8 @@
-/* 전체 초기화 */
+/* [1] 전체 초기화 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; }
+body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; overflow-x: hidden; }
 
-/* 인덱스 페이지(메인) 스타일 */
+/* [2] 인덱스 페이지(메인) 스타일 */
 .main-container { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f0f2f5; }
 .main-title { font-size: 3rem; margin-bottom: 10px; color: #333; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: zoomInOut 4s ease-in-out infinite; }
 .typing-container { height: 30px; margin-bottom: 40px; font-weight: bold; color: #555; }
@@ -11,7 +11,7 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .menu-card { background: white; border-radius: 15px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
 .menu-card:hover { transform: translateY(-5px); background: #eee; }
 
-/* 갤러리 상세 레이아웃 */
+/* [3] 갤러리 상세 레이아웃 */
 .side-menu { width: 220px; background: #333; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding: 30px 15px; z-index: 1000; }
 .side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; transition: 0.3s; }
 .side-menu a:hover { color: white; background: #444; }
@@ -21,25 +21,24 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 
 #searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px; outline: none; font-size: 1rem; }
 
-/* 수량 표시: 우측 정렬 */
 .count-wrapper { width: 100%; max-width: 1100px; text-align: right; margin-bottom: 15px; }
 #totalPhotoCount { display: inline-block; padding: 5px 15px; border: 1px solid #333; border-radius: 20px; background: white; font-weight: bold; font-size: 0.85rem; }
 
-/* 사진 그리드 */
+/* [4] 사진 그리드 */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
 .photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
 .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
 .gallery-img:hover { opacity: 0.8; }
 .photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; line-height: 1.4; }
 
-/* 페이지네이션 */
+/* [5] 페이지네이션 */
 .pagination-container { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: 40px 0; padding-bottom: 30px; }
 .pagination-container button { min-width: 35px; height: 35px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; font-size: 1rem; }
 .pagination-container button.active { background: #333; color: white; border-color: #333; font-weight: bold; }
 
-/* 큰 사진 모달 창 */
+/* [6] 큰 사진 모달 창 (중요!) */
 .modal { 
-    display: none;           /* 처음엔 숨김 */
+    display: none; 
     position: fixed; 
     z-index: 3000; 
     left: 0; 
@@ -47,17 +46,15 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     width: 100%; 
     height: 100%; 
     background: rgba(0,0,0,0.9); 
-    
-    /* [수정 포인트] */
-    overflow: hidden;        /* 모달 자체에 스크롤 생기는 것 방지 */
-    justify-content: center; /* 가로 중앙 */
-    align-items: center;     /* 세로 중앙 */
+    overflow: auto; /* 확대 시 스크롤 허용 */
+    justify-content: center; 
+    align-items: center; 
 }
 
-/* 사진을 클릭해서 열었을 때, 자바스크립트가 이 클래스를 붙여줄 겁니다 */
+/* 자바스크립트 display 제어 대응 */
 .modal[style*="display: block"], 
 .modal[style*="display: flex"] {
-    display: flex !important; /* 강제로 flex로 만들어서 정렬 작동시키기 */
+    display: flex !important;
 }
 
 .modal-content { 
@@ -66,20 +63,26 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     max-width: 90%; 
     max-height: 90vh; 
     border: 3px solid white; 
-    
-    /* [추가] 확실하게 중앙에 박히도록 */
     margin: auto; 
     display: block; 
 }
-/* 메인 타이틀 애니메이션 */
-@keyframes zoomInOut {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+
+/* [핵심] 클릭 시 확대 기능 구현 */
+.modal-content.full-size { 
+    transform: scale(2.0); /* 2배 확대 (숫자로 조절 가능) */
+    max-width: none !important; 
+    max-height: none !important; 
+    cursor: zoom-out; 
+    margin: 10% auto; /* 확대 시 상하 여백 확보 */
 }
 
-/* 모바일 대응 */
+.close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 3100; }
+
+/* 애니메이션 및 모바일 대응 */
+@keyframes zoomInOut { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 @media (max-width: 768px) {
     .side-menu { width: 100%; height: auto; position: relative; padding: 10px; }
     .gallery-content { margin-left: 0; padding: 20px; }
     .menu-grid { grid-template-columns: 1fr; }
+    .modal-content.full-size { transform: scale(1.5); } /* 모바일은 조금만 확대 */
 }
