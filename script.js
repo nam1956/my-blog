@@ -171,7 +171,7 @@ function openModal(imgSrc) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     if (modal && modalImg) {
-        modal.style.display = "block";
+        modal.style.display = "flex";  // <--- 이 부분을 'flex'로 고치세요!
         modalImg.src = imgSrc;
     }
 }
