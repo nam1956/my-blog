@@ -194,4 +194,42 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = "none";
         }
     };
+
+// [추가 코드] 모달 안의 이미지를 클릭하면 확대/축소하는 기능
+// 모달 관련 모든 기능 (닫기, 외부 클릭, 확대/축소)
+document.addEventListener('DOMContentLoaded', () => {
+    init(); // 갤러리 초기화
+
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgFull");
+    const closeBtn = document.querySelector(".close");
+
+    // 1. 닫기 버튼 클릭 시
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            modalImg.classList.remove('full-size'); // 닫을 때 확대 상태 초기화
+        };
+    }
+
+    // 2. 배경 클릭 시 닫기
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            modalImg.classList.remove('full-size');
+        }
+    };
+
+    // 3. 사진 클릭 시 확대/축소 (여기가 핵심!)
+    if (modalImg) {
+        modalImg.onclick = function() {
+            this.classList.toggle('full-size');
+            
+            if (this.classList.contains('full-size')) {
+                this.style.cursor = 'zoom-out';
+            } else {
+                this.style.cursor = 'zoom-in';
+            }
+        };
+    }
 });
