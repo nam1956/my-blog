@@ -2,43 +2,45 @@ let currentPage = 1;
 let filteredList = [];
 const ITEMS_PER_PAGE = 20;
 
+// 1. 초기화 함수
 function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type') || 'all';
 
-    // 데이터 로드 확인
+    // 데이터 로드 확인 (data.js의 photoData를 가져옵니다)
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
-    // 배열 형태의 images가 있다면 개별 객체로 풀어서 평탄화 (단일 항목은 그대로 유지)
+    // 데이터 평탄화 작업 (배열 형태 대응)
     let expandedData = [];
     rawData.forEach(p => {
-        // 이미지가 배열로 주어진 경우
         if (p.images && Array.isArray(p.images) && p.images.length > 0) {
             p.images.forEach(imgFilename => {
                 expandedData.push({
-                    ...p,                // 기존 속성(category, theme, date 등) 유지
-                    filename: imgFilename, // 실제 이미지 파일명만 교체
-                    images: undefined    // 중복 방지를 위해 제거
+                    ...p,
+                    filename: imgFilename,
+                    images: undefined
                 });
             });
         } 
-        // 기존처럼 filename 하나만 주어진 경우
         else if (p.filename) {
             expandedData.push(p);
         }
     });
 
-    // 필터링 로직 강화 (카테고리가 없는 데이터는 'family'로 취급)
+    // 필터링 로직
     filteredList = expandedData.filter(p => {
         const itemCategory = p.category || 'family'; 
         return (category === 'all') || (itemCategory === category);
     });
 
+    // 제목 변경
     const titleMap = {
         'family': '🏠 가족 갤러리',
         'hiking': '⛰️ 등반 사진첩',
         'friend': '🤝 친구 갤러리',
-        'interest': '💡 관심 저장소'
+        'interest': '💡 관심 저장소',
+        'travel': '✈️ 여행 기록',
+        'memory': '🕰️ 소중한 추억'
     };
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = titleMap[category] || '나의 인생 갤러리';
@@ -46,6 +48,7 @@ function init() {
     renderGallery(1);
 }
 
+// 2. 갤러리 화면 그리기
 function renderGallery(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
@@ -60,7 +63,6 @@ function renderGallery(page) {
         const div = document.createElement('div');
         div.className = 'photo-item';
         
-        // 카테고리 보정: 데이터에 없으면 'family' 폴더로 연결
         const cat = photo.category || 'family';
         const folderPath = `images/result_${cat}`;
         const imgSrc = `${folderPath}/${photo.filename}`;
@@ -75,7 +77,6 @@ function renderGallery(page) {
             </div>
         `;
         
-        // img 요소에 명시적으로 onclick 할당
         const img = div.querySelector('img');
         if (img) {
             img.onclick = function() { openModal(img.src); };
@@ -88,148 +89,91 @@ function renderGallery(page) {
     displayPagination();
 }
 
-// 대소문자(PNG/png) 및 경로 오류 복구 함수
+// 3. 이미지 에러 처리 (대소문자 보정)
 function handleImageError(image) {
-    if (image.dataset.tried === "2") return; // 두 번 실패하면 중단
-
+    if (image.dataset.tried === "2") return;
     let currentSrc = image.src;
     
     if (!image.dataset.tried) {
-        // 1차 시도: 확장자를 대문자로 변경 (.jpg -> .JPG)
         image.dataset.tried = "1";
         if (currentSrc.toLowerCase().endsWith('.jpg')) image.src = currentSrc.replace(/\.jpg/i, '.JPG');
         else if (currentSrc.toLowerCase().endsWith('.png')) image.src = currentSrc.replace(/\.png/i, '.PNG');
     } else {
-        // 2차 시도: 그래도 안되면 'family' 대신 'hiking' 등 다른 폴더나 기본 이미지 표시
         image.dataset.tried = "2";
-        image.src = 'https://via.placeholder.com/200?text=Check+Path';
+        image.src = 'https://via.placeholder.com/200?text=Image+Not+Found';
     }
 }
 
-// 페이지네이션 버튼 생성 함수
+// 4. 페이지네이션
 function displayPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
     pagination.innerHTML = '';
 
     const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
-    if (totalPages <= 1) return; // 1페이지뿐이면 버튼 안 만듦
+    if (totalPages <= 1) return;
 
     const maxButtons = 5;
-    let startPage = currentPage - Math.floor(maxButtons / 2);
-    let endPage = currentPage + Math.floor(maxButtons / 2);
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
-    if (startPage < 1) {
-        startPage = 1;
-        endPage = Math.min(totalPages, maxButtons);
-    }
-    if (endPage > totalPages) {
-        endPage = totalPages;
-        startPage = Math.max(1, totalPages - maxButtons + 1);
+    if (endPage - startPage + 1 < maxButtons) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
     }
 
-    // [처음으로] + [첫 페이지] 버튼
-    if (startPage > 1) {
-        addPageButton(1, pagination);
-        if (startPage > 2) {
-            const dots = document.createElement('span');
-            dots.innerText = '...';
-            pagination.appendChild(dots);
-        }
-    }
-
-    // 숫자 버튼들
     for (let i = startPage; i <= endPage; i++) {
-        addPageButton(i, pagination, i === currentPage);
-    }
-
-    // [마지막 페이지] + [끝으로] 버튼
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-            const dots = document.createElement('span');
-            dots.innerText = '...';
-            pagination.appendChild(dots);
-        }
-        addPageButton(totalPages, pagination);
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        if (i === currentPage) btn.className = 'active';
+        btn.onclick = () => {
+            renderGallery(i);
+            window.scrollTo(0, 0);
+        };
+        pagination.appendChild(btn);
     }
 }
 
-// 버튼 생성을 도와주는 보조 함수
-function addPageButton(pageNumber, container, isActive = false) {
-    const btn = document.createElement('button');
-    btn.innerText = pageNumber;
-    if (isActive) btn.className = 'active';
-    btn.onclick = () => {
-        renderGallery(pageNumber);
-        window.scrollTo(0, 0); // 페이지 이동 시 상단으로 스크롤
-    };
-    container.appendChild(btn);
-}
-
-// 사진을 크게 보여주는 함수
+// 5. 모달 열기 (중앙 정렬을 위해 flex 사용)
 function openModal(imgSrc) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     if (modal && modalImg) {
-        modal.style.display = "flex";  // <--- 이 부분을 'flex'로 고치세요!
+        modal.style.display = "flex"; 
         modalImg.src = imgSrc;
+        modalImg.classList.remove('full-size'); // 열 때는 항상 원래 크기로
+        modalImg.style.cursor = 'zoom-in';
     }
 }
 
-// 모달 닫기 버튼 로직 및 외부 클릭 로직 (DOM 로드 후 할당)
+// 6. 모든 이벤트 리스너 통합 (DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', () => {
-    init();
-
-    const closeBtn = document.querySelector(".close");
-    if (closeBtn) {
-        closeBtn.onclick = function() {
-            document.getElementById("imageModal").style.display = "none";
-        };
-    }
-
-    // 모달 바깥쪽(배경) 클릭 시 모달 닫기
-    window.onclick = function(event) {
-        const modal = document.getElementById("imageModal");
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
-
-// [추가 코드] 모달 안의 이미지를 클릭하면 확대/축소하는 기능
-// 모달 관련 모든 기능 (닫기, 외부 클릭, 확대/축소)
-document.addEventListener('DOMContentLoaded', () => {
-    init(); // 갤러리 초기화
+    init(); // 앱 시작
 
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     const closeBtn = document.querySelector(".close");
 
-    // 1. 닫기 버튼 클릭 시
+    // 닫기 버튼 클릭
     if (closeBtn) {
         closeBtn.onclick = function() {
             modal.style.display = "none";
-            modalImg.classList.remove('full-size'); // 닫을 때 확대 상태 초기화
+            if (modalImg) modalImg.classList.remove('full-size');
         };
     }
 
-    // 2. 배경 클릭 시 닫기
+    // 모달 배경 클릭 시 닫기
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
-            modalImg.classList.remove('full-size');
+            if (modalImg) modalImg.classList.remove('full-size');
         }
     };
 
-    // 3. 사진 클릭 시 확대/축소 (여기가 핵심!)
+    // 사진 클릭 시 확대/축소 (Toggle)
     if (modalImg) {
         modalImg.onclick = function() {
             this.classList.toggle('full-size');
-            
-            if (this.classList.contains('full-size')) {
-                this.style.cursor = 'zoom-out';
-            } else {
-                this.style.cursor = 'zoom-in';
-            }
+            this.style.cursor = this.classList.contains('full-size') ? 'zoom-out' : 'zoom-in';
         };
     }
 });
