@@ -1,132 +1,194 @@
 [
   {
-    "filename": "026bd79a44991b393ffbc0a66bd509fa.jpg",
+    "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
-    "date": "2023-10-29"
+    "date": "2023-10-29",
+    "category": "interest"
   },
   {
-    "filename": "04816c15226d9a2c7852b162360d3909.jpg",
+    "src": "images/result_interest/04816c15226d9a2c7852b162360d3909.jpg",
     "theme": "광복절",
-    "date": "2023-08-19"
+    "date": "2023-08-19",
+    "category": "interest"
   },
   {
-    "filename": "1649596592361.png",
+    "src": "images/result_interest/1649596592361.png",
     "theme": "태극기",
-    "date": "2022-04-11"
+    "date": "2022-04-11",
+    "category": "interest"
   },
   {
-    "filename": "1653132067674.png",
+    "src": "images/result_interest/1653132067674.png",
     "theme": "목공마크",
-    "date": "2022-05-22"
+    "date": "2022-05-22",
+    "category": "interest"
   },
   {
-    "filename": "1653134330512.jpg",
+    "src": "images/result_interest/1653134330512.jpg",
     "theme": "창극",
-    "date": "2022-05-22"
+    "date": "2022-05-22",
+    "category": "interest"
   },
   {
-    "filename": "1653135487461-0.png",
+    "src": "images/result_interest/1653135487461-0.png",
     "theme": "미용",
-    "date": "2022-05-22"
+    "date": "2022-05-22",
+    "category": "interest"
   },
   {
-    "filename": "1653143127549.png",
+    "src": "images/result_interest/1653135487461-1.png",
+    "theme": "미용",
+    "date": "2022-05-22",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1653135487461-2.png",
+    "theme": "미용",
+    "date": "2022-05-22",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1653143127549.png",
     "theme": "신호등",
-    "date": "2022-05-22"
+    "date": "2022-05-22",
+    "category": "interest"
   },
   {
-    "filename": "1653220222917.png",
+    "src": "images/result_interest/1653220222917.png",
     "theme": "지게차",
-    "date": "2022-05-23"
+    "date": "2022-05-23",
+    "category": "interest"
   },
   {
-    "filename": "1653220636507.png",
-    "theme": "옛날버스",
-    "date": "2022-05-23"
+    "src": "images/result_interest/1653220636507.png",
+    "theme": "엣날버스",
+    "date": "2022-05-23",
+    "category": "interest"
   },
   {
-    "filename": "1653221117329.png",
+    "src": "images/result_interest/1653221117329.png",
     "theme": "드럼",
-    "date": "2022-05-23"
+    "date": "2022-05-23",
+    "category": "interest"
   },
   {
-    "filename": "1653221242201.png",
+    "src": "images/result_interest/1653221242201.png",
     "theme": "여사진사",
-    "date": "2022-05-23"
+    "date": "2022-05-23",
+    "category": "interest"
   },
   {
-    "filename": "1653371299888-0.png",
+    "src": "images/result_interest/1653371299888-0.png",
     "theme": "마녀",
-    "date": "2022-05-24"
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653371299888-2.png",
+    "src": "images/result_interest/1653371299888-2.png",
     "theme": "택배",
-    "date": "2022-05-24"
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653371299888-3.png",
+    "src": "images/result_interest/1653371299888-3.png",
     "theme": "여사무원",
-    "date": "2022-05-24"
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653371299888-7.png",
+    "src": "images/result_interest/1653371299888-4.png",
+    "theme": "여사무원",
+    "date": "2022-05-24",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1653371299888-6.png",
+    "theme": "여사무원",
+    "date": "2022-05-24",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1653371299888-7.png",
     "theme": "렌즈",
-    "date": "2022-05-24"
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653371299888-8.png",
-    "theme": "펭귄",
-    "date": "2022-05-24"
+    "src": "images/result_interest/1653371299888-8.png",
+    "theme": "팽귄",
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653371927106.png",
+    "src": "images/result_interest/1653371927106.png",
     "theme": "레카",
-    "date": "2022-05-24"
+    "date": "2022-05-24",
+    "category": "interest"
   },
   {
-    "filename": "1653395371626-0.png",
+    "src": "images/result_interest/1653395371626-0.png",
     "theme": "지게차표시판",
-    "date": "2022-05-25"
+    "date": "2022-05-25",
+    "category": "interest"
   },
   {
-    "filename": "1653395371626-1.jpg",
+    "src": "images/result_interest/1653395371626-1.jpg",
     "theme": "이발소네온간판",
-    "date": "2022-05-25"
+    "date": "2022-05-25",
+    "category": "interest"
   },
   {
-    "filename": "1653399364069.png",
+    "src": "images/result_interest/1653399364069.png",
     "theme": "글래머",
-    "date": "2022-05-25"
+    "date": "2022-05-25",
+    "category": "interest"
   },
   {
-    "filename": "1653530430914-1.png",
+    "src": "images/result_interest/1653530430914-0.png",
+    "theme": "마녀",
+    "date": "2022-05-26",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1653530430914-1.png",
     "theme": "여건축기사",
-    "date": "2022-05-26"
+    "date": "2022-05-26",
+    "category": "interest"
   },
   {
-    "filename": "1653647607091.png",
+    "src": "images/result_interest/1653647607091.png",
     "theme": "수문장",
-    "date": "2022-05-28"
+    "date": "2022-05-28",
+    "category": "interest"
   },
   {
-    "filename": "1653665245786.png",
+    "src": "images/result_interest/1653665245786.png",
     "theme": "가로등",
-    "date": "2022-05-28"
+    "date": "2022-05-28",
+    "category": "interest"
   },
   {
-    "filename": "1761391554158.jpg",
+    "src": "images/result_interest/1692364203670.jpg",
+    "theme": "광복절",
+    "date": "2023-08-19",
+    "category": "interest"
+  },
+  {
+    "src": "images/result_interest/1761391554158.jpg",
     "theme": "추석",
-    "date": "2025-10-26"
+    "date": "2025-10-26",
+    "category": "interest"
   },
   {
-    "filename": "20230811_170334-01-01.png",
+    "src": "images/result_interest/20230811_170334-01-01.png",
     "theme": "이경임인장",
-    "date": "2023-08-12"
+    "date": "2023-08-12",
+    "category": "interest"
   },
   {
-    "filename": "IMG_20230813_185800-01.png",
+    "src": "images/result_interest/IMG_20230813_185800-01.png",
     "theme": "남창극인장",
-    "date": "2023-09-03"
+    "date": "2023-09-03",
+    "category": "interest"
   }
 ]
