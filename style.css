@@ -38,11 +38,39 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .pagination-container button.active { background: #333; color: white; border-color: #333; font-weight: bold; }
 
 /* 큰 사진 모달 창 */
-.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto; justify-content: center; align-items: center; }
-.modal-content { cursor: zoom-in; transition: transform 0.3s ease; max-width: 90%; max-height: 90vh; border: 3px solid white; }
-.modal-content.full-size { max-width: none !important; max-height: none !important; cursor: grab; }
-.close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
+.modal { 
+    display: none;           /* 처음엔 숨김 */
+    position: fixed; 
+    z-index: 3000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.9); 
+    
+    /* [수정 포인트] */
+    overflow: hidden;        /* 모달 자체에 스크롤 생기는 것 방지 */
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;     /* 세로 중앙 */
+}
 
+/* 사진을 클릭해서 열었을 때, 자바스크립트가 이 클래스를 붙여줄 겁니다 */
+.modal[style*="display: block"], 
+.modal[style*="display: flex"] {
+    display: flex !important; /* 강제로 flex로 만들어서 정렬 작동시키기 */
+}
+
+.modal-content { 
+    cursor: zoom-in; 
+    transition: transform 0.3s ease; 
+    max-width: 90%; 
+    max-height: 90vh; 
+    border: 3px solid white; 
+    
+    /* [추가] 확실하게 중앙에 박히도록 */
+    margin: auto; 
+    display: block; 
+}
 /* 메인 타이틀 애니메이션 */
 @keyframes zoomInOut {
     0%, 100% { transform: scale(1); }
