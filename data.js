@@ -6705,5 +6705,89 @@ const photoData = [
     "date": "2023-09-03",
     "category": "interest",
     "filename": "IMG_20230813_185800-01.png"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_001.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_001.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_002.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_002.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_003.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_003.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_005.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_005.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_006.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_006.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_007.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_007.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_008.JPG",
+    "theme": "창극,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_008.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_009.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_009.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_010.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_010.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_011.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_011.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_012.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_012.JPG"
+  },
+  {
+    "src": "images/result_memory/20041226_samgak_013.JPG",
+    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "date": "2004-12-26",
+    "category": "memory",
+    "filename": "20041226_samgak_013.JPG"
   }
 ];

@@ -36,3 +36,5 @@ if __name__ == "__main__":
     convert_txt_to_json('hiking.txt', 'data/hiking.json', 'hiking')
     # 3. 관심사
     convert_txt_to_json('interest.txt', 'data/interest.json', 'interest')
+    # 4. 추억
+    convert_txt_to_json('memory.txt', 'data/memory.json', 'memory')
