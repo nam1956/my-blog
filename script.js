@@ -1,5 +1,6 @@
 let currentPage = 1;
 let filteredList = [];
+let allExpandedData = []; // 검색을 위해 전체 데이터를 따로 보관합니다.
 const ITEMS_PER_PAGE = 20;
 
 // 1. 초기화 함수
@@ -7,15 +8,13 @@ function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type') || 'all';
 
-    // 데이터 로드 확인 (data.js의 photoData를 가져옵니다)
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
-    // 데이터 평탄화 작업 (배열 형태 대응)
-    let expandedData = [];
+    allExpandedData = [];
     rawData.forEach(p => {
         if (p.images && Array.isArray(p.images) && p.images.length > 0) {
             p.images.forEach(imgFilename => {
-                expandedData.push({
+                allExpandedData.push({
                     ...p,
                     filename: imgFilename,
                     images: undefined
@@ -23,12 +22,12 @@ function init() {
             });
         } 
         else if (p.filename) {
-            expandedData.push(p);
+            allExpandedData.push(p);
         }
     });
 
     // 필터링 로직
-    filteredList = expandedData.filter(p => {
+    filteredList = allExpandedData.filter(p => {
         const itemCategory = p.category || 'family'; 
         return (category === 'all') || (itemCategory === category);
     });
@@ -49,7 +48,7 @@ function init() {
 }
 
 // 2. 갤러리 화면 그리기
-function renderGallery(page) {
+function renderGallery(page, listToRender = filteredList) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
     if (!galleryContainer) return;
@@ -59,7 +58,10 @@ function renderGallery(page) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     
-    filteredList.slice(start, end).forEach(photo => {
+    // 화면에 보여줄 리스트 (검색 결과가 있으면 그걸 쓰고, 없으면 기본 필터 리스트 사용)
+    const displayList = listToRender.slice(start, end);
+
+    displayList.forEach(photo => {
         const div = document.createElement('div');
         div.className = 'photo-item';
         
@@ -85,75 +87,45 @@ function renderGallery(page) {
         galleryContainer.appendChild(div);
     });
     
-    if (totalCountTag) totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
-    displayPagination();
+    if (totalCountTag) totalCountTag.innerText = `총 : ${listToRender.length} 장의 사진이 있습니다`;
+    displayPagination(listToRender.length);
 }
 
-// 3. 이미지 에러 처리 (대소문자 보정)
-function handleImageError(image) {
-    if (image.dataset.tried === "2") return;
-    let currentSrc = image.src;
+// [추가된 기능] 검색 실행 함수
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+
+    const query = searchInput.value.trim().toLowerCase();
     
-    if (!image.dataset.tried) {
-        image.dataset.tried = "1";
-        if (currentSrc.toLowerCase().endsWith('.jpg')) image.src = currentSrc.replace(/\.jpg/i, '.JPG');
-        else if (currentSrc.toLowerCase().endsWith('.png')) image.src = currentSrc.replace(/\.png/i, '.PNG');
-    } else {
-        image.dataset.tried = "2";
-        image.src = 'https://via.placeholder.com/200?text=Image+Not+Found';
-    }
+    // 현재 보고 있는 카테고리 내에서 키워드(theme)로 검색
+    const searchResults = filteredList.filter(photo => {
+        const theme = (photo.theme || '').toLowerCase();
+        return theme.includes(query);
+    });
+
+    renderGallery(1, searchResults); // 검색 결과로 다시 그리기
 }
 
-// 4. 페이지네이션
-function displayPagination() {
-    const pagination = document.getElementById('pagination');
-    if (!pagination) return;
-    pagination.innerHTML = '';
-
-    const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
-    if (totalPages <= 1) return;
-
-    const maxButtons = 5;
-    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
-
-    if (endPage - startPage + 1 < maxButtons) {
-        startPage = Math.max(1, endPage - maxButtons + 1);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        if (i === currentPage) btn.className = 'active';
-        btn.onclick = () => {
-            renderGallery(i);
-            window.scrollTo(0, 0);
-        };
-        pagination.appendChild(btn);
-    }
-}
-
-// 5. 모달 열기 (중앙 정렬을 위해 flex 사용)
-function openModal(imgSrc) {
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("imgFull");
-    if (modal && modalImg) {
-        modal.style.display = "flex"; 
-        modalImg.src = imgSrc;
-        modalImg.classList.remove('full-size'); // 열 때는 항상 원래 크기로
-        modalImg.style.cursor = 'zoom-in';
-    }
-}
+// 3. 이미지 에러 처리 / 4. 페이지네이션 / 5. 모달 (기존 코드와 동일하여 생략, 실제 파일엔 포함하세요)
+// ... (사장님의 기존 handleImageError, displayPagination, openModal 코드들) ...
 
 // 6. 모든 이벤트 리스너 통합 (DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', () => {
-    init(); // 앱 시작
+    init(); 
+
+    // 검색창 엔터키 연결
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.onkeyup = function(e) {
+            if (e.key === 'Enter') performSearch();
+        };
+    }
 
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     const closeBtn = document.querySelector(".close");
 
-    // 닫기 버튼 클릭
     if (closeBtn) {
         closeBtn.onclick = function() {
             modal.style.display = "none";
@@ -161,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 모달 배경 클릭 시 닫기
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -169,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 사진 클릭 시 확대/축소 (Toggle)
     if (modalImg) {
         modalImg.onclick = function() {
             this.classList.toggle('full-size');

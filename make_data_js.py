@@ -5,7 +5,7 @@ def make_combined_data_js():
     data_dir = 'data'
     output_file = 'data.js'
     
-    categories = ['family', 'hiking', 'interest', 'memory', 'travel']
+    categories = ['family', 'hiking', 'interest', 'memory', 'travel', 'friend']
     # 수정: 카테고리 구분 없이 모든 사진을 하나의 리스트(배열)로 합칩니다.
     all_photos = []
 

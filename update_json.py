@@ -40,3 +40,5 @@ if __name__ == "__main__":
     convert_txt_to_json('memory.txt', 'data/memory.json', 'memory')
     # 5. 여행
     convert_txt_to_json('travel.txt', 'data/travel.json', 'travel')
+    # 6. 친구
+    convert_txt_to_json('friend.txt', 'data/friend.json', 'friend')
