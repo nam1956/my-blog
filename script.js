@@ -1,6 +1,6 @@
 let currentPage = 1;
 let filteredList = []; // 카테고리별 기본 리스트
-let currentDisplayList = []; // [중요] 현재 화면에 실제로 나오고 있는 리스트 (동보회 등 검색 결과 포함)
+let currentDisplayList = []; // [중요] 현재 화면에 표시 중인 리스트 (동보회 등 검색 결과 고정)
 const ITEMS_PER_PAGE = 20;
 
 function init() {
@@ -17,19 +17,18 @@ function init() {
         }
     });
 
-    // 1. 왼쪽 메뉴 수량 표시 업데이트
     updateMenuCounts(expandedData);
 
-    // 2. 카테고리 필터링 (기본값 설정)
+    // 1. 카테고리에 맞는 기본 리스트 생성
     filteredList = expandedData.filter(p => (category === 'all') || (p.category || 'family') === category);
 
-    // 3. 제목 설정
     const titleMap = { family: '🏠 가족', hiking: '⛰️ 등반', friend: '🤝 친구', interest: '💡 관심', travel: '✈️ 여행', memory: '🕰️ 추억' };
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = (titleMap[category] || '나의 인생') + ' 갤러리';
 
-    // 4. 처음 시작할 때는 필터링된 기본 리스트를 보여줌
-    renderGallery(1, filteredList);
+    // [수정] 초기화 시점에 filteredList를 currentDisplayList에 명시적으로 박아넣습니다.
+    currentDisplayList = filteredList;
+    renderGallery(1);
 }
 
 function updateMenuCounts(allData) {
@@ -49,21 +48,20 @@ function updateMenuCounts(allData) {
     });
 }
 
-// [핵심 수정] renderGallery가 호출될 때 보던 리스트를 기억하도록 변경
-function renderGallery(page, listToRender = null) {
+// [수정] 인자 기본값을 삭제하여 꼬임을 방지합니다.
+function renderGallery(page, listToRender) {
     const container = document.querySelector('.gallery');
     if (!container) return;
     
-    // 만약 새로운 리스트(동보회 등)가 들어오면 그걸 기억하고, 
-    // 페이지 번호만 들어오면 기존에 기억하던 리스트를 그대로 씁니다.
-    if (listToRender !== null) {
+    // 만약 새로운 리스트가 인자로 들어오면 그걸로 교체하고, 아니면 기존 리스트를 유지합니다.
+    if (listToRender) {
         currentDisplayList = listToRender;
     }
     
     currentPage = page;
     container.innerHTML = '';
     
-    // 현재 보여줘야 할 리스트(currentDisplayList)에서 20개씩 자르기
+    // 무조건 currentDisplayList 기준으로만 화면을 그립니다.
     const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
     displayList.forEach(photo => {
@@ -84,7 +82,7 @@ function renderGallery(page, listToRender = null) {
 function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
-    renderGallery(1, results); // 검색 결과를 renderGallery에 전달
+    renderGallery(1, results);
 }
 
 function filterBySubCategory(subCat) {
@@ -105,7 +103,8 @@ function filterBySubCategory(subCat) {
     });
 
     const subResults = allExpanded.filter(p => (p.theme || '').includes(subCat));
-    renderGallery(1, subResults); // 동보회/동구회 결과를 renderGallery에 전달하여 고정시킴
+    // 동보회 32장 리스트를 renderGallery에 넘겨서 currentDisplayList를 교체합니다.
+    renderGallery(1, subResults); 
 }
 
 function handleImageError(img) {
@@ -129,7 +128,7 @@ function displayPagination(totalItems) {
         const btn = document.createElement('button');
         btn.innerHTML = text;
         if (cls) btn.className = cls;
-        // 페이지 번호만 넘겨도 renderGallery가 보던 리스트를 기억해서 보여줍니다.
+        // 이제 인자 없이 호출해도 currentDisplayList를 참조하므로 섞이지 않습니다.
         btn.onclick = () => { renderGallery(target); window.scrollTo(0, 0); };
         return btn;
     };
@@ -138,8 +137,10 @@ function displayPagination(totalItems) {
         pagination.appendChild(createBtn('≪', 1, 'nav-btn'));
         pagination.appendChild(createBtn('<', currentPage - 1, 'nav-btn'));
     }
-    for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, Math.max(1, currentPage - 2) + 4); i++) {
-        if (i > 0 && i <= totalPages) {
+    // 페이지 번호 생성
+    for (let i = 1; i <= totalPages; i++) {
+        // 현재 페이지 주변 번호만 보여주기 (선택사항)
+        if (i >= currentPage - 2 && i <= currentPage + 2) {
             pagination.appendChild(createBtn(i, i, i === currentPage ? 'active' : ''));
         }
     }
