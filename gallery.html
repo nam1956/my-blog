@@ -8,15 +8,23 @@
 </head>
 <body>
     <nav class="side-menu">
-        <a href="index.html">🏠 홈으로</a>
-        <a href="gallery.html?type=family">🏠 가족</a>
-        <a href="gallery.html?type=hiking">⛰️ 등반</a>
-        <a href="gallery.html?type=friend">👥 친구</a>
-        <a href="gallery.html?type=travel">✈️ 여행</a>
-        <a href="gallery.html?type=interest">💡 관심</a>
-        <a href="gallery.html?type=memory">🕰️ 추억</a>
-    </nav>
+    <a href="index.html">🏠 홈으로</a>
+    <a href="gallery.html?type=family">🏠 가족</a>
+    <a href="gallery.html?type=hiking">⛰️ 등반</a>
+    
+    <div class="dropdown">
+        <a href="gallery.html?type=friend" class="dropbtn">👥 친구</a>
+        <div class="dropdown-content">
+            <a href="#" onclick="filterBySubCategory('동구회')">└ 동구회</a>
+            <a href="#" onclick="filterBySubCategory('동보회')">└ 동보회</a>
+            <a href="#" onclick="filterBySubCategory('군동기')">└ 군동기</a>
+        </div>
+    </div>
 
+    <a href="gallery.html?type=travel">✈️ 여행</a>
+    <a href="gallery.html?type=interest">💡 관심</a>
+    <a href="gallery.html?type=memory">🕰️ 추억</a>
+    </nav>
     <div class="gallery-content">
         <header class="gallery-header">
             <h2 id="gallery-title">나의 갤러리</h2>

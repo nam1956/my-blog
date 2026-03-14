@@ -9,6 +9,7 @@ function init() {
 
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
+    // 데이터 평탄화 (여러 장의 이미지를 각각의 아이템으로 분리)
     let expandedData = [];
     rawData.forEach(p => {
         if (p.images && Array.isArray(p.images) && p.images.length > 0) {
@@ -25,11 +26,16 @@ function init() {
         }
     });
 
+    // 왼쪽 메뉴 수량 표시 업데이트 (평탄화된 전체 데이터 기준)
+    updateMenuCounts(expandedData);
+
+    // 현재 카테고리에 맞는 리스트 필터링
     filteredList = expandedData.filter(p => {
         const itemCategory = p.category || 'family'; 
         return (category === 'all') || (itemCategory === category);
     });
 
+    // 상단 제목 변경
     const titleMap = {
         'family': '🏠 가족 갤러리',
         'hiking': '⛰️ 등반 사진첩',
@@ -44,7 +50,22 @@ function init() {
     renderGallery(1);
 }
 
-// 2. 갤러리 화면 그리기 (검색 리스트 대응 가능하도록 수정)
+// [신규] 왼쪽 메뉴 옆에 사진 수량 자동 표시
+function updateMenuCounts(allData) {
+    const categories = ['family', 'hiking', 'friend', 'travel', 'interest', 'memory'];
+    
+    categories.forEach(cat => {
+        const count = allData.filter(p => (p.category || 'family') === cat).length;
+        const menuLink = document.querySelector(`.side-menu a[href*="type=${cat}"]`);
+        if (menuLink) {
+            // 기존 텍스트(아이콘+이름)만 추출하고 뒤에 숫자 결합
+            const baseText = menuLink.innerText.split(' (')[0]; 
+            menuLink.innerText = `${baseText} (${count})`;
+        }
+    });
+}
+
+// 2. 갤러리 화면 그리기
 function renderGallery(page, listToRender = filteredList) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
@@ -66,9 +87,7 @@ function renderGallery(page, listToRender = filteredList) {
         const imgSrc = `${folderPath}/${photo.filename}`;
 
         div.innerHTML = `
-            <img src="${imgSrc}" 
-                 class="gallery-img" 
-                 onerror="handleImageError(this)">
+            <img src="${imgSrc}" class="gallery-img" onerror="handleImageError(this)">
             <div class="photo-info">
                 <strong>${photo.theme || '제목 없음'}</strong><br>
                 <span>${photo.date || ''}</span>
@@ -79,15 +98,14 @@ function renderGallery(page, listToRender = filteredList) {
         if (img) {
             img.onclick = function() { openModal(img.src); };
         }
-        
         galleryContainer.appendChild(div);
     });
     
     if (totalCountTag) totalCountTag.innerText = `총 : ${listToRender.length} 장의 사진이 있습니다`;
-    displayPagination(listToRender.length); // 개수를 전달하여 페이지네이션 호출
+    displayPagination(listToRender.length);
 }
 
-// [수정] 제목(theme) + 날짜(date) 모두 검색 가능하게 업그레이드!
+// [검색] 제목 + 날짜 통합 검색
 function performSearch() {
     const searchInput = document.getElementById('searchInput');
     if (!searchInput) return;
@@ -96,13 +114,19 @@ function performSearch() {
     
     const searchResults = filteredList.filter(photo => {
         const theme = (photo.theme || '').toLowerCase();
-        const date = (photo.date || '').toLowerCase(); // 날짜 정보 가져오기
-        
-        // 제목에 포함되어 있거나, 날짜에 포함되어 있으면 결과에 포함!
+        const date = (photo.date || '').toLowerCase();
         return theme.includes(query) || date.includes(query);
     });
 
     renderGallery(1, searchResults); 
+}
+
+// [신규] 서브 카테고리(동구회, 동보회 등) 필터링
+function filterBySubCategory(subCat) {
+    const subResults = filteredList.filter(photo => 
+        (photo.theme || '').includes(subCat)
+    );
+    renderGallery(1, subResults);
 }
 
 // 3. 이미지 에러 처리
@@ -120,7 +144,7 @@ function handleImageError(image) {
     }
 }
 
-// 4. 페이지네이션 (10개씩 표시 및 처음/끝 이동 추가)
+// 4. 페이지네이션 (개선된 화살표 버전)
 function displayPagination(totalItems) {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -129,7 +153,6 @@ function displayPagination(totalItems) {
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
     if (totalPages <= 1) return;
 
-    // 설정: 한 번에 보여줄 숫자 버튼 개수 (5개가 가장 깔끔합니다)
     const maxButtons = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
     let endPage = Math.min(totalPages, startPage + maxButtons - 1);
@@ -138,7 +161,6 @@ function displayPagination(totalItems) {
         startPage = Math.max(1, endPage - maxButtons + 1);
     }
 
-    // [함수] 버튼 생성 공통 로직
     const createBtn = (text, targetPage, className = '') => {
         const btn = document.createElement('button');
         btn.innerHTML = text;
@@ -158,26 +180,22 @@ function displayPagination(totalItems) {
         return btn;
     };
 
-    // 1. [처음] & [이전] 버튼
     if (currentPage > 1) {
-        pagination.appendChild(createBtn('≪', 1, 'nav-btn')); // 맨 처음
-        pagination.appendChild(createBtn('<', currentPage - 1, 'nav-btn')); // 이전 한 페이지
+        pagination.appendChild(createBtn('≪', 1, 'nav-btn'));
+        pagination.appendChild(createBtn('<', currentPage - 1, 'nav-btn'));
     }
 
-    // 2. 숫자 버튼들
     for (let i = startPage; i <= endPage; i++) {
-        const btn = createBtn(i, i, i === currentPage ? 'active' : '');
-        pagination.appendChild(btn);
+        pagination.appendChild(createBtn(i, i, i === currentPage ? 'active' : ''));
     }
 
-    // 3. [다음] & [끝] 버튼
     if (currentPage < totalPages) {
-        pagination.appendChild(createBtn('>', currentPage + 1, 'nav-btn')); // 다음 한 페이지
-        pagination.appendChild(createBtn('≫', totalPages, 'nav-btn')); // 맨 끝
+        pagination.appendChild(createBtn('>', currentPage + 1, 'nav-btn'));
+        pagination.appendChild(createBtn('≫', totalPages, 'nav-btn'));
     }
 }
 
-// 5. 모달 열기
+// 5. 모달 제어
 function openModal(imgSrc) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
@@ -189,11 +207,10 @@ function openModal(imgSrc) {
     }
 }
 
-// 6. 모든 이벤트 리스너 통합
+// 6. 이벤트 통합
 document.addEventListener('DOMContentLoaded', () => {
     init();
 
-    // [중요] 검색창 엔터키 이벤트 추가
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.onkeyup = function(e) {

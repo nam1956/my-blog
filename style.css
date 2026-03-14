@@ -31,12 +31,53 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .gallery-img:hover { opacity: 0.8; }
 .photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; line-height: 1.4; }
 
-/* [5] 페이지네이션 */
-.pagination-container { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: 40px 0; padding-bottom: 30px; }
-.pagination-container button { min-width: 35px; height: 35px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; font-size: 1rem; }
-.pagination-container button.active { background: #333; color: white; border-color: #333; font-weight: bold; }
+/* [5] 페이지네이션 (개선됨!) */
+.pagination-container { 
+    width: 100%; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 6px; 
+    margin: 40px 0; 
+    padding-bottom: 30px; 
+}
 
-/* [6] 큰 사진 모달 창 (중요!) */
+.pagination-container button { 
+    min-width: 38px; 
+    height: 38px; 
+    border: 1px solid #ddd; 
+    background: white; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-size: 0.95rem; 
+    color: #333;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-container button:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+
+.pagination-container button.active { 
+    background: #333; 
+    color: white; 
+    border-color: #333; 
+    font-weight: bold; 
+}
+
+/* 화살표 버튼용 특수 스타일 */
+.pagination-container button.nav-btn {
+    background: #f9f9f9;
+    font-weight: bold;
+    color: #555;
+}
+
+/* [6] 큰 사진 모달 창 */
 .modal { 
     display: none; 
     position: fixed; 
@@ -46,12 +87,11 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     width: 100%; 
     height: 100%; 
     background: rgba(0,0,0,0.9); 
-    overflow: auto; /* 확대 시 스크롤 허용 */
+    overflow: auto; 
     justify-content: center; 
     align-items: center; 
 }
 
-/* 자바스크립트 display 제어 대응 */
 .modal[style*="display: block"], 
 .modal[style*="display: flex"] {
     display: flex !important;
@@ -67,13 +107,12 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     display: block; 
 }
 
-/* [핵심] 클릭 시 확대 기능 구현 */
 .modal-content.full-size { 
-    transform: scale(2.0); /* 2배 확대 (숫자로 조절 가능) */
+    transform: scale(2.0); 
     max-width: none !important; 
     max-height: none !important; 
     cursor: zoom-out; 
-    margin: 10% auto; /* 확대 시 상하 여백 확보 */
+    margin: 10% auto; 
 }
 
 .close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 3100; }
@@ -84,5 +123,5 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
     .side-menu { width: 100%; height: auto; position: relative; padding: 10px; }
     .gallery-content { margin-left: 0; padding: 20px; }
     .menu-grid { grid-template-columns: 1fr; }
-    .modal-content.full-size { transform: scale(1.5); } /* 모바일은 조금만 확대 */
+    .modal-content.full-size { transform: scale(1.5); }
 }
