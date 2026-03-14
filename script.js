@@ -77,9 +77,36 @@ function performSearch() {
     renderGallery(1, results);
 }
 
-function filterBySubCategory(sub) {
-    const results = filteredList.filter(p => (p.theme || '').includes(sub));
-    renderGallery(1, results);
+// [수정] 서브 카테고리 필터링 (현재 필터에 상관없이 전체에서 찾기)
+function filterBySubCategory(subCat) {
+    // 1. URL 파라미터를 'friend'로 강제 변경 (화면 제목 등을 맞추기 위해)
+    const newUrl = window.location.pathname + '?type=friend';
+    window.history.pushState({ path: newUrl }, '', newUrl);
+    
+    // 2. 제목 업데이트
+    const titleTag = document.getElementById('gallery-title');
+    if (titleTag) titleTag.innerText = '🤝 친구 갤러리 (' + subCat + ')';
+
+    // 3. rawData(전체 데이터)에서 해당 서브 카테고리 키워드 찾기
+    const rawData = (typeof photoData !== 'undefined') ? photoData : [];
+    
+    // 전체 데이터를 펼쳐서(Flatten) 검색 대상을 만듭니다.
+    let allExpanded = [];
+    rawData.forEach(p => {
+        if (p.images && Array.isArray(p.images)) {
+            p.images.forEach(img => allExpanded.push({ ...p, filename: img, images: undefined }));
+        } else if (p.filename) {
+            allExpanded.push(p);
+        }
+    });
+
+    // 4. 전체 데이터에서 subCat(동구회 등)이 포함된 것만 필터링
+    const subResults = allExpanded.filter(p => 
+        (p.theme || '').includes(subCat)
+    );
+
+    // 5. 결과 화면에 그리기
+    renderGallery(1, subResults);
 }
 
 function handleImageError(img) {
