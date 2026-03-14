@@ -1,127 +1,77 @@
-/* [1] 전체 초기화 */
+/* [1] 전체 초기화 및 기본 폰트 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 'Malgun Gothic', sans-serif; overflow-x: hidden; }
 
-/* [2] 인덱스 페이지(메인) 스타일 */
-.main-container { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f0f2f5; }
-.main-title { font-size: 3rem; margin-bottom: 10px; color: #333; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: zoomInOut 4s ease-in-out infinite; }
-.typing-container { height: 30px; margin-bottom: 40px; font-weight: bold; color: #555; }
-
-.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 90%; max-width: 500px; }
-.menu-card { background: white; border-radius: 15px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
-.menu-card:hover { transform: translateY(-5px); background: #eee; }
-
-/* [3] 갤러리 상세 레이아웃 */
+/* [2] 사이드 메뉴 및 음각 배지 */
 .side-menu { width: 220px; background: #333; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding: 30px 15px; z-index: 1000; }
-.side-menu a { display: block; color: #ccc; text-decoration: none; padding: 15px; border-bottom: 1px solid #444; transition: 0.3s; }
+
+.side-menu a { 
+    display: flex !important; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px; 
+    color: #ccc; 
+    text-decoration: none; 
+    border-bottom: 1px solid #444; 
+    transition: 0.3s; 
+}
 .side-menu a:hover { color: white; background: #444; }
 
-.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-.gallery-header { width: 100%; max-width: 1100px; margin-bottom: 20px; text-align: center; }
+/* 핵심: 음각 숫자 배지 디자인 */
+.menu-badge {
+    background: #1a1a1a; /* 배경은 어둡게 */
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 32px;
+    text-align: center;
+    /* 음각 효과: 안쪽으로 파인 느낌 */
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8), 1px 1px 0px rgba(255,255,255,0.05);
+    font-weight: bold;
+}
 
-#searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px; outline: none; font-size: 1rem; }
+/* [3] 드롭다운 안정화 */
+.dropdown { position: relative; width: 100%; }
+.dropdown-content {
+    display: none;
+    background-color: #2a2a2a;
+    width: 100%;
+}
+.dropdown-content a {
+    padding-left: 30px !important;
+    font-size: 0.85rem !important;
+    border-bottom: 1px solid #3d3d3d;
+    color: #999 !important;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a:hover { background: #444; color: white !important; }
+
+/* [4] 갤러리 레이아웃 및 기타 스타일 */
+.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+#searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px; outline: none; }
 
 .count-wrapper { width: 100%; max-width: 1100px; text-align: right; margin-bottom: 15px; }
 #totalPhotoCount { display: inline-block; padding: 5px 15px; border: 1px solid #333; border-radius: 20px; background: white; font-weight: bold; font-size: 0.85rem; }
 
-/* [4] 사진 그리드 */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
 .photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-.gallery-img:hover { opacity: 0.8; }
-.photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; line-height: 1.4; }
+.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+.photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; }
 
-/* [5] 페이지네이션 (개선됨!) */
-.pagination-container { 
-    width: 100%; 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 6px; 
-    margin: 40px 0; 
-    padding-bottom: 30px; 
-}
+/* [5] 페이지네이션 */
+.pagination-container { width: 100%; display: flex; justify-content: center; gap: 6px; margin: 40px 0; padding-bottom: 30px; }
+.pagination-container button { min-width: 38px; height: 38px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
+.pagination-container button.active { background: #333; color: white; border-color: #333; font-weight: bold; }
+.pagination-container button.nav-btn { background: #f9f9f9; font-weight: bold; }
 
-.pagination-container button { 
-    min-width: 38px; 
-    height: 38px; 
-    border: 1px solid #ddd; 
-    background: white; 
-    cursor: pointer; 
-    border-radius: 5px; 
-    font-size: 0.95rem; 
-    color: #333;
-    transition: all 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* [6] 모달 */
+.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+.modal-content { max-width: 90%; max-height: 90vh; border: 3px solid white; cursor: zoom-in; }
+.modal-content.full-size { transform: scale(2.0); max-width: none; max-height: none; cursor: zoom-out; }
+.close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-.pagination-container button:hover {
-    background: #f0f0f0;
-    border-color: #bbb;
-}
-
-.pagination-container button.active { 
-    background: #333; 
-    color: white; 
-    border-color: #333; 
-    font-weight: bold; 
-}
-
-/* 화살표 버튼용 특수 스타일 */
-.pagination-container button.nav-btn {
-    background: #f9f9f9;
-    font-weight: bold;
-    color: #555;
-}
-
-/* [6] 큰 사진 모달 창 */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 3000; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: rgba(0,0,0,0.9); 
-    overflow: auto; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-.modal[style*="display: block"], 
-.modal[style*="display: flex"] {
-    display: flex !important;
-}
-
-.modal-content { 
-    cursor: zoom-in; 
-    transition: transform 0.3s ease; 
-    max-width: 90%; 
-    max-height: 90vh; 
-    border: 3px solid white; 
-    margin: auto; 
-    display: block; 
-}
-
-.modal-content.full-size { 
-    transform: scale(2.0); 
-    max-width: none !important; 
-    max-height: none !important; 
-    cursor: zoom-out; 
-    margin: 10% auto; 
-}
-
-.close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 3100; }
-
-/* 애니메이션 및 모바일 대응 */
-@keyframes zoomInOut { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 @media (max-width: 768px) {
-    .side-menu { width: 100%; height: auto; position: relative; padding: 10px; }
-    .gallery-content { margin-left: 0; padding: 20px; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .modal-content.full-size { transform: scale(1.5); }
+    .side-menu { width: 100%; height: auto; position: relative; }
+    .gallery-content { margin-left: 0; }
 }
