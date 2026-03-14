@@ -7,8 +7,10 @@ function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type') || 'all';
 
+    // 데이터 로드 확인 (data.js의 photoData를 가져옵니다)
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
+    // 데이터 평탄화 작업 (배열 형태 대응)
     let expandedData = [];
     rawData.forEach(p => {
         if (p.images && Array.isArray(p.images) && p.images.length > 0) {
@@ -25,11 +27,13 @@ function init() {
         }
     });
 
+    // 필터링 로직
     filteredList = expandedData.filter(p => {
         const itemCategory = p.category || 'family'; 
         return (category === 'all') || (itemCategory === category);
     });
 
+    // 제목 변경
     const titleMap = {
         'family': '🏠 가족 갤러리',
         'hiking': '⛰️ 등반 사진첩',
@@ -44,8 +48,8 @@ function init() {
     renderGallery(1);
 }
 
-// 2. 갤러리 화면 그리기 (검색 리스트 대응 가능하도록 수정)
-function renderGallery(page, listToRender = filteredList) {
+// 2. 갤러리 화면 그리기
+function renderGallery(page) {
     const galleryContainer = document.querySelector('.gallery');
     const totalCountTag = document.getElementById('totalPhotoCount');
     if (!galleryContainer) return;
@@ -55,9 +59,7 @@ function renderGallery(page, listToRender = filteredList) {
     const start = (page - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     
-    const displayList = listToRender.slice(start, end);
-
-    displayList.forEach(photo => {
+    filteredList.slice(start, end).forEach(photo => {
         const div = document.createElement('div');
         div.className = 'photo-item';
         
@@ -83,26 +85,11 @@ function renderGallery(page, listToRender = filteredList) {
         galleryContainer.appendChild(div);
     });
     
-    if (totalCountTag) totalCountTag.innerText = `총 : ${listToRender.length} 장의 사진이 있습니다`;
-    displayPagination(listToRender.length); // 개수를 전달하여 페이지네이션 호출
+    if (totalCountTag) totalCountTag.innerText = `총 : ${filteredList.length} 장의 사진이 있습니다`;
+    displayPagination();
 }
 
-// [추가] 검색 실행 함수
-function performSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-
-    const query = searchInput.value.trim().toLowerCase();
-    
-    // 현재 필터링된 카테고리 내에서 검색
-    const searchResults = filteredList.filter(photo => {
-        return (photo.theme || '').toLowerCase().includes(query);
-    });
-
-    renderGallery(1, searchResults); 
-}
-
-// 3. 이미지 에러 처리
+// 3. 이미지 에러 처리 (대소문자 보정)
 function handleImageError(image) {
     if (image.dataset.tried === "2") return;
     let currentSrc = image.src;
@@ -117,16 +104,16 @@ function handleImageError(image) {
     }
 }
 
-// 4. 페이지네이션 (10개씩 표시 및 처음/끝 이동 추가)
-function displayPagination(totalItems) {
+// 4. 페이지네이션
+function displayPagination() {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
     pagination.innerHTML = '';
 
-    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(filteredList.length / ITEMS_PER_PAGE);
     if (totalPages <= 1) return;
 
-    const maxButtons = 10;
+    const maxButtons = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
     let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
@@ -134,76 +121,39 @@ function displayPagination(totalItems) {
         startPage = Math.max(1, endPage - maxButtons + 1);
     }
 
-    // 처음으로 (<<)
-    if (startPage > 1) {
-        const firstBtn = document.createElement('button');
-        firstBtn.innerText = '<<';
-        firstBtn.onclick = () => { renderGallery(1); };
-        pagination.appendChild(firstBtn);
-    }
-
     for (let i = startPage; i <= endPage; i++) {
         const btn = document.createElement('button');
         btn.innerText = i;
         if (i === currentPage) btn.className = 'active';
         btn.onclick = () => {
-            const query = document.getElementById('searchInput')?.value.trim().toLowerCase() || "";
-            if (query) {
-                const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query));
-                renderGallery(i, results);
-            } else {
-                renderGallery(i);
-            }
+            renderGallery(i);
             window.scrollTo(0, 0);
         };
         pagination.appendChild(btn);
     }
-
-    // 끝으로 (>>)
-    if (endPage < totalPages) {
-        const lastBtn = document.createElement('button');
-        lastBtn.innerText = '>>';
-        lastBtn.onclick = () => {
-            const query = document.getElementById('searchInput')?.value.trim().toLowerCase() || "";
-            if (query) {
-                const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query));
-                renderGallery(totalPages, results);
-            } else {
-                renderGallery(totalPages);
-            }
-        };
-        pagination.appendChild(lastBtn);
-    }
 }
 
-// 5. 모달 열기
+// 5. 모달 열기 (중앙 정렬을 위해 flex 사용)
 function openModal(imgSrc) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     if (modal && modalImg) {
         modal.style.display = "flex"; 
         modalImg.src = imgSrc;
-        modalImg.classList.remove('full-size');
+        modalImg.classList.remove('full-size'); // 열 때는 항상 원래 크기로
         modalImg.style.cursor = 'zoom-in';
     }
 }
 
-// 6. 모든 이벤트 리스너 통합
+// 6. 모든 이벤트 리스너 통합 (DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', () => {
-    init();
-
-    // [중요] 검색창 엔터키 이벤트 추가
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.onkeyup = function(e) {
-            if (e.key === 'Enter') performSearch();
-        };
-    }
+    init(); // 앱 시작
 
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("imgFull");
     const closeBtn = document.querySelector(".close");
 
+    // 닫기 버튼 클릭
     if (closeBtn) {
         closeBtn.onclick = function() {
             modal.style.display = "none";
@@ -211,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // 모달 배경 클릭 시 닫기
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -218,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // 사진 클릭 시 확대/축소 (Toggle)
     if (modalImg) {
         modalImg.onclick = function() {
             this.classList.toggle('full-size');
