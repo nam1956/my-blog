@@ -1,5 +1,6 @@
 let currentPage = 1;
-let filteredList = [];
+let filteredList = []; // 카테고리별 기본 리스트
+let currentDisplayList = []; // [중요] 현재 화면에 실제로 나오고 있는 리스트 (동보회 등 검색 결과 포함)
 const ITEMS_PER_PAGE = 20;
 
 function init() {
@@ -16,10 +17,10 @@ function init() {
         }
     });
 
-    // 1. 왼쪽 메뉴 수량 표시 업데이트 (음각 배지)
+    // 1. 왼쪽 메뉴 수량 표시 업데이트
     updateMenuCounts(expandedData);
 
-    // 2. 카테고리 필터링
+    // 2. 카테고리 필터링 (기본값 설정)
     filteredList = expandedData.filter(p => (category === 'all') || (p.category || 'family') === category);
 
     // 3. 제목 설정
@@ -27,10 +28,10 @@ function init() {
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = (titleMap[category] || '나의 인생') + ' 갤러리';
 
-    renderGallery(1);
+    // 4. 처음 시작할 때는 필터링된 기본 리스트를 보여줌
+    renderGallery(1, filteredList);
 }
 
-// 음각 배지 업데이트 함수
 function updateMenuCounts(allData) {
     const categories = ['family', 'hiking', 'friend', 'travel', 'interest', 'memory'];
     categories.forEach(cat => {
@@ -48,13 +49,22 @@ function updateMenuCounts(allData) {
     });
 }
 
-function renderGallery(page, listToRender = filteredList) {
+// [핵심 수정] renderGallery가 호출될 때 보던 리스트를 기억하도록 변경
+function renderGallery(page, listToRender = null) {
     const container = document.querySelector('.gallery');
     if (!container) return;
     
+    // 만약 새로운 리스트(동보회 등)가 들어오면 그걸 기억하고, 
+    // 페이지 번호만 들어오면 기존에 기억하던 리스트를 그대로 씁니다.
+    if (listToRender !== null) {
+        currentDisplayList = listToRender;
+    }
+    
     currentPage = page;
     container.innerHTML = '';
-    const displayList = listToRender.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+    
+    // 현재 보여줘야 할 리스트(currentDisplayList)에서 20개씩 자르기
+    const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
     displayList.forEach(photo => {
         const div = document.createElement('div');
@@ -67,30 +77,24 @@ function renderGallery(page, listToRender = filteredList) {
         container.appendChild(div);
     });
 
-    document.getElementById('totalPhotoCount').innerText = `총 : ${listToRender.length} 장`;
-    displayPagination(listToRender.length);
+    document.getElementById('totalPhotoCount').innerText = `총 : ${currentDisplayList.length} 장`;
+    displayPagination(currentDisplayList.length);
 }
 
 function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
-    renderGallery(1, results);
+    renderGallery(1, results); // 검색 결과를 renderGallery에 전달
 }
 
-// [수정] 서브 카테고리 필터링 (현재 필터에 상관없이 전체에서 찾기)
 function filterBySubCategory(subCat) {
-    // 1. URL 파라미터를 'friend'로 강제 변경 (화면 제목 등을 맞추기 위해)
     const newUrl = window.location.pathname + '?type=friend';
     window.history.pushState({ path: newUrl }, '', newUrl);
     
-    // 2. 제목 업데이트
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = '🤝 친구 갤러리 (' + subCat + ')';
 
-    // 3. rawData(전체 데이터)에서 해당 서브 카테고리 키워드 찾기
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
-    
-    // 전체 데이터를 펼쳐서(Flatten) 검색 대상을 만듭니다.
     let allExpanded = [];
     rawData.forEach(p => {
         if (p.images && Array.isArray(p.images)) {
@@ -100,13 +104,8 @@ function filterBySubCategory(subCat) {
         }
     });
 
-    // 4. 전체 데이터에서 subCat(동구회 등)이 포함된 것만 필터링
-    const subResults = allExpanded.filter(p => 
-        (p.theme || '').includes(subCat)
-    );
-
-    // 5. 결과 화면에 그리기
-    renderGallery(1, subResults);
+    const subResults = allExpanded.filter(p => (p.theme || '').includes(subCat));
+    renderGallery(1, subResults); // 동보회/동구회 결과를 renderGallery에 전달하여 고정시킴
 }
 
 function handleImageError(img) {
@@ -130,6 +129,7 @@ function displayPagination(totalItems) {
         const btn = document.createElement('button');
         btn.innerHTML = text;
         if (cls) btn.className = cls;
+        // 페이지 번호만 넘겨도 renderGallery가 보던 리스트를 기억해서 보여줍니다.
         btn.onclick = () => { renderGallery(target); window.scrollTo(0, 0); };
         return btn;
     };
@@ -139,7 +139,9 @@ function displayPagination(totalItems) {
         pagination.appendChild(createBtn('<', currentPage - 1, 'nav-btn'));
     }
     for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, Math.max(1, currentPage - 2) + 4); i++) {
-        pagination.appendChild(createBtn(i, i, i === currentPage ? 'active' : ''));
+        if (i > 0 && i <= totalPages) {
+            pagination.appendChild(createBtn(i, i, i === currentPage ? 'active' : ''));
+        }
     }
     if (currentPage < totalPages) {
         pagination.appendChild(createBtn('>', currentPage + 1, 'nav-btn'));
