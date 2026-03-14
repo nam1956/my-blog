@@ -87,16 +87,19 @@ function renderGallery(page, listToRender = filteredList) {
     displayPagination(listToRender.length); // 개수를 전달하여 페이지네이션 호출
 }
 
-// [추가] 검색 실행 함수
+// [수정] 제목(theme) + 날짜(date) 모두 검색 가능하게 업그레이드!
 function performSearch() {
     const searchInput = document.getElementById('searchInput');
     if (!searchInput) return;
 
     const query = searchInput.value.trim().toLowerCase();
     
-    // 현재 필터링된 카테고리 내에서 검색
     const searchResults = filteredList.filter(photo => {
-        return (photo.theme || '').toLowerCase().includes(query);
+        const theme = (photo.theme || '').toLowerCase();
+        const date = (photo.date || '').toLowerCase(); // 날짜 정보 가져오기
+        
+        // 제목에 포함되어 있거나, 날짜에 포함되어 있으면 결과에 포함!
+        return theme.includes(query) || date.includes(query);
     });
 
     renderGallery(1, searchResults); 
