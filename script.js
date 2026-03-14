@@ -129,7 +129,8 @@ function displayPagination(totalItems) {
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
     if (totalPages <= 1) return;
 
-    const maxButtons = 10;
+    // 설정: 한 번에 보여줄 숫자 버튼 개수 (5개가 가장 깔끔합니다)
+    const maxButtons = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
     let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
@@ -137,45 +138,42 @@ function displayPagination(totalItems) {
         startPage = Math.max(1, endPage - maxButtons + 1);
     }
 
-    // 처음으로 (<<)
-    if (startPage > 1) {
-        const firstBtn = document.createElement('button');
-        firstBtn.innerText = '<<';
-        firstBtn.onclick = () => { renderGallery(1); };
-        pagination.appendChild(firstBtn);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
+    // [함수] 버튼 생성 공통 로직
+    const createBtn = (text, targetPage, className = '') => {
         const btn = document.createElement('button');
-        btn.innerText = i;
-        if (i === currentPage) btn.className = 'active';
+        btn.innerHTML = text;
+        if (className) btn.className = className;
         btn.onclick = () => {
             const query = document.getElementById('searchInput')?.value.trim().toLowerCase() || "";
             if (query) {
-                const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query));
-                renderGallery(i, results);
+                const results = filteredList.filter(p => 
+                    (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query)
+                );
+                renderGallery(targetPage, results);
             } else {
-                renderGallery(i);
+                renderGallery(targetPage);
             }
             window.scrollTo(0, 0);
         };
+        return btn;
+    };
+
+    // 1. [처음] & [이전] 버튼
+    if (currentPage > 1) {
+        pagination.appendChild(createBtn('≪', 1, 'nav-btn')); // 맨 처음
+        pagination.appendChild(createBtn('<', currentPage - 1, 'nav-btn')); // 이전 한 페이지
+    }
+
+    // 2. 숫자 버튼들
+    for (let i = startPage; i <= endPage; i++) {
+        const btn = createBtn(i, i, i === currentPage ? 'active' : '');
         pagination.appendChild(btn);
     }
 
-    // 끝으로 (>>)
-    if (endPage < totalPages) {
-        const lastBtn = document.createElement('button');
-        lastBtn.innerText = '>>';
-        lastBtn.onclick = () => {
-            const query = document.getElementById('searchInput')?.value.trim().toLowerCase() || "";
-            if (query) {
-                const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query));
-                renderGallery(totalPages, results);
-            } else {
-                renderGallery(totalPages);
-            }
-        };
-        pagination.appendChild(lastBtn);
+    // 3. [다음] & [끝] 버튼
+    if (currentPage < totalPages) {
+        pagination.appendChild(createBtn('>', currentPage + 1, 'nav-btn')); // 다음 한 페이지
+        pagination.appendChild(createBtn('≫', totalPages, 'nav-btn')); // 맨 끝
     }
 }
 
