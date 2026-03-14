@@ -5,25 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 인생 갤러리</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 메인 화면 전용 추가 디자인 (중요!) */
+        .main-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .main-title-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            color: #333;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 메뉴 그리드 (바둑판 배열) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* 메뉴 카드 디자인 */
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #444;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background: #fff;
+            color: #000;
+        }
+
+        .menu-card span {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        /* 모바일 대응 (화면이 작아지면 2줄로) */
+        @media (max-width: 600px) {
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-title { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <div class="main-container">
-        <h1 class="main-title">📷 나의 인생 갤러리</h1>
 
-        <div class="typing-container">
-            <span class="typing-text"></span>
+    <div class="main-container">
+        <div class="main-title-section">
+            <h1 class="main-title">📷 나의 인생 갤러리</h1>
+            <p>소중한 순간들을 기록하는 공간입니다.</p>
         </div>
 
         <div class="menu-grid">
-            <a href="gallery.html?type=family" class="menu-card">🏠 가족</a>
-            <a href="gallery.html?type=hiking" class="menu-card">⛰️ 등반</a>
-            <a href="gallery.html?type=friend" class="menu-card">👥 친구</a>
-            <a href="gallery.html?type=travel" class="menu-card">✈️ 여행</a>
-            <a href="gallery.html?type=interest" class="menu-card">💡 관심</a>
-            <a href="gallery.html?type=memory" class="menu-card">🕰️ 추억</a>
+            <a href="gallery.html?type=family" class="menu-card"><span>🏠</span>가족</a>
+            <a href="gallery.html?type=hiking" class="menu-card"><span>⛰️</span>등반</a>
+            <a href="gallery.html?type=friend" class="menu-card"><span>🤝</span>친구</a>
+            <a href="gallery.html?type=travel" class="menu-card"><span>✈️</span>여행</a>
+            <a href="gallery.html?type=interest" class="menu-card"><span>💡</span>관심</a>
+            <a href="gallery.html?type=memory" class="menu-card"><span>🕰️</span>추억</a>
         </div>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>
