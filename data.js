@@ -6708,161 +6708,161 @@ const photoData = [
   },
   {
     "src": "images/result_memory/20041226_samgak_001.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_001.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_002.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_002.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_003.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_003.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_005.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_005.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_006.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_006.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_007.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_007.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_008.JPG",
-    "theme": "창극,북한산,삼각산,2004,백운대",
+    "theme": "창극,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_008.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_009.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_009.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_010.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_010.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_011.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_011.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_012.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_012.JPG"
   },
   {
     "src": "images/result_memory/20041226_samgak_013.JPG",
-    "theme": "은옥,북한산,삼각산,2004,백운대",
+    "theme": "은옥,북한산,2004,백운대",
     "date": "2004-12-26",
     "category": "memory",
     "filename": "20041226_samgak_013.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_001.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_001.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_002.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_002.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_003.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_003.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_004.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_004.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_005.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_005.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_006.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_006.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_007.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
     "category": "travel",
     "filename": "20041230_west_007.JPG"
   },
   {
     "src": "images/result_travel/20041231_west_001.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-31",
     "category": "travel",
     "filename": "20041231_west_001.JPG"
   },
   {
     "src": "images/result_travel/20041231_west_002.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-31",
     "category": "travel",
     "filename": "20041231_west_002.JPG"
   },
   {
     "src": "images/result_travel/20041231_west_003.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-31",
     "category": "travel",
     "filename": "20041231_west_003.JPG"
   },
   {
     "src": "images/result_travel/20050101_west_001.JPG",
-    "theme": "서해안일출,2004,2005,은옥",
+    "theme": "서해일출,2004,2005,은옥",
     "date": "2005-01-01",
     "category": "travel",
     "filename": "20050101_west_001.JPG"
