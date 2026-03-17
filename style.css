@@ -47,17 +47,112 @@ body, html { width: 100%; height: 100%; background-color: #f8f9fa; font-family: 
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown-content a:hover { background: #444; color: white !important; }
 
-/* [4] 갤러리 레이아웃 및 기타 스타일 */
-.gallery-content { margin-left: 220px; padding: 40px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-#searchInput { width: 100%; max-width: 400px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 30px; outline: none; }
+/* [4] 갤러리 레이아웃 및 프리미엄 시스템 액자 */
+.gallery-content { 
+    margin-left: 220px; 
+    padding: 60px 40px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 100vh; 
+}
 
-.count-wrapper { width: 100%; max-width: 1100px; text-align: right; margin-bottom: 15px; }
-#totalPhotoCount { display: inline-block; padding: 5px 15px; border: 1px solid #333; border-radius: 20px; background: white; font-weight: bold; font-size: 0.85rem; }
+/* 검색창: 각진 시스템 디자인 */
+#searchInput { 
+    width: 100%; 
+    max-width: 400px; 
+    padding: 12px 15px; 
+    border: 1px solid #333; 
+    border-radius: 0px !important; 
+    margin-bottom: 40px; 
+    outline: none; 
+}
 
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; }
-.photo-item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; }
-.photo-info { margin-top: 10px; font-size: 0.9rem; color: #444; }
+/* 수량 표시: 우측 정렬 */
+.count-wrapper { 
+    width: 100%; 
+    max-width: 1200px; 
+    text-align: right; 
+    margin-bottom: 25px; 
+}
+#totalPhotoCount { 
+    display: inline-block; 
+    padding: 6px 18px; 
+    border: 1px solid #bbb; 
+    border-radius: 20px; 
+    background: #f9f9f9; 
+    font-weight: bold; 
+    font-size: 0.85rem; 
+}
+
+/* 갤러리 그리드: 한 줄에 5개 고정 */
+.gallery { 
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 30px; 
+    width: 100%; 
+    max-width: 1200px; 
+}
+
+/* 🖼️ 액자 본체 (비핸스 감성) */
+.photo-item { 
+    background: white; 
+    padding: 6px; 
+    border-radius: 2px; 
+    /* [4-1] 묵직하고 깊이 있는 외곽 그림자 통합 */
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.2), 
+        0 5px 20px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover { transform: translateY(-5px); }
+
+/* 사진을 감싸는 입체 속틀 */
+.photo-item-inner {
+    position: relative;
+    background: #f4f4f4;
+    padding: 25px 25px; /* 사진 주변 여백 */
+    display: block;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-text { 
+    position: absolute; top: 5px; left: 0; width: 100%; 
+    text-align: center; font-size: 13px; font-weight: bold; color: #222; 
+}
+
+/* 사진 컨테이너: 여기서 사진 크기를 꽉 묶어버립니다 */
+.img-container {
+    position: relative;
+    width: 100%;
+    padding-top: 130%; /* 액자 비율 고정 */
+    overflow: hidden;
+    background: #000;
+    /* [1] 음각의 깊이: inset(안쪽) 그림자를 더 진하게 */
+    /* 첫 번째는 깊이감, 두 번째는 사진 모서리의 아주 미세한 어두움 */
+    box-shadow: 
+        inset 5px 5px 10px rgba(0, 0, 0, 0.5), 
+        inset -2px -2px 5px rgba(255, 255, 255, 0.2); 
+
+    /* [2] 음각의 경계선: 종이 테두리(매트)의 단면 느낌 */
+    /* 3px~5px 정도로 두께를 주면 종이가 두꺼워 보입니다 */
+    border: 3px solid #d1d1d1;
+}
+
+/* 실제 이미지: 컨테이너 크기에 맞춰서 자동 조절 */
+.gallery-img { 
+    position: absolute; top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    object-fit: cover; /* 사진이 찌그러지지 않고 틀에 꽉 참 */
+    cursor: pointer; 
+}
+
+.date-text { 
+    position: absolute; bottom: 7px; right: 35px; 
+    font-size: 13px; font-weight: bold; color: #555; 
+}
 
 /* [5] 페이지네이션 */
 .pagination-container { width: 100%; display: flex; justify-content: center; gap: 6px; margin: 40px 0; padding-bottom: 30px; }

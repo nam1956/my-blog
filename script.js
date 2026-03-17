@@ -52,30 +52,36 @@ function updateMenuCounts(allData) {
 function renderGallery(page, listToRender) {
     const container = document.querySelector('.gallery');
     if (!container) return;
-    
-    // 만약 새로운 리스트가 인자로 들어오면 그걸로 교체하고, 아니면 기존 리스트를 유지합니다.
-    if (listToRender) {
-        currentDisplayList = listToRender;
-    }
-    
+    if (listToRender) { currentDisplayList = listToRender; }
     currentPage = page;
     container.innerHTML = '';
     
-    // 무조건 currentDisplayList 기준으로만 화면을 그립니다.
     const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
     displayList.forEach(photo => {
         const div = document.createElement('div');
-        div.className = 'photo-item';
+        div.className = 'photo-item'; // [1] 가장 바깥 액자
+        
         const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
+        
+        // [중요] 아래 구조가 CSS의 액자 틀과 100% 일치해야 사진이 안 커집니다!
         div.innerHTML = `
-            <img src="${imgSrc}" class="gallery-img" onerror="handleImageError(this)" onclick="openModal('${imgSrc}')">
-            <div class="photo-info"><strong>${photo.theme || '제목 없음'}</strong><br>${photo.date || ''}</div>
+            <div class="photo-item-inner">
+                <div class="theme-text">${photo.theme || '제목 없음'}</div>
+                <div class="img-container">
+                    <img src="${imgSrc}" class="gallery-img" onerror="handleImageError(this)" onclick="openModal('${imgSrc}')">
+                </div>
+                <div class="date-text">${photo.date || ''}</div>
+            </div>
         `;
         container.appendChild(div);
     });
 
-    document.getElementById('totalPhotoCount').innerText = `총 : ${currentDisplayList.length} 장`;
+    // 사진 수량 표시
+    const countElement = document.getElementById('totalPhotoCount');
+    if (countElement) {
+        countElement.innerHTML = `<span>총 : ${currentDisplayList.length} 장</span>`;
+    }
     displayPagination(currentDisplayList.length);
 }
 
