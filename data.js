@@ -9284,7 +9284,7 @@ const photoData = [
   },
   {
     "src": "images/result_friend/IMG_20230104_123636.jpg",
-    "theme": "군동기 주응",
+    "theme": "군동기",
     "date": "2023-01-04",
     "category": "friend",
     "filename": "IMG_20230104_123636.jpg"
