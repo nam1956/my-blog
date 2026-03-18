@@ -1,20 +1,6 @@
 // 자동 생성된 데이터 파일입니다.
 const photoData = [
   {
-    "src": "images/result_family/1735959138540.jpg",
-    "theme": "제주여행",
-    "date": "2015-11-10",
-    "category": "family",
-    "filename": "1735959138540.jpg"
-  },
-  {
-    "src": "images/result_family/1736011249295.jpg",
-    "theme": "제주여행",
-    "date": "2015-11-10",
-    "category": "family",
-    "filename": "1736011249295.jpg"
-  },
-  {
     "src": "images/result_family/1672502133383.jpg",
     "theme": "은옥,강화도",
     "date": "2019-03-21",
@@ -160,13 +146,6 @@ const photoData = [
     "date": "2023-01-02",
     "category": "family",
     "filename": "IMG_20230102_131143.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20230104_123636.jpg",
-    "theme": "주응",
-    "date": "2023-01-04",
-    "category": "family",
-    "filename": "IMG_20230104_123636.jpg"
   },
   {
     "src": "images/result_family/IMG_20230111_155223.jpg",
@@ -554,27 +533,6 @@ const photoData = [
     "filename": "IMG_20230507_154129.jpg"
   },
   {
-    "src": "images/result_family/177331263.jpg",
-    "theme": "주응과 카페에서,파주",
-    "date": "2023-05-12",
-    "category": "family",
-    "filename": "177331263.jpg"
-  },
-  {
-    "src": "images/result_family/1693020701335-2.jpg",
-    "theme": "창극,제주",
-    "date": "2023-05-20",
-    "category": "family",
-    "filename": "1693020701335-2.jpg"
-  },
-  {
-    "src": "images/result_family/1693020701335-1.jpg",
-    "theme": "창극,제주",
-    "date": "2023-05-20",
-    "category": "family",
-    "filename": "1693020701335-1.jpg"
-  },
-  {
     "src": "images/result_family/IMG_20230704_125951.jpg",
     "theme": "엄마랑 식당 앞",
     "date": "2023-07-04",
@@ -883,13 +841,6 @@ const photoData = [
     "filename": "1693020701335-5.jpg"
   },
   {
-    "src": "images/result_family/22176894.jpg",
-    "theme": "제주여행",
-    "date": "2023-08-26",
-    "category": "family",
-    "filename": "22176894.jpg"
-  },
-  {
     "src": "images/result_family/9766709.jpg",
     "theme": "등산중",
     "date": "2023-08-26",
@@ -902,27 +853,6 @@ const photoData = [
     "date": "2023-08-26",
     "category": "family",
     "filename": "14476015.jpg"
-  },
-  {
-    "src": "images/result_family/86507583.jpg",
-    "theme": "제주여행",
-    "date": "2023-08-26",
-    "category": "family",
-    "filename": "86507583.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20230828_161742.jpg",
-    "theme": "주응과 파주시장안 식당에서",
-    "date": "2023-08-28",
-    "category": "family",
-    "filename": "IMG_20230828_161742.jpg"
-  },
-  {
-    "src": "images/result_family/22176894 (3).jpg",
-    "theme": "주응과 파주시장안 식당에서",
-    "date": "2023-08-29",
-    "category": "family",
-    "filename": "22176894 (3).jpg"
   },
   {
     "src": "images/result_family/1693528433095.jpg",
@@ -965,27 +895,6 @@ const photoData = [
     "date": "2023-09-05",
     "category": "family",
     "filename": "14476015 (3).jpg"
-  },
-  {
-    "src": "images/result_family/20230905_012454_223.jpg",
-    "theme": "주응,사진편집",
-    "date": "2023-09-05",
-    "category": "family",
-    "filename": "20230905_012454_223.jpg"
-  },
-  {
-    "src": "images/result_family/ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg",
-    "theme": "주응,사진편집",
-    "date": "2023-09-16",
-    "category": "family",
-    "filename": "ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20230916_131650.jpg",
-    "theme": "주응과 파주시장안 식당에서",
-    "date": "2023-09-16",
-    "category": "family",
-    "filename": "IMG_20230916_131650.jpg"
   },
   {
     "src": "images/result_family/IMG_20230916_183034.jpg",
@@ -1532,27 +1441,6 @@ const photoData = [
     "date": "2024-01-27",
     "category": "family",
     "filename": "65313083.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20240201_131638.jpg",
-    "theme": "주응과 파주 스타벅스",
-    "date": "2024-02-01",
-    "category": "family",
-    "filename": "IMG_20240201_131638.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20240201_131713.jpg",
-    "theme": "주응과 파주 스타벅스",
-    "date": "2024-02-01",
-    "category": "family",
-    "filename": "IMG_20240201_131713.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20240201_135415.jpg",
-    "theme": "주응과 파주 스타벅스",
-    "date": "2024-02-01",
-    "category": "family",
-    "filename": "IMG_20240201_135415.jpg"
   },
   {
     "src": "images/result_family/20240201_185104.jpg",
@@ -6791,6 +6679,363 @@ const photoData = [
     "filename": "20041226_samgak_013.JPG"
   },
   {
+    "src": "images/result_memory/p001.jpg",
+    "theme": "2004",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "p001.jpg"
+  },
+  {
+    "src": "images/result_memory/p010.jpg",
+    "theme": "2004",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "p010.jpg"
+  },
+  {
+    "src": "images/result_memory/p016.jpg",
+    "theme": "2004",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "p016.jpg"
+  },
+  {
+    "src": "images/result_memory/p021.jpg",
+    "theme": "2004",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "p021.jpg"
+  },
+  {
+    "src": "images/result_memory/q001.jpg",
+    "theme": "2004",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "q001.jpg"
+  },
+  {
+    "src": "images/result_memory/s006.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s006.jpg"
+  },
+  {
+    "src": "images/result_memory/s007.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s007.jpg"
+  },
+  {
+    "src": "images/result_memory/s008.jpg",
+    "theme": "1985,설날",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s008.jpg"
+  },
+  {
+    "src": "images/result_memory/s010.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s010.jpg"
+  },
+  {
+    "src": "images/result_memory/s011.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s011.jpg"
+  },
+  {
+    "src": "images/result_memory/s015.jpg",
+    "theme": "1987",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s015.jpg"
+  },
+  {
+    "src": "images/result_memory/s018.jpg",
+    "theme": "1987",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s018.jpg"
+  },
+  {
+    "src": "images/result_memory/s020.jpg",
+    "theme": "1987",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s020.jpg"
+  },
+  {
+    "src": "images/result_memory/s022.jpg",
+    "theme": "1988",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s022.jpg"
+  },
+  {
+    "src": "images/result_memory/s027.jpg",
+    "theme": "1986",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s027.jpg"
+  },
+  {
+    "src": "images/result_memory/s033.jpg",
+    "theme": "1990",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s033.jpg"
+  },
+  {
+    "src": "images/result_memory/s101.jpg",
+    "theme": "1992",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s101.jpg"
+  },
+  {
+    "src": "images/result_memory/s112.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s112.jpg"
+  },
+  {
+    "src": "images/result_memory/s113.jpg",
+    "theme": "1986",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s113.jpg"
+  },
+  {
+    "src": "images/result_memory/s114.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s114.jpg"
+  },
+  {
+    "src": "images/result_memory/s115.jpg",
+    "theme": "1986",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s115.jpg"
+  },
+  {
+    "src": "images/result_memory/s116.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s116.jpg"
+  },
+  {
+    "src": "images/result_memory/s117.jpg",
+    "theme": "1989",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s117.jpg"
+  },
+  {
+    "src": "images/result_memory/s119.jpg",
+    "theme": "1989",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s119.jpg"
+  },
+  {
+    "src": "images/result_memory/s120.jpg",
+    "theme": "1988",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s120.jpg"
+  },
+  {
+    "src": "images/result_memory/s122.jpg",
+    "theme": "1989",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s122.jpg"
+  },
+  {
+    "src": "images/result_memory/s123.jpg",
+    "theme": "1990",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s123.jpg"
+  },
+  {
+    "src": "images/result_memory/s124.jpg",
+    "theme": "1989",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s124.jpg"
+  },
+  {
+    "src": "images/result_memory/s129.jpg",
+    "theme": "1988",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s129.jpg"
+  },
+  {
+    "src": "images/result_memory/s130.jpg",
+    "theme": "1982",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s130.jpg"
+  },
+  {
+    "src": "images/result_memory/s131.jpg",
+    "theme": "1982",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s131.jpg"
+  },
+  {
+    "src": "images/result_memory/s132.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s132.jpg"
+  },
+  {
+    "src": "images/result_memory/s134.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s134.jpg"
+  },
+  {
+    "src": "images/result_memory/s137.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s137.jpg"
+  },
+  {
+    "src": "images/result_memory/s138.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s138.jpg"
+  },
+  {
+    "src": "images/result_memory/s140.jpg",
+    "theme": "1982",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s140.jpg"
+  },
+  {
+    "src": "images/result_memory/s142.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s142.jpg"
+  },
+  {
+    "src": "images/result_memory/s143.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s143.jpg"
+  },
+  {
+    "src": "images/result_memory/s144.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s144.jpg"
+  },
+  {
+    "src": "images/result_memory/s145.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s145.jpg"
+  },
+  {
+    "src": "images/result_memory/s146.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s146.jpg"
+  },
+  {
+    "src": "images/result_memory/s148.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s148.jpg"
+  },
+  {
+    "src": "images/result_memory/s150.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s150.jpg"
+  },
+  {
+    "src": "images/result_memory/s151.jpg",
+    "theme": "1983",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s151.jpg"
+  },
+  {
+    "src": "images/result_memory/s152.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s152.jpg"
+  },
+  {
+    "src": "images/result_memory/s153.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s153.jpg"
+  },
+  {
+    "src": "images/result_memory/s154.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s154.jpg"
+  },
+  {
+    "src": "images/result_memory/s155.jpg",
+    "theme": "1985",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s155.jpg"
+  },
+  {
+    "src": "images/result_memory/s156.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s156.jpg"
+  },
+  {
+    "src": "images/result_memory/s158.jpg",
+    "theme": "1987",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s158.jpg"
+  },
+  {
+    "src": "images/result_memory/s159.jpg",
+    "theme": "1984",
+    "date": "2006-02-18",
+    "category": "memory",
+    "filename": "s159.jpg"
+  },
+  {
     "src": "images/result_travel/20041230_west_001.JPG",
     "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
@@ -6866,6 +7111,48 @@ const photoData = [
     "date": "2005-01-01",
     "category": "travel",
     "filename": "20050101_west_001.JPG"
+  },
+  {
+    "src": "images/result_travel/1735959138540.jpg",
+    "theme": "제주여행",
+    "date": "2015-11-10",
+    "category": "travel",
+    "filename": "1735959138540.jpg"
+  },
+  {
+    "src": "images/result_travel/1736011249295.jpg",
+    "theme": "제주여행",
+    "date": "2015-11-10",
+    "category": "travel",
+    "filename": "1736011249295.jpg"
+  },
+  {
+    "src": "images/result_travel/1693020701335-2.jpg",
+    "theme": "창극,제주",
+    "date": "2023-05-20",
+    "category": "travel",
+    "filename": "1693020701335-2.jpg"
+  },
+  {
+    "src": "images/result_travel/1693020701335-1.jpg",
+    "theme": "창극,제주",
+    "date": "2023-05-20",
+    "category": "travel",
+    "filename": "1693020701335-1.jpg"
+  },
+  {
+    "src": "images/result_travel/22176894.jpg",
+    "theme": "제주여행",
+    "date": "2023-08-26",
+    "category": "travel",
+    "filename": "22176894.jpg"
+  },
+  {
+    "src": "images/result_travel/86507583.jpg",
+    "theme": "제주여행",
+    "date": "2023-08-26",
+    "category": "travel",
+    "filename": "86507583.jpg"
   },
   {
     "src": "images/result_friend/1706093744552.jpg",
@@ -8087,7 +8374,7 @@ const photoData = [
   },
   {
     "src": "images/result_friend/1746449207734.jpg",
-    "theme": "동구회",
+    "theme": "동보회",
     "date": "2026-03-13",
     "category": "friend",
     "filename": "1746449207734.jpg"
@@ -8794,42 +9081,42 @@ const photoData = [
   },
   {
     "src": "images/result_friend/1683677925599.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683677925599.jpg"
   },
   {
     "src": "images/result_friend/1683678029151-0.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683678029151-0.jpg"
   },
   {
     "src": "images/result_friend/1683678029151-1.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683678029151-1.jpg"
   },
   {
     "src": "images/result_friend/1683678029151-2.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683678029151-2.jpg"
   },
   {
     "src": "images/result_friend/1683678029151-3.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683678029151-3.jpg"
   },
   {
     "src": "images/result_friend/1683678029151-4.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1683678029151-4.jpg"
@@ -8864,7 +9151,7 @@ const photoData = [
   },
   {
     "src": "images/result_friend/1691457461343.jpg",
-    "theme": "동보회",
+    "theme": "동구회",
     "date": "2023-04-12",
     "category": "friend",
     "filename": "1691457461343.jpg"
@@ -8994,5 +9281,75 @@ const photoData = [
     "date": "2023-01-30",
     "category": "friend",
     "filename": "Luminate_1675000468804.png"
+  },
+  {
+    "src": "images/result_friend/IMG_20230104_123636.jpg",
+    "theme": "군동기 주응",
+    "date": "2023-01-04",
+    "category": "friend",
+    "filename": "IMG_20230104_123636.jpg"
+  },
+  {
+    "src": "images/result_friend/177331263.jpg",
+    "theme": "주응과 카페에서,파주",
+    "date": "2023-05-12",
+    "category": "friend",
+    "filename": "177331263.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20230828_161742.jpg",
+    "theme": "주응과 파주시장안 식당에서",
+    "date": "2023-08-28",
+    "category": "friend",
+    "filename": "IMG_20230828_161742.jpg"
+  },
+  {
+    "src": "images/result_friend/22176894 (3).jpg",
+    "theme": "주응과 파주시장안 식당에서",
+    "date": "2023-08-29",
+    "category": "friend",
+    "filename": "22176894 (3).jpg"
+  },
+  {
+    "src": "images/result_friend/20230905_012454_223.jpg",
+    "theme": "주응,사진편집",
+    "date": "2023-09-05",
+    "category": "friend",
+    "filename": "20230905_012454_223.jpg"
+  },
+  {
+    "src": "images/result_friend/ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg",
+    "theme": "주응,사진편집",
+    "date": "2023-09-16",
+    "category": "friend",
+    "filename": "ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20230916_131650.jpg",
+    "theme": "주응과 파주시장안 식당에서",
+    "date": "2023-09-16",
+    "category": "friend",
+    "filename": "IMG_20230916_131650.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_131638.jpg",
+    "theme": "주응과 파주 스타벅스",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_131638.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_131713.jpg",
+    "theme": "주응과 파주 스타벅스",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_131713.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_135415.jpg",
+    "theme": "주응과 파주 스타벅스",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_135415.jpg"
   }
 ];

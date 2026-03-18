@@ -64,5 +64,41 @@
     "theme": "서해일출,2004,2005,은옥",
     "date": "2005-01-01",
     "category": "travel"
+  },
+  {
+    "src": "images/result_travel/1735959138540.jpg",
+    "theme": "제주여행",
+    "date": "2015-11-10",
+    "category": "travel"
+  },
+  {
+    "src": "images/result_travel/1736011249295.jpg",
+    "theme": "제주여행",
+    "date": "2015-11-10",
+    "category": "travel"
+  },
+  {
+    "src": "images/result_travel/1693020701335-2.jpg",
+    "theme": "창극,제주",
+    "date": "2023-05-20",
+    "category": "travel"
+  },
+  {
+    "src": "images/result_travel/1693020701335-1.jpg",
+    "theme": "창극,제주",
+    "date": "2023-05-20",
+    "category": "travel"
+  },
+  {
+    "src": "images/result_travel/22176894.jpg",
+    "theme": "제주여행",
+    "date": "2023-08-26",
+    "category": "travel"
+  },
+  {
+    "src": "images/result_travel/86507583.jpg",
+    "theme": "제주여행",
+    "date": "2023-08-26",
+    "category": "travel"
   }
 ]
