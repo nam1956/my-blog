@@ -1828,13 +1828,6 @@ const photoData = [
     "filename": "Screenshot_20250505-140701-01.png"
   },
   {
-    "src": "images/result_family/1748323333076.jpg",
-    "theme": "지안",
-    "date": "2025-05-25",
-    "category": "family",
-    "filename": "1748323333076.jpg"
-  },
-  {
     "src": "images/result_family/IMG_20250615_174751.jpg",
     "theme": "봉서리집",
     "date": "2025-06-15",
