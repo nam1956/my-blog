@@ -8696,7 +8696,7 @@ const photoData = [
   },
   {
     "src": "images/result_friend/44713893.jpg",
-    "theme": "군동기",
+    "theme": "동구회",
     "date": "2026-03-13",
     "category": "friend",
     "filename": "44713893.jpg"
@@ -9288,5 +9288,68 @@ const photoData = [
     "date": "2023-01-04",
     "category": "friend",
     "filename": "IMG_20230104_123636.jpg"
+  },
+  {
+    "src": "images/result_friend/177331263.jpg",
+    "theme": "군동기",
+    "date": "2023-05-12",
+    "category": "friend",
+    "filename": "177331263.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20230828_161742.jpg",
+    "theme": "군동기",
+    "date": "2023-08-28",
+    "category": "friend",
+    "filename": "IMG_20230828_161742.jpg"
+  },
+  {
+    "src": "images/result_friend/22176894 (3).jpg",
+    "theme": "군동기",
+    "date": "2023-08-29",
+    "category": "friend",
+    "filename": "22176894 (3).jpg"
+  },
+  {
+    "src": "images/result_friend/20230905_012454_223.jpg",
+    "theme": "군동기",
+    "date": "2023-09-05",
+    "category": "friend",
+    "filename": "20230905_012454_223.jpg"
+  },
+  {
+    "src": "images/result_friend/ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg",
+    "theme": "군동기",
+    "date": "2023-09-16",
+    "category": "friend",
+    "filename": "ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20230916_131650.jpg",
+    "theme": "군동기",
+    "date": "2023-09-16",
+    "category": "friend",
+    "filename": "IMG_20230916_131650.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_131638.jpg",
+    "theme": "군동기",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_131638.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_131713.jpg",
+    "theme": "군동기",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_131713.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20240201_135415.jpg",
+    "theme": "군동기",
+    "date": "2024-02-01",
+    "category": "friend",
+    "filename": "IMG_20240201_135415.jpg"
   }
 ];
