@@ -813,13 +813,6 @@ const photoData = [
     "filename": "1691934297982.jpg"
   },
   {
-    "src": "images/result_family/1692109091082.jpg",
-    "theme": "창극",
-    "date": "2023-08-16",
-    "category": "family",
-    "filename": "1692109091082.jpg"
-  },
-  {
     "src": "images/result_family/1693020701335-3.jpg",
     "theme": "정혁 결혼식때",
     "date": "2023-08-26",
@@ -1366,20 +1359,6 @@ const photoData = [
     "filename": "53310123.jpg"
   },
   {
-    "src": "images/result_family/2047970.jpg",
-    "theme": "누구생일,크리스마스",
-    "date": "2023-12-26",
-    "category": "family",
-    "filename": "2047970.jpg"
-  },
-  {
-    "src": "images/result_family/84687427.jpg",
-    "theme": "누구생일,크리스마스",
-    "date": "2023-12-26",
-    "category": "family",
-    "filename": "84687427.jpg"
-  },
-  {
     "src": "images/result_family/1704099235167_asset.jpg",
     "theme": "지안,2번째 거주아파트",
     "date": "2024-01-02",
@@ -1497,20 +1476,6 @@ const photoData = [
     "date": "2024-03-16",
     "category": "family",
     "filename": "43424505.jpg"
-  },
-  {
-    "src": "images/result_family/88674517.jpg",
-    "theme": "엄마",
-    "date": "2024-03-17",
-    "category": "family",
-    "filename": "88674517.jpg"
-  },
-  {
-    "src": "images/result_family/IMG_20240330_163125.jpg",
-    "theme": "엄마",
-    "date": "2024-03-30",
-    "category": "family",
-    "filename": "IMG_20240330_163125.jpg"
   },
   {
     "src": "images/result_family/IMG_20240331_093107.jpg",
