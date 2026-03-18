@@ -77,11 +77,13 @@ function renderGallery(page, listToRender) {
         container.appendChild(div);
     });
 
-    // 사진 수량 표시
-    const countElement = document.getElementById('totalPhotoCount');
-    if (countElement) {
-        countElement.innerHTML = `<span>총 : ${currentDisplayList.length} 장</span>`;
-    }
+    // 사진 수량 표시 (숫자만 청색으로 포인트)
+const countElement = document.getElementById('totalPhotoCount');
+if (countElement) {
+    // 숫자에만 span 태그를 입혀서 인라인 스타일로 색상을 줍니다.
+    // .toLocaleString()을 붙여주면 1000단위 쉼표가 생겨서 더 전문적으로 보입니다.
+    countElement.innerHTML = `TOTAL : <span style="color: #007bff; margin: 0 5px;">${currentDisplayList.length.toLocaleString()}</span> Pic`;
+}
     displayPagination(currentDisplayList.length);
 }
 

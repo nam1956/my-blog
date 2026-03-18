@@ -95,19 +95,30 @@ body, html {
     text-align: right; 
     margin-bottom: 15px; 
 }
+
 #totalPhotoCount { 
     display: inline-block; 
-    width: 120px; /* 1000장 이상 대비 가로 고정 */
-    height: 34px;
-    line-height: 22px;
-    padding: 6px 0; 
+    width: auto; 
+    min-width: 200px; 
+    height: 30px;
+    line-height: 26px; 
+    padding: 2px 25px; 
     text-align: center;
-    border: 1px solid #bbb; 
-    border-radius: 20px; 
-    background: #f9f9f9; 
-    font-weight: bold; 
-    font-size: 0.85rem; 
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    border: 1px solid #ccc; 
+    border-radius: 25px; /* 더 둥글게! */
+    background: #fff; 
+    
+    /* [핵심] 동글동글한 폰트 설정 */
+    /* 아래 순서대로 브라우저가 찾아서 적용합니다 */
+    font-family: "NanumSquareRound", "Malgun Gothic", sans-serif; 
+    font-weight: 800; /* 아주 굵게 해야 동글동글함이 잘 보여요 */
+    font-size: 0.9rem; 
+    color: #555; 
+    letter-spacing: 0.5px; /* 글자 사이를 아주 살짝 띄우면 더 귀여워요 */
+
+    /* 음각 효과 */
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1), 
+                inset -1px -1px 2px rgba(255, 255, 255, 0.8);
 }
 
 /* 수정 후: 화면 너비에 맞춰 최소 200px 크기로 자동 배치 */
