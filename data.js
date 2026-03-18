@@ -7484,20 +7484,6 @@ const photoData = [
     "filename": "IMG_20230618_130027.jpg"
   },
   {
-    "src": "images/result_friend/IMG_20230704_125951.jpg",
-    "theme": "동구회",
-    "date": "2023-07-04",
-    "category": "friend",
-    "filename": "IMG_20230704_125951.jpg"
-  },
-  {
-    "src": "images/result_friend/IMG_20230704_125953.jpg",
-    "theme": "동구회",
-    "date": "2023-07-04",
-    "category": "friend",
-    "filename": "IMG_20230704_125953.jpg"
-  },
-  {
     "src": "images/result_friend/IMG_20230715_132903.jpg",
     "theme": "동구회",
     "date": "2023-07-15",
@@ -9304,13 +9290,6 @@ const photoData = [
     "filename": "IMG_20230828_161742.jpg"
   },
   {
-    "src": "images/result_friend/22176894 (3).jpg",
-    "theme": "군동기",
-    "date": "2023-08-29",
-    "category": "friend",
-    "filename": "22176894 (3).jpg"
-  },
-  {
     "src": "images/result_friend/20230905_012454_223.jpg",
     "theme": "군동기",
     "date": "2023-09-05",
@@ -9323,13 +9302,6 @@ const photoData = [
     "date": "2023-09-16",
     "category": "friend",
     "filename": "ReLens-ReLens_Image__2023-09-16_00_25_16768x1024.jpg"
-  },
-  {
-    "src": "images/result_friend/IMG_20230916_131650.jpg",
-    "theme": "군동기",
-    "date": "2023-09-16",
-    "category": "friend",
-    "filename": "IMG_20230916_131650.jpg"
   },
   {
     "src": "images/result_friend/IMG_20240201_131638.jpg",
