@@ -42,3 +42,6 @@ if __name__ == "__main__":
     convert_txt_to_json('travel.txt', 'data/travel.json', 'travel')
     # 6. 친구
     convert_txt_to_json('friend.txt', 'data/friend.json', 'friend')
+    # 7. 슬라이드 (새로 추가)
+    # slide.txt 파일을 읽어서 slide.json을 만듭니다.
+    convert_txt_to_json('slide.txt', 'data/slide.json', 'slide')

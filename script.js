@@ -171,3 +171,53 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = (e) => { if (e.target.id === 'imageModal') e.target.style.display = "none"; };
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
 });
+
+// [최종 수정] JSON 파일을 읽지 않고, 파일명을 직접 배열로 넣어서 보안 문제를 해결합니다.
+function showSlideStrip() {
+    const galleryContainer = document.querySelector('.gallery');
+    if (!galleryContainer) return;
+
+    // 1. 화면 비우기
+    galleryContainer.innerHTML = ''; 
+
+    // 2. 사장님이 확인하신 9장의 파일명을 여기에 직접 적어줍니다.
+    // (나중에 200장이 되면 여기에 파일명만 쭉 추가하시면 됩니다!)
+    const slideFiles = [
+        "412221.jpg", "412222.jpg", "412223.jpg", 
+        "412311.jpg", "412312.jpg", "501011.jpg", 
+        "501012.jpg", "501091.jpg", "501092.jpg"
+    ];
+
+    // 3. 사진을 담을 바구니 만들기
+    const displayZone = document.createElement('div');
+    displayZone.className = 'slide-display-zone'; // CSS에서 설정한 바둑판 스타일
+
+    // 4. 사진 9장 반복해서 뿌리기
+    slideFiles.forEach(fileName => {
+        const img = document.createElement('img');
+        // 경로: images/result_slide/파일명
+        img.src = `images/result_slide/${fileName}`; 
+        img.alt = "추억 슬라이드";
+        img.style.cursor = "pointer";
+        
+        // 클릭하면 크게 보기 기능 연결
+        img.onclick = () => { if(typeof openModal === 'function') openModal(img.src); };
+
+        displayZone.appendChild(img);
+    });
+
+    galleryContainer.appendChild(displayZone);
+
+    // 5. 제목 및 숫자 업데이트
+    const titleTag = document.getElementById('gallery-title');
+    if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 펼쳐보기";
+    
+    const countElement = document.getElementById('totalPhotoCount');
+    if (countElement) {
+        countElement.innerHTML = `TOTAL : <span style="color: #007bff; margin: 0 5px;">${slideFiles.length}</span> Pic`;
+    }
+
+    // 슬라이드 모드에서는 페이지네이션(번호)을 숨깁니다.
+    const pagination = document.getElementById('pagination');
+    if (pagination) pagination.innerHTML = '';
+}
