@@ -193,6 +193,10 @@ function showSlideStrip() {
         img.src = `images/result_slide/${photo.filename}`; 
         img.alt = photo.theme || "추억 슬라이드";
         
+        // [추가] 혹시 새로 추가하신 사진들의 확장자 대소문자(.jpg vs .JPG)가 달라서
+        // 엑박이 뜨는 불상사를 막기 위해 자동 복구 기능을 연결해 드립니다.
+        img.onerror = function() { handleImageError(this); };
+        
         container.appendChild(img);
     });
 
