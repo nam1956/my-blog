@@ -50,8 +50,9 @@ function updateMenuCounts(allData) {
 
 // [수정] 인자 기본값을 삭제하여 꼬임을 방지합니다.
 function renderGallery(page, listToRender) {
-    const container = document.querySelector('.gallery');
+    const container = document.querySelector('.gallery') || document.querySelector('.slide-display-zone');
     if (!container) return;
+    container.className = 'gallery';
     if (listToRender) { currentDisplayList = listToRender; }
     currentPage = page;
     container.innerHTML = '';
@@ -174,54 +175,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // [최종 확정] 클릭 불필요, 모달 불필요. 9장 사진을 바둑판으로 강제 배치합니다.
 function showSlideStrip() {
-    const galleryContainer = document.querySelector('.gallery');
-    if (!galleryContainer) return;
+    const container = document.querySelector('.gallery') || document.querySelector('.slide-display-zone');
+    if (!container) return;
 
-    // 1. 초기화 (기존 화면 싹 비우기)
-    galleryContainer.innerHTML = ''; 
+    // 1. 초기화 및 컨테이너 클래스 변경 (기존 gallery의 이중 그리드 방지!)
+    container.innerHTML = ''; 
+    container.className = 'slide-display-zone';
 
-    // 2. 바둑판 바구니 만들기 + '강제 스타일' 입히기
-    const displayZone = document.createElement('div');
-    
-    // CSS 파일 무시! JS가 직접 바둑판(Grid) 명령을 내립니다.
-    displayZone.style.display = "grid";
-    // 화면 너비에 맞춰 220px 정도 크기로 사진들을 가로로 꽉 채움
-    displayZone.style.gridTemplateColumns = "repeat(auto-fill, minmax(220px, 1fr))";
-    displayZone.style.gap = "25px"; // 사진 간 간격
-    displayZone.style.padding = "40px";
-    displayZone.style.width = "100%";
-    displayZone.style.boxSizing = "border-box";
-
-    // 3. 사장님의 보물 같은 사진 9장 명단
+    // 2. 사장님의 보물 같은 사진 9장 명단
     const slideFiles = [
         "412221.jpg", "412222.jpg", "412223.jpg", 
         "412311.jpg", "412312.jpg", "501011.jpg", 
         "501012.jpg", "501091.jpg", "501092.jpg"
     ];
 
-    // 4. 사진 뿌리기 (디자인도 강제 적용, 클릭 기능 제거)
+    // 3. 사진 뿌리기 (디자인은 style.css 의 .slide-display-zone img 에 위임)
     slideFiles.forEach(fileName => {
         const img = document.createElement('img');
         // 경로: images/result_slide/파일명
         img.src = `images/result_slide/${fileName}`; 
         img.alt = "추억 슬라이드";
         
-        // 사진 디자인 강제 적용
-        img.style.width = "100%";
-        img.style.height = "auto";
-        img.style.display = "block";
-        img.style.borderRadius = "8px"; // 모서리 살짝 굴림
-        img.style.border = "1px solid #ddd";
-        img.style.boxShadow = "3px 3px 10px rgba(0,0,0,0.1)"; // 그림자
-        
-        // 사장님 명령대로 클릭 관련 기능은 일절 넣지 않습니다.
-        
-        displayZone.appendChild(img);
+        container.appendChild(img);
     });
 
-    galleryContainer.appendChild(displayZone);
-
-    // 5. 상단 제목 업데이트
+    // 4. 상단 제목 업데이트
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 전시장";
     
