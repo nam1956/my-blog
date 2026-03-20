@@ -195,32 +195,69 @@ body, html {
 }
 
 /* ==========================================
-   🎞️ 슬라이드 펼쳐보기 전용 스타일
+   🎞️ 슬라이드 펼쳐보기: 원본 크기 존중 모드
    ========================================== */
 
-/* 슬라이드 전용 구역: 바둑판처럼 펼치기 */
 .slide-display-zone {
-    display: grid;
-    /* 가로로 최소 150px씩 공간을 나누어 꽉 채우기 */
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-    gap: 20px; 
+    display: flex;            /* 사진들을 옆으로 자연스럽게 나열 */
+    flex-wrap: wrap;          /* 화면 끝에 닿으면 다음 줄로 넘기기 */
+    justify-content: flex-start; /* 왼쪽부터 차곡차곡 채우기 */
+    gap: 20px;                /* 사진 사이의 최소 간격 */
     padding: 30px;
-    background: #eeeeee; 
+    background: #eeeeee;
     border-radius: 15px;
 }
 
 .slide-display-zone img {
-    width: 100%;    /* 칸 너비에 맞춤 */
-    height: auto;   /* 원본 비율 유지 */
-    max-width: 180px; /* 너무 커지지 않게 제한 */
+    /* [핵심] 크기를 강제로 지정하지 않고 원본 너비와 높이를 따릅니다 */
+    width: auto !important;   
+    height: auto !important;  
+    
+    /* 화면보다 큰 원본 사진이 밖으로 튀어나가는 것만 방지 */
+    max-width: 100%;          
+    
+    /* 인화지 느낌의 액자 효과 */
     background: #ffffff;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #d1d1d1;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.07);
-    transition: transform 0.3s;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    
+    /* 마우스 올렸을 때 반응 */
+    transition: transform 0.2s;
+    cursor: pointer;
 }
 
 .slide-display-zone img:hover {
-    transform: scale(1.1) rotate(3deg);
+    transform: scale(1.03); /* 아주 살짝만 커지게 해서 원본 느낌 유지 */
+}
+
+/* [추가] 슬라이드 전용 바둑판 스타일 */
+.slide-display-zone {
+    display: grid !important;
+    /* 화면 너비에 맞춰 180px 정도 크기로 사진들을 가로로 꽉 채움 */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 20px !important;
+    padding: 30px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.slide-display-zone img {
+    width: 100% !important;
+    max-width: 200px; /* 너무 커지지 않게 제한 */
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+    background: #fff;
+    padding: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* 마우스 올리면 살짝 커지는 효과 (원본 느낌 강조) */
+.slide-display-zone img:hover {
+    transform: scale(1.05);
     z-index: 10;
 }

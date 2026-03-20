@@ -172,52 +172,66 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
 });
 
-// [최종 수정] JSON 파일을 읽지 않고, 파일명을 직접 배열로 넣어서 보안 문제를 해결합니다.
+// [최종 확정] 클릭 불필요, 모달 불필요. 9장 사진을 바둑판으로 강제 배치합니다.
 function showSlideStrip() {
     const galleryContainer = document.querySelector('.gallery');
     if (!galleryContainer) return;
 
-    // 1. 화면 비우기
+    // 1. 초기화 (기존 화면 싹 비우기)
     galleryContainer.innerHTML = ''; 
 
-    // 2. 사장님이 확인하신 9장의 파일명을 여기에 직접 적어줍니다.
-    // (나중에 200장이 되면 여기에 파일명만 쭉 추가하시면 됩니다!)
+    // 2. 바둑판 바구니 만들기 + '강제 스타일' 입히기
+    const displayZone = document.createElement('div');
+    
+    // CSS 파일 무시! JS가 직접 바둑판(Grid) 명령을 내립니다.
+    displayZone.style.display = "grid";
+    // 화면 너비에 맞춰 220px 정도 크기로 사진들을 가로로 꽉 채움
+    displayZone.style.gridTemplateColumns = "repeat(auto-fill, minmax(220px, 1fr))";
+    displayZone.style.gap = "25px"; // 사진 간 간격
+    displayZone.style.padding = "40px";
+    displayZone.style.width = "100%";
+    displayZone.style.boxSizing = "border-box";
+
+    // 3. 사장님의 보물 같은 사진 9장 명단
     const slideFiles = [
         "412221.jpg", "412222.jpg", "412223.jpg", 
         "412311.jpg", "412312.jpg", "501011.jpg", 
         "501012.jpg", "501091.jpg", "501092.jpg"
     ];
 
-    // 3. 사진을 담을 바구니 만들기
-    const displayZone = document.createElement('div');
-    displayZone.className = 'slide-display-zone'; // CSS에서 설정한 바둑판 스타일
-
-    // 4. 사진 9장 반복해서 뿌리기
+    // 4. 사진 뿌리기 (디자인도 강제 적용, 클릭 기능 제거)
     slideFiles.forEach(fileName => {
         const img = document.createElement('img');
         // 경로: images/result_slide/파일명
         img.src = `images/result_slide/${fileName}`; 
         img.alt = "추억 슬라이드";
-        img.style.cursor = "pointer";
         
-        // 클릭하면 크게 보기 기능 연결
-        img.onclick = () => { if(typeof openModal === 'function') openModal(img.src); };
-
+        // 사진 디자인 강제 적용
+        img.style.width = "100%";
+        img.style.height = "auto";
+        img.style.display = "block";
+        img.style.borderRadius = "8px"; // 모서리 살짝 굴림
+        img.style.border = "1px solid #ddd";
+        img.style.boxShadow = "3px 3px 10px rgba(0,0,0,0.1)"; // 그림자
+        
+        // 사장님 명령대로 클릭 관련 기능은 일절 넣지 않습니다.
+        
         displayZone.appendChild(img);
     });
 
     galleryContainer.appendChild(displayZone);
 
-    // 5. 제목 및 숫자 업데이트
+    // 5. 상단 제목 업데이트
     const titleTag = document.getElementById('gallery-title');
-    if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 펼쳐보기";
+    if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 전시장";
     
+    // 사진 수량 표시 (TOTAL 9 Pic)
     const countElement = document.getElementById('totalPhotoCount');
     if (countElement) {
-        countElement.innerHTML = `TOTAL : <span style="color: #007bff; margin: 0 5px;">${slideFiles.length}</span> Pic`;
+        countElement.innerHTML = `TOTAL : <span style="color: #007bff; font-weight: bold;">${slideFiles.length}</span> Pic`;
     }
 
-    // 슬라이드 모드에서는 페이지네이션(번호)을 숨깁니다.
+    // 하단 페이지 번호는 필요 없으니 숨기기
     const pagination = document.getElementById('pagination');
     if (pagination) pagination.innerHTML = '';
 }
