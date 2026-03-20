@@ -173,43 +173,39 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
 });
 
-// [최종 확정] 클릭 불필요, 모달 불필요. 9장 사진을 바둑판으로 강제 배치합니다.
+// [자동화 버전] 파이썬이 만든 data.js의 데이터를 사용하여 모든 슬라이드를 보여줍니다.
 function showSlideStrip() {
     const container = document.querySelector('.gallery') || document.querySelector('.slide-display-zone');
     if (!container) return;
 
-    // 1. 초기화 및 컨테이너 클래스 변경 (기존 gallery의 이중 그리드 방지!)
+    // 1. 초기화
     container.innerHTML = ''; 
     container.className = 'slide-display-zone';
 
-    // 2. 사장님의 보물 같은 사진 9장 명단
-    const slideFiles = [
-        "412221.jpg", "412222.jpg", "412223.jpg", 
-        "412311.jpg", "412312.jpg", "501011.jpg", 
-        "501012.jpg", "501091.jpg", "501092.jpg"
-    ];
+    // 2. [핵심] photoData에서 'slide' 카테고리만 쏙 골라내기 (자동!)
+    const allData = (typeof photoData !== 'undefined') ? photoData : [];
+    const slideList = allData.filter(p => (p.category === 'slide'));
 
-    // 3. 사진 뿌리기 (디자인은 style.css 의 .slide-display-zone img 에 위임)
-    slideFiles.forEach(fileName => {
+    // 3. 사진 뿌리기 (파이썬이 찾아낸 모든 사진을 반복문으로!)
+    slideList.forEach(photo => {
         const img = document.createElement('img');
-        // 경로: images/result_slide/파일명
-        img.src = `images/result_slide/${fileName}`; 
-        img.alt = "추억 슬라이드";
+        // 파이썬이 만든 경로 그대로 사용
+        img.src = `images/result_slide/${photo.filename}`; 
+        img.alt = photo.theme || "추억 슬라이드";
         
         container.appendChild(img);
     });
 
-    // 4. 상단 제목 업데이트
+    // 4. 상단 제목 및 수량 자동 업데이트
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 전시장";
     
-    // 사진 수량 표시 (TOTAL 9 Pic)
     const countElement = document.getElementById('totalPhotoCount');
     if (countElement) {
-        countElement.innerHTML = `TOTAL : <span style="color: #007bff; font-weight: bold;">${slideFiles.length}</span> Pic`;
+        countElement.innerHTML = `TOTAL : <span style="color: #007bff; font-weight: bold;">${slideList.length.toLocaleString()}</span> Pic`;
     }
 
-    // 하단 페이지 번호는 필요 없으니 숨기기
+    // 하단 페이지 번호 숨기기
     const pagination = document.getElementById('pagination');
     if (pagination) pagination.innerHTML = '';
 }
