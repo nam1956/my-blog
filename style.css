@@ -226,20 +226,29 @@ body, html {
     z-index: 10;
 }
 
-/* 🎞️ 갤러리 상단 숫자(TOTAL)를 Dancing Script로 바꾸기 */
+/* 🎞️ 갤러리 상단 숫자(TOTAL) - Dancing Script 700 + Italic(기울임) 적용 */
 #totalPhotoCount span {
-    /* 1. 구글에서 가져온 Dancing Script를 1순위로 사용 */
+    /* 1. 사장님의 픽! Dancing Script */
     font-family: 'Dancing Script', cursive !important; 
     
-    /* 2. 숫자를 더 잘 보이게 크기와 굵기 조절 */
-    font-size: 2rem !important; 
+    /* 2. [두께] 묵직한 700 두께 */
     font-weight: 700 !important; 
     
-    /* 3. 사장님이 좋아하시는 시원한 파란색 계열 포인트 */
-    color: #007bff !important; 
+    /* 3. [기울임] 오른쪽으로 약간 눕혀서 필기체의 맛 살리기 */
+    font-style: italic !important;
     
-    /* 4. 글자 사이 간격을 살짝 주어 더 우아하게 */
-    letter-spacing: 2px;
-    margin: 0 5px;
+    /* 4. [크기] 굵고 누워있으니 1.6rem 정도로 시원하게 조절 */
+    font-size: 1.6rem !important; 
+    
+    /* 5. [색상 및 간격] 청색 포인트와 자간 */
+    color: #007bff !important; 
+    letter-spacing: 2px; /* 기울어지면 글자끼리 붙어 보일 수 있어 간격을 조금 더 줬습니다 */
+    
+    /* 6. 정렬 */
+    display: inline-block;
     vertical-align: middle;
+    margin: 0 8px;
+    
+    /* [고급 팁] 혹시 더 눕히고 싶으시면 아래 줄의 숫자를 키워보세요 (기본값은 0) */
+    /* transform: skewX(-5deg); */
 }
