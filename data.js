@@ -6329,6 +6329,97 @@ const photoData = [
     "filename": "20060604_seorak_192.JPG"
   },
   {
+    "src": "images/result_hiking/20051125_한라산_01.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_01.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_02.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_02.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_03.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_03.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_04.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_04.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_05.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_05.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_06.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_06.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_07.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_07.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_08.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_08.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_09.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_09.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_10.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_10.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_11.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_11.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_12.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_12.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051125_한라산_13.jpg",
+    "theme": "한라산",
+    "date": "2005-11-25",
+    "category": "hiking",
+    "filename": "20051125_한라산_13.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
@@ -9813,5 +9904,47 @@ const photoData = [
     "date": ".",
     "category": "slide",
     "filename": "51127_20.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_01.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_02.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_03.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_04.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_05.jpg"
+  },
+  {
+    "src": "images/result_slide/51125_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51125_06.jpg"
   }
 ];

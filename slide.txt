@@ -28,3 +28,9 @@ Filename	Shot Date	Category	Keywords
 51127_18.jpg	.	slide	.
 51127_19.jpg	.	slide	.
 51127_20.jpg	.	slide	.
+51125_01.jpg	.	slide	.
+51125_02.jpg	.	slide	.
+51125_03.jpg	.	slide	.
+51125_04.jpg	.	slide	.
+51125_05.jpg	.	slide	.
+51125_06.jpg	.	slide	.
