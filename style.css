@@ -225,3 +225,13 @@ body, html {
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
     z-index: 10;
 }
+
+/* 🎞️ 갤러리 상단 숫자(TOTAL)에 필기체 입히기 */
+#totalPhotoCount span {
+    font-family: 'Dancing Script', cursive !important; /* 필기체 강제 적용 */
+    font-size: 1.8rem;   /* 숫자를 조금 더 큼직하고 시원하게 */
+    color: #007bff;      /* 사장님이 좋아하시는 청색 계열 */
+    font-weight: 700;    /* 굵게 */
+    margin: 0 8px;       /* 숫자 양옆 여백 */
+    vertical-align: middle; /* 텍스트와 높이 맞추기 */
+}
