@@ -226,29 +226,23 @@ body, html {
     z-index: 10;
 }
 
-/* 🎞️ 갤러리 상단 숫자(TOTAL) - Dancing Script 700 + Italic(기울임) 적용 */
+/* 🎞️ 갤러리 상단 숫자(TOTAL) - 최종 정밀 조정 버전 */
 #totalPhotoCount span {
-    /* 1. 사장님의 픽! Dancing Script */
     font-family: 'Dancing Script', cursive !important; 
-    
-    /* 2. [두께] 묵직한 700 두께 */
     font-weight: 700 !important; 
-    
-    /* 3. [기울임] 오른쪽으로 약간 눕혀서 필기체의 맛 살리기 */
     font-style: italic !important;
     
-    /* 4. [크기] 굵고 누워있으니 1.6rem 정도로 시원하게 조절 */
-    font-size: 1.6rem !important; 
+    /* 1. [크기] 1.6에서 1.2로 확 줄였습니다. 주변 글자와 키가 비슷해집니다. */
+    font-size: 1.2rem !important; 
     
-    /* 5. [색상 및 간격] 청색 포인트와 자간 */
-    color: #007bff !important; 
-    letter-spacing: 2px; /* 기울어지면 글자끼리 붙어 보일 수 있어 간격을 조금 더 줬습니다 */
-    
-    /* 6. 정렬 */
+    /* 2. [위치] 위로 솟구친 숫자를 아래로 살짝 내려서 줄을 맞춥니다. */
     display: inline-block;
-    vertical-align: middle;
-    margin: 0 8px;
+    transform: translateY(2px); 
     
-    /* [고급 팁] 혹시 더 눕히고 싶으시면 아래 줄의 숫자를 키워보세요 (기본값은 0) */
-    /* transform: skewX(-5deg); */
+    /* 3. [간격] 기울임 때문에 뒷글자(Pic)와 겹치지 않게 오른쪽 여백을 줍니다. */
+    margin: 0 10px 0 5px; 
+    
+    color: #007bff !important; 
+    letter-spacing: 1px;
+    line-height: 1;
 }
