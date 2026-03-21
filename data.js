@@ -6420,6 +6420,223 @@ const photoData = [
     "filename": "20051125_한라산_13.jpg"
   },
   {
+    "src": "images/result_hiking/20060507_용화산_01.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_01.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_02.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_02.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_03.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_03.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_04.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_04.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_05.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_05.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_06.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_06.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_07.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_07.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_08.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_08.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_09.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_09.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_10.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_10.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_11.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_11.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_12.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_12.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_13.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_13.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_14.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_14.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_15.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_15.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_16.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_16.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_17.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_17.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_18.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_18.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_19.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_19.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_20.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_20.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_21.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_21.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_22.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_22.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_23.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_23.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_24.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_24.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_25.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_25.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_26.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_26.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_27.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_27.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_28.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_28.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_29.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_29.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_30.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_30.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060507_용화산_31.jpg",
+    "theme": "용화산_새남바위",
+    "date": "2006-05-09",
+    "category": "hiking",
+    "filename": "20060507_용화산_31.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
@@ -10177,5 +10394,173 @@ const photoData = [
     "date": ".",
     "category": "slide",
     "filename": "60521_17.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_01.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_02.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_03.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_04.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_05.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_06.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_07.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_07.jpg"
+  },
+  {
+    "src": "images/result_slide/60514_08.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60514_08.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_01.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_02.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_03.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_04.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_05.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_06.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_07.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_07.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_08.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_08.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_09.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_09.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_10.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_10.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_11.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_11.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_12.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_12.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_13.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_13.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_14.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_14.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_15.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_15.jpg"
+  },
+  {
+    "src": "images/result_slide/60507_16.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60507_16.jpg"
   }
 ];
