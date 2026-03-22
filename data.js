@@ -6637,6 +6637,83 @@ const photoData = [
     "filename": "20060507_용화산_31.jpg"
   },
   {
+    "src": "images/result_hiking/20060211_고대산_01.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_01.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_02.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_02.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_03.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_03.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_04.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_04.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_05.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_05.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_06.JPG",
+    "theme": "고대산",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_06.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_07.jpg",
+    "theme": "고대산_시산제",
+    "date": "2006-02-13",
+    "category": "hiking",
+    "filename": "20060211_고대산_07.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_08.jpg",
+    "theme": "고대산_시산제",
+    "date": "2006-02-13",
+    "category": "hiking",
+    "filename": "20060211_고대산_08.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_09.JPG",
+    "theme": "고대산_시산제",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_09.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_10.JPG",
+    "theme": "고대산_시산제",
+    "date": "2006-02-12",
+    "category": "hiking",
+    "filename": "20060211_고대산_10.JPG"
+  },
+  {
+    "src": "images/result_hiking/20060211_고대산_11.jpg",
+    "theme": "고대산_시산제",
+    "date": "2006-02-13",
+    "category": "hiking",
+    "filename": "20060211_고대산_11.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
@@ -10793,5 +10870,47 @@ const photoData = [
     "date": ".",
     "category": "slide",
     "filename": "60212_33.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_01.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_02.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_03.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_04.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_05.jpg"
+  },
+  {
+    "src": "images/result_slide/60211_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60211_06.jpg"
   }
 ];

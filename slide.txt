@@ -124,3 +124,9 @@ Filename	Shot Date	Category	Keywords
 60212_31.jpg	.	slide	.
 60212_32.jpg	.	slide	.
 60212_33.jpg	.	slide	.
+60211_01.jpg	.	slide	.
+60211_02.jpg	.	slide	.
+60211_03.jpg	.	slide	.
+60211_04.jpg	.	slide	.
+60211_05.jpg	.	slide	.
+60211_06.jpg	.	slide	.
