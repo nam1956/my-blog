@@ -9997,6 +9997,13 @@ const photoData = [
     "filename": "IMG_20240201_135415.jpg"
   },
   {
+    "src": "images/result_friend/20260320_125659.jpg",
+    "theme": "군동기",
+    "date": "2026-03-20",
+    "category": "friend",
+    "filename": "20260320_125659.jpg"
+  },
+  {
     "src": "images/result_slide/412221.jpg",
     "theme": ".",
     "date": ".",
