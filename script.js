@@ -3,6 +3,10 @@ let filteredList = []; // 카테고리별 기본 리스트
 let currentDisplayList = []; // [중요] 현재 화면에 표시 중인 리스트 (동보회 등 검색 결과 고정)
 const ITEMS_PER_PAGE = 20;
 
+let slideshowInterval = null;
+let slideIndex = 0;
+let isSlideshowPlaying = false;
+
 function init() {
     const params = new URLSearchParams(window.location.search);
     const category = params.get('type') || 'all';
@@ -162,14 +166,114 @@ function displayPagination(totalItems) {
 function openModal(src) {
     const modal = document.getElementById("imageModal");
     const img = document.getElementById("imgFull");
-    modal.style.display = "flex"; img.src = src; img.classList.remove('full-size');
+    modal.style.display = "flex"; 
+    img.style.opacity = 1;
+    img.classList.remove('ken-burns');
+    img.src = src; 
+    img.classList.remove('full-size');
+}
+
+function startSlideshow() {
+    if (!currentDisplayList || currentDisplayList.length === 0) {
+        alert("재생할 사진이 없습니다.");
+        return;
+    }
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("imgFull");
+    
+    // Play BGM
+    let bgAudio = document.getElementById("bgmAudio");
+    if (bgAudio) {
+        bgAudio.volume = 1.0; // 볼륨을 최대치로 높임
+        let playPromise = bgAudio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(e => console.log("자동재생이 차단되었습니다: " + e));
+        }
+    }
+
+    modal.style.display = "flex";
+    img.classList.remove('full-size');
+    img.style.opacity = 0; // Fade-in effect preparation
+    
+    isSlideshowPlaying = true;
+    slideIndex = 0;
+    
+    showSlideNextImage();
+    slideshowInterval = setInterval(showSlideNextImage, 5500); // 5.5초마다 부드럽게 넘어가도록 시간 연장
+}
+
+function showSlideNextImage() {
+    if (!isSlideshowPlaying) return;
+    if (slideIndex >= currentDisplayList.length) {
+        slideIndex = 0; // loop back to start
+    }
+    const photo = currentDisplayList[slideIndex];
+    const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
+    const img = document.getElementById("imgFull");
+    
+    // Create a clone for flashy cross-fade
+    if (img.src && img.style.opacity !== "0") {
+        const clone = img.cloneNode(true);
+        clone.id = ""; // 중복 ID 방지
+        clone.style.position = "absolute";
+        clone.style.zIndex = "3001";
+        clone.style.pointerEvents = "none";
+        clone.style.transition = "opacity 1.5s ease-in-out, filter 1.2s ease-in, transform 1.5s ease-out";
+        
+        const modal = document.getElementById("imageModal");
+        modal.appendChild(clone);
+        
+        // 반짝거리면서(brightness) 흐려지며 사라지게 만들기
+        requestAnimationFrame(() => {
+            clone.style.opacity = "0";
+            clone.style.filter = "brightness(1.8) blur(8px)";
+            // 확대된 상태에서 더 커지며 사라짐
+            const currentTransform = clone.style.transform || "";
+            clone.style.transform = currentTransform + " scale(1.1)";
+        });
+        
+        setTimeout(() => {
+            if (clone.parentNode) clone.parentNode.removeChild(clone);
+        }, 1500);
+    }
+
+    // Fade in new image
+    img.style.opacity = 0;
+    img.style.transition = "opacity 1.5s ease-in-out";
+    img.classList.remove('ken-burns');
+    img.src = imgSrc;
+    
+    img.onload = () => { 
+        img.style.opacity = 1; 
+        img.classList.add('ken-burns'); 
+    }; 
+
+    slideIndex++;
+}
+
+function closeModal() {
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("imgFull");
+    modal.style.display = "none";
+    img.classList.remove('ken-burns');
+    
+    if (isSlideshowPlaying) {
+        clearInterval(slideshowInterval);
+        isSlideshowPlaying = false;
+    }
+    
+    let bgAudio = document.getElementById("bgmAudio");
+    if (bgAudio && !bgAudio.paused) {
+        bgAudio.pause();
+        bgAudio.currentTime = 0;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     init();
     document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') performSearch(); };
-    document.querySelector(".close").onclick = () => document.getElementById("imageModal").style.display = "none";
-    window.onclick = (e) => { if (e.target.id === 'imageModal') e.target.style.display = "none"; };
+    document.querySelector(".close").onclick = () => closeModal();
+    window.onclick = (e) => { if (e.target.id === 'imageModal') closeModal(); };
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
 });
 

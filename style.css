@@ -88,12 +88,42 @@ body, html {
     background: #fff;
 }
 
+/* 슬라이드 재생 버튼 및 수량 표시 컨테이너 */
+.controls-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-play-slideshow {
+    padding: 8px 25px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+#btn-play-slideshow:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* 수량 표시: 규격 고정 및 우측 정렬 */
 .count-wrapper { 
-    width: 100%; 
-    max-width: 1200px; 
+    position: absolute;
+    right: 0;
+    width: auto; 
     text-align: right; 
-    margin-bottom: 15px; 
 }
 
 #totalPhotoCount { 
@@ -185,9 +215,18 @@ body, html {
 
 /* [6] 모달 */
 .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-.modal-content { max-width: 90%; max-height: 90vh; border: 3px solid white; cursor: zoom-in; }
+.modal-content { max-width: 90%; max-height: 90vh; border: 3px solid white; cursor: zoom-in; opacity: 1; transition: opacity 0.5s ease-in-out, transform 0.3s ease; }
 .modal-content.full-size { transform: scale(2.0); max-width: none; max-height: none; cursor: zoom-out; }
 .close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
+
+/* 켄 번스(Ken Burns) 슬라이드 애니메이션 */
+@keyframes kenBurns {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.15) translate(-1%, -1%); }
+}
+.ken-burns {
+    animation: kenBurns 5.5s linear forwards !important; /* 4초 대기 + 1.5초 트랜지션 여유 */
+}
 
 @media (max-width: 768px) {
     .side-menu { width: 100%; height: auto; position: relative; }

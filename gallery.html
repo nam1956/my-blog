@@ -47,9 +47,16 @@
             <input type="text" id="searchInput" placeholder="날짜, 제목 등으로 검색...">
         </div>
 
-        <div class="count-wrapper">
-            <span id="totalPhotoCount">TOTAL : 0</span>
+        <div class="controls-wrapper">
+            <button id="btn-play-slideshow" onclick="startSlideshow()">▶️ 사진 슬라이드 재생</button>
+            <div class="count-wrapper">
+                <span id="totalPhotoCount">TOTAL : 0</span>
+            </div>
         </div>
+
+        <audio id="bgmAudio" loop>
+            <source src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Gymnop%C3%A9die_No._1_%28Kevin_MacLeod%29.ogg" type="audio/ogg">
+        </audio>
 
         <div class="gallery">
             </div>
