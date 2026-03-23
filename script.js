@@ -185,9 +185,16 @@ function startSlideshow() {
     let bgAudio = document.getElementById("bgmAudio");
     if (bgAudio) {
         bgAudio.volume = 1.0; // 볼륨을 최대치로 높임
+        bgAudio.currentTime = 0; // 항상 처음부터 재생 시작
         let playPromise = bgAudio.play();
         if (playPromise !== undefined) {
-            playPromise.catch(e => console.log("자동재생이 차단되었습니다: " + e));
+            playPromise.then(_ => {
+                // 재생 성공
+                console.log("BGM 재생 시작됨");
+            }).catch(e => {
+                console.error("오디오 재생 오류: ", e);
+                alert("음악 자동재생이 브라우저에 의해 차단되었거나 음원 파일에 문제가 있습니다.");
+            });
         }
     }
 
