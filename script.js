@@ -6,10 +6,12 @@ const ITEMS_PER_PAGE = 20;
 let slideshowInterval = null;
 let slideIndex = 0;
 let isSlideshowPlaying = false;
+let currentCategory = 'all'; // 카테고리 상태 (이어보기 저장 등에 활용)
 
 function init() {
     const params = new URLSearchParams(window.location.search);
-    const category = params.get('type') || 'all';
+    currentCategory = params.get('type') || 'all';
+    const category = currentCategory;
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
     let expandedData = [];
@@ -203,7 +205,19 @@ function startSlideshow() {
     img.style.opacity = 0; // Fade-in effect preparation
     
     isSlideshowPlaying = true;
-    slideIndex = 0;
+    
+    // 이어보기 로직
+    let savedIndex = localStorage.getItem(`savedSlideIndex_${currentCategory}`);
+    if (savedIndex !== null && parseInt(savedIndex) > 0 && parseInt(savedIndex) < currentDisplayList.length) {
+        if (confirm("이전에 감상하던 사진부터 이어 보시겠습니까?\n(확인: 이어보기, 취소: 처음부터)")) {
+            slideIndex = parseInt(savedIndex);
+        } else {
+            slideIndex = 0;
+            localStorage.setItem(`savedSlideIndex_${currentCategory}`, 0);
+        }
+    } else {
+        slideIndex = 0;
+    }
     
     showSlideNextImage();
     slideshowInterval = setInterval(showSlideNextImage, 5500); // 5.5초마다 부드럽게 넘어가도록 시간 연장
@@ -213,6 +227,7 @@ function showSlideNextImage() {
     if (!isSlideshowPlaying) return;
     if (slideIndex >= currentDisplayList.length) {
         slideIndex = 0; // loop back to start
+        localStorage.setItem(`savedSlideIndex_${currentCategory}`, 0);
     }
     const photo = currentDisplayList[slideIndex];
     const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
@@ -255,6 +270,8 @@ function showSlideNextImage() {
         img.classList.add('ken-burns'); 
     }; 
 
+    // 현재 보고 있는 사진의 순서를 저장합니다.
+    localStorage.setItem(`savedSlideIndex_${currentCategory}`, slideIndex);
     slideIndex++;
 }
 
