@@ -6714,6 +6714,195 @@ const photoData = [
     "filename": "20060211_고대산_11.jpg"
   },
   {
+    "src": "images/result_hiking/20051001_도봉산_01.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_01.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_02.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_02.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_03.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_03.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_04.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_04.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_05.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_05.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_06.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_06.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_07.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-01",
+    "category": "hiking",
+    "filename": "20051001_도봉산_07.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_08.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051001_도봉산_08.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_09.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051001_도봉산_09.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051001_도봉산_10.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051001_도봉산_10.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_01.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_01.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_02.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_02.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_03.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_03.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_04.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_04.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_05.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_05.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_06.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_06.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_07.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_07.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_08.JPG",
+    "theme": "도봉산_우이암",
+    "date": "2005-10-02",
+    "category": "hiking",
+    "filename": "20051002_도봉산_08.JPG"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_09.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_09.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_10.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_10.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_11.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_11.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_12.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_12.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_13.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_13.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_14.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_14.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_15.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_15.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_16.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_16.jpg"
+  },
+  {
+    "src": "images/result_hiking/20051002_도봉산_17.jpg",
+    "theme": "도봉산_우이암",
+    "date": "2006-02-17",
+    "category": "hiking",
+    "filename": "20051002_도봉산_17.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
