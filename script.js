@@ -35,6 +35,30 @@ function init() {
     // [수정] 초기화 시점에 filteredList를 currentDisplayList에 명시적으로 박아넣습니다.
     currentDisplayList = filteredList;
     renderGallery(1);
+    setActiveMenu(); // 초기 진입 시 활성 메뉴 표시
+}
+
+function setActiveMenu() {
+    document.querySelectorAll('.side-menu a').forEach(a => a.classList.remove('active-menu'));
+    
+    // 현재 URL 파라미터 체크
+    const params = new URLSearchParams(window.location.search);
+    const paramsType = params.get('type');
+    
+    if (currentCategory === 'all' && !paramsType) {
+        // 홈 화면
+        const homeLink = document.querySelector('.side-menu a[href="index.html"]');
+        if (homeLink) homeLink.classList.add('active-menu');
+    } else {
+        // 해당 카테고리 탭
+        const targetLink = document.querySelector(`.side-menu a[href*="type=${currentCategory}"]`);
+        if (targetLink) targetLink.classList.add('active-menu');
+    }
+}
+
+function toggleMobileMenu() {
+    const menu = document.getElementById('sideMenu');
+    if (menu) menu.classList.toggle('open');
 }
 
 function updateMenuCounts(allData) {
@@ -63,6 +87,10 @@ function renderGallery(page, listToRender) {
     currentPage = page;
     container.innerHTML = '';
     
+    if (currentDisplayList.length === 0) {
+        container.innerHTML = `<div class="empty-state">❌ 검색된 사진이 없습니다. 다른 검색어를 입력해 보세요.</div>`;
+    }
+    
     const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
     displayList.forEach(photo => {
@@ -76,7 +104,7 @@ function renderGallery(page, listToRender) {
             <div class="photo-item-inner">
                 <div class="theme-text">${photo.theme || '제목 없음'}</div>
                 <div class="img-container">
-                    <img src="${imgSrc}" class="gallery-img" onerror="handleImageError(this)" onclick="openModal('${imgSrc}')">
+                    <img src="${imgSrc}" class="gallery-img" loading="lazy" alt="${photo.theme || '갤러리 사진'}" onerror="handleImageError(this)" onclick="openModal('${imgSrc}')">
                 </div>
                 <div class="date-text">${photo.date || ''}</div>
             </div>
@@ -120,6 +148,10 @@ function filterBySubCategory(subCat) {
     const subResults = allExpanded.filter(p => (p.theme || '').includes(subCat));
     // 동보회 32장 리스트를 renderGallery에 넘겨서 currentDisplayList를 교체합니다.
     renderGallery(1, subResults); 
+    
+    // 친구 탭이 선택된 상태 유지
+    currentCategory = 'friend';
+    setActiveMenu();
 }
 
 function handleImageError(img) {
@@ -185,8 +217,10 @@ function startSlideshow() {
     
     // Play BGM
     let bgAudio = document.getElementById("bgmAudio");
+    const volumeSlider = document.getElementById("volumeControl");
     if (bgAudio) {
-        bgAudio.volume = 1.0; // 볼륨을 최대치로 높임
+        // 볼륨 슬라이더 값에 맞춰 재생 (슬라이더가 없으면 기본 최대 1.0)
+        bgAudio.volume = volumeSlider ? parseFloat(volumeSlider.value) : 1.0; 
         bgAudio.currentTime = 0; // 항상 처음부터 재생 시작
         let playPromise = bgAudio.play();
         if (playPromise !== undefined) {
@@ -238,7 +272,7 @@ function showSlideNextImage() {
         const clone = img.cloneNode(true);
         clone.id = ""; // 중복 ID 방지
         clone.style.position = "absolute";
-        clone.style.zIndex = "3001";
+        clone.style.zIndex = "2900"; // 슬라이드쇼 컨트롤 패널 아래에 위치
         clone.style.pointerEvents = "none";
         clone.style.transition = "opacity 1.5s ease-in-out, filter 1.2s ease-in, transform 1.5s ease-out";
         
@@ -297,7 +331,19 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
     document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') performSearch(); };
     document.querySelector(".close").onclick = () => closeModal();
-    window.onclick = (e) => { if (e.target.id === 'imageModal') closeModal(); };
+    
+    window.onclick = (e) => { 
+        if (e.target.id === 'imageModal') closeModal(); 
+        
+        // 모바일 보조 메뉴 바깥 클릭 시 닫힘 처리
+        const menu = document.getElementById('sideMenu');
+        const btn = document.getElementById('mobile-menu-btn');
+        if (window.innerWidth <= 768 && menu && menu.classList.contains('open')) {
+            if (!menu.contains(e.target) && e.target !== btn) {
+                menu.classList.remove('open');
+            }
+        }
+    };
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
 });
 
@@ -340,4 +386,46 @@ function showSlideStrip() {
     // 하단 페이지 번호 숨기기
     const pagination = document.getElementById('pagination');
     if (pagination) pagination.innerHTML = '';
+}
+
+/* ==========================================
+   추가: 슬라이드쇼 컨트롤 패널 로직
+   ========================================== */
+function changeVolume(value) {
+    const bgAudio = document.getElementById("bgmAudio");
+    if (bgAudio) {
+        bgAudio.volume = value;
+    }
+    const volumeIcon = document.querySelector('.volume-icon');
+    if (value == 0) volumeIcon.textContent = '🔇';
+    else if (value < 0.5) volumeIcon.textContent = '🔉';
+    else volumeIcon.textContent = '🔊';
+}
+
+function resetSlideshowInterval() {
+    if (slideshowInterval) clearInterval(slideshowInterval);
+    if (isSlideshowPlaying) {
+        slideshowInterval = setInterval(showSlideNextImage, 5500);
+    }
+}
+
+function prevSlide(e) {
+    if (e) e.stopPropagation(); // 오동작으로 모달이 닫히는 걸 방지
+    if (!currentDisplayList || currentDisplayList.length === 0) return;
+    
+    // 현재 타이머가 막 +1 시켰으므로 원래 보던 사진으로 가기 위해 -2 연산 필요
+    slideIndex -= 2;
+    if (slideIndex < 0) {
+        // 인덱스가 음수일 경우 배열 뒤쪽에서 다시 감기
+        slideIndex = currentDisplayList.length - 1 - (Math.abs(slideIndex + 1) % currentDisplayList.length);
+    }
+    
+    showSlideNextImage();
+    resetSlideshowInterval();
+}
+
+function nextSlide(e) {
+    if (e) e.stopPropagation();
+    showSlideNextImage();
+    resetSlideshowInterval();
 }
