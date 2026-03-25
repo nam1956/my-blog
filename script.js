@@ -93,7 +93,8 @@ function renderGallery(page, listToRender) {
     
     const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-    displayList.forEach(photo => {
+    displayList.forEach((photo, index) => {
+        const globalIndex = (page - 1) * ITEMS_PER_PAGE + index;
         const div = document.createElement('div');
         div.className = 'photo-item'; // [1] 가장 바깥 액자
         
@@ -104,7 +105,7 @@ function renderGallery(page, listToRender) {
             <div class="photo-item-inner">
                 <div class="theme-text">${photo.theme || '제목 없음'}</div>
                 <div class="img-container">
-                    <img src="${imgSrc}" class="gallery-img" loading="lazy" alt="${photo.theme || '갤러리 사진'}" onerror="handleImageError(this)" onclick="openModal('${imgSrc}')">
+                    <img src="${imgSrc}" class="gallery-img" loading="lazy" alt="${photo.theme || '갤러리 사진'}" onerror="handleImageError(this)" onclick="openModal('${imgSrc}', ${globalIndex})">
                 </div>
                 <div class="date-text">${photo.date || ''}</div>
             </div>
@@ -197,7 +198,7 @@ function displayPagination(totalItems) {
     }
 }
 
-function openModal(src) {
+function openModal(src, index) {
     const modal = document.getElementById("imageModal");
     const img = document.getElementById("imgFull");
     modal.style.display = "flex"; 
@@ -205,6 +206,10 @@ function openModal(src) {
     img.classList.remove('ken-burns');
     img.src = src; 
     img.classList.remove('full-size');
+    
+    if (typeof index !== 'undefined') {
+        slideIndex = index + 1;
+    }
 }
 
 function startSlideshow() {
@@ -257,18 +262,20 @@ function startSlideshow() {
     slideshowInterval = setInterval(showSlideNextImage, 5500); // 5.5초마다 부드럽게 넘어가도록 시간 연장
 }
 
-function showSlideNextImage() {
-    if (!isSlideshowPlaying) return;
+function showSlideNextImage(isManual = false) {
+    if (!isSlideshowPlaying && !isManual) return;
+    
     if (slideIndex >= currentDisplayList.length) {
         slideIndex = 0; // loop back to start
         localStorage.setItem(`savedSlideIndex_${currentCategory}`, 0);
     }
     const photo = currentDisplayList[slideIndex];
+    if (!photo) return;
     const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
     const img = document.getElementById("imgFull");
     
-    // Create a clone for flashy cross-fade
-    if (img.src && img.style.opacity !== "0") {
+    // Create a clone for flashy cross-fade ONLY if slideshow is playing
+    if (isSlideshowPlaying && img.src && img.style.opacity !== "0") {
         const clone = img.cloneNode(true);
         clone.id = ""; // 중복 ID 방지
         clone.style.position = "absolute";
@@ -294,14 +301,22 @@ function showSlideNextImage() {
     }
 
     // Fade in new image
-    img.style.opacity = 0;
-    img.style.transition = "opacity 1.5s ease-in-out";
+    if (isSlideshowPlaying) {
+        img.style.opacity = 0;
+        img.style.transition = "opacity 1.5s ease-in-out";
+    } else {
+        img.style.opacity = 1;
+        img.style.transition = "none";
+    }
+    
     img.classList.remove('ken-burns');
     img.src = imgSrc;
     
     img.onload = () => { 
         img.style.opacity = 1; 
-        img.classList.add('ken-burns'); 
+        if (isSlideshowPlaying) {
+            img.classList.add('ken-burns'); 
+        }
     }; 
 
     // 현재 보고 있는 사진의 순서를 저장합니다.
@@ -345,6 +360,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
+
+    // 키보드 화살표로 사진 넘기기
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById("imageModal");
+        if (modal && modal.style.display === "flex") {
+            if (e.key === "ArrowLeft") {
+                prevSlide();
+            } else if (e.key === "ArrowRight") {
+                nextSlide();
+            } else if (e.key === "Escape") {
+                closeModal();
+            }
+        }
+    });
 });
 
 // [자동화 버전] 파이썬이 만든 data.js의 데이터를 사용하여 모든 슬라이드를 보여줍니다.
@@ -420,12 +449,12 @@ function prevSlide(e) {
         slideIndex = currentDisplayList.length - 1 - (Math.abs(slideIndex + 1) % currentDisplayList.length);
     }
     
-    showSlideNextImage();
+    showSlideNextImage(true);
     resetSlideshowInterval();
 }
 
 function nextSlide(e) {
     if (e) e.stopPropagation();
-    showSlideNextImage();
+    showSlideNextImage(true);
     resetSlideshowInterval();
 }

@@ -1,0 +1,472 @@
+/* [1] 전체 초기화 및 기본 폰트 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html { 
+    width: 100%; 
+    height: 100%; 
+    background-color: #f8f9fa; 
+    font-family: 'Malgun Gothic', sans-serif; 
+    overflow-x: hidden; 
+}
+
+/* [2] 사이드 메뉴 및 음각 배지 */
+.side-menu { 
+    width: 220px; 
+    background: #333; 
+    color: white; 
+    height: 100vh; 
+    position: fixed; 
+    left: 0; 
+    top: 0; 
+    padding: 30px 0;
+    z-index: 1000; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.side-menu a { 
+    display: flex !important; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 20px;
+    color: #ccc; 
+    text-decoration: none; 
+    border-bottom: 1px solid #444; 
+    transition: 0.3s; 
+}
+.side-menu a:hover { color: white; background: #444; }
+
+/* =====================================================
+   ✨ 핵심 개선: 활성 메뉴 ↔ 갤러리 완전 일체감
+   - 탭이 사이드바 오른쪽 경계를 넘어 갤러리 배경 위로 자연스럽게 연장
+   - 오른쪽 끝은 열린 형태 (border-radius 없음) → 갤러리와 경계 소멸
+   ===================================================== */
+.side-menu a.active-menu {
+    background-color: #f8f9fa;      /* 갤러리 배경색과 완전히 동일 */
+    color: #111 !important;
+    font-weight: bold;
+    border-bottom: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 4px solid #007bff;
+    border-right: none;             /* 오른쪽 테두리 제거 → 갤러리로 열린 느낌 */
+
+    /* 오른쪽으로 삐져나와서 갤러리 영역과 붙음 */
+    margin-left: 8px;
+    margin-right: -1px;             /* 갤러리 영역 왼쪽 테두리와 딱 맞닿게 */
+    padding-right: 30px;
+
+    /* 왼쪽만 둥글고 오른쪽은 직각 → 탭이 갤러리로 이어지는 느낌 */
+    border-radius: 12px 0 0 12px;
+
+    /* 부드러운 입체 그림자 */
+    box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.2);
+
+    position: relative;
+    transform: translateY(-1px);
+    z-index: 1010;
+}
+.side-menu a.active-menu:hover {
+    background-color: #f8f9fa;
+    color: #111 !important;
+    transform: translateY(-2px);
+    box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.25);
+}
+
+.menu-badge {
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 32px;
+    text-align: center;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8), 1px 1px 0px rgba(255,255,255,0.05);
+    font-weight: bold;
+}
+
+/* [3] 드롭다운 안정화 */
+.dropdown { position: relative; width: 100%; }
+.dropdown-content {
+    display: none;
+    background-color: #2a2a2a;
+    width: 100%;
+    border-radius: 0 0 12px 12px;  /* 드롭다운 하단 모서리 둥글게 */
+    overflow: hidden;
+}
+.dropdown-content a {
+    padding-left: 40px !important;
+    font-size: 0.85rem !important;
+    border-bottom: 1px solid #3d3d3d;
+    color: #999 !important;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a:hover { background: #444; color: white !important; }
+
+/* [4] 갤러리 레이아웃 */
+.gallery-content { 
+    margin-left: 220px; 
+    padding: 60px 40px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 100vh;
+    /* 갤러리 영역 왼쪽에 미세한 선 → 활성 탭과 맞닿는 기준선 */
+    border-left: 1px solid #e0e0e0;
+}
+
+.gallery-content h2 {
+    margin-bottom: 25px;
+}
+
+/* 검색창: 둥근 모서리 12px */
+#searchInput { 
+    width: 100%; 
+    max-width: 400px; 
+    padding: 12px 15px; 
+    border: 1px solid #ccc;
+    border-radius: 12px;            /* 12px 둥글게 */
+    margin-bottom: 15px;
+    outline: none; 
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+#searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* 슬라이드 재생 버튼 및 수량 표시 컨테이너 */
+.controls-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-play-slideshow {
+    padding: 8px 25px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;            /* 12px 둥글게 */
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+#btn-play-slideshow:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 수량 표시 */
+.count-wrapper { 
+    position: absolute;
+    right: 0;
+    width: auto; 
+    text-align: right; 
+}
+
+#totalPhotoCount { 
+    display: inline-block; 
+    width: auto; 
+    min-width: 200px; 
+    height: 30px;
+    line-height: 26px; 
+    padding: 2px 25px; 
+    text-align: center;
+    border: 1px solid #ccc; 
+    border-radius: 12px;            /* 12px 둥글게 */
+    background: #fff; 
+    font-family: "NanumSquareRound", "Malgun Gothic", sans-serif; 
+    font-weight: 800;
+    font-size: 0.9rem; 
+    color: #555; 
+    letter-spacing: 0.5px;
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1), 
+                inset -1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* 갤러리 그리드 */
+.gallery { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 30px; 
+    width: 100%; 
+    max-width: 1200px; 
+}
+
+/* 🖼️ 액자 본체 - 12px 둥글게 */
+.photo-item { 
+    background: white; 
+    padding: 6px; 
+    border-radius: 12px;            /* 12px 둥글게 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06); 
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.photo-item:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.photo-item-inner {
+    position: relative;
+    background: #f4f4f4;
+    padding: 25px 25px; 
+    display: block;
+    border-radius: 8px;             /* 내부도 살짝 둥글게 */
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.theme-text { 
+    position: absolute; top: 5px; left: 0; width: 100%; 
+    text-align: center; font-size: 13px; font-weight: bold; color: #555; 
+}
+
+/* 사진 컨테이너 */
+.img-container {
+    position: relative;
+    width: 100%;
+    padding-top: 130%; 
+    overflow: hidden;
+    background: #000;
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.15); 
+    border: 2px solid #d1d1d1;
+    border-radius: 6px;             /* 사진 모서리도 살짝 */
+}
+
+.gallery-img { 
+    position: absolute; top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    object-fit: cover; 
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.date-text { 
+    position: absolute; bottom: 7px; right: 35px; 
+    font-size: 13px; font-weight: bold; color: #777; 
+}
+
+/* [5] 페이지네이션 - 12px 둥글게 */
+.pagination-container { 
+    width: 100%; display: flex; justify-content: center; 
+    gap: 6px; margin: 40px 0; padding-bottom: 30px; 
+}
+.pagination-container button { 
+    min-width: 38px; height: 38px; 
+    border: 1px solid #ddd; 
+    background: white; 
+    cursor: pointer; 
+    border-radius: 12px;            /* 12px 둥글게 */
+    transition: all 0.2s;
+}
+.pagination-container button:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+.pagination-container button.active { 
+    background: #333; color: white; border-color: #333; font-weight: bold; 
+}
+.pagination-container button.nav-btn { 
+    background: #f9f9f9; font-weight: bold; 
+}
+
+/* [6] 모달 */
+.modal { 
+    display: none; position: fixed; z-index: 3000; 
+    left: 0; top: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.92); 
+    justify-content: center; align-items: center; 
+}
+.modal-content { 
+    max-width: 90%; max-height: 90vh; 
+    border: 3px solid white; 
+    border-radius: 12px;            /* 모달 이미지 모서리 둥글게 */
+    cursor: zoom-in; 
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease; 
+}
+.modal-content.full-size { 
+    transform: scale(2.0); max-width: none; max-height: none; cursor: zoom-out; 
+}
+.close { 
+    position: absolute; top: 20px; right: 35px; 
+    color: white; font-size: 40px; font-weight: bold; cursor: pointer; 
+}
+
+/* 켄 번스(Ken Burns) 슬라이드 애니메이션 */
+@keyframes kenBurns {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.15) translate(-1%, -1%); }
+}
+.ken-burns {
+    animation: kenBurns 5.5s linear forwards !important;
+}
+
+/* 햄버거 메뉴 버튼 */
+#mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+    background: #007bff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 12px;            /* 12px 둥글게 */
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    #mobile-menu-btn { display: block; }
+    .side-menu { 
+        width: 250px; 
+        height: 100vh; 
+        position: fixed; 
+        transform: translateX(-100%); 
+        z-index: 1500;
+        padding-top: 70px;
+    }
+    .side-menu.open {
+        transform: translateX(0);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+    .gallery-content { margin-left: 0; padding-top: 80px; border-left: none; }
+}
+
+/* ==========================================
+   검색 결과 없음 상태
+   ========================================== */
+.empty-state {
+    grid-column: 1 / -1; 
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 1.2rem;
+    color: #777;
+    background: #fff;
+    border-radius: 12px;            /* 12px 둥글게 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px dashed #ccc;
+}
+
+/* ==========================================
+   슬라이드쇼 컨트롤 패널
+   ========================================== */
+.slideshow-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 15px 30px;
+    border-radius: 12px;            /* 12px 둥글게 (기존 40px → 12px) */
+    backdrop-filter: blur(8px);
+    z-index: 3001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#imageModal:hover .slideshow-controls {
+    opacity: 1;
+}
+
+.slideshow-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+.slideshow-controls button:hover {
+    color: #007bff;
+    transform: scale(1.3);
+}
+
+.volume-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.volume-icon {
+    font-size: 20px;
+    color: white;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90px;
+    background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    margin-top: -5px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.8);
+    border-radius: 2px;
+}
+
+/* ==========================================
+   슬라이드 펼쳐보기
+   ========================================== */
+.slide-display-zone {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 1200px;
+}
+
+.slide-display-zone img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block;
+    border-radius: 12px;            /* 12px 둥글게 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out;
+}
+
+.slide-display-zone img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    z-index: 10;
+}
+
+/* 갤러리 상단 숫자(TOTAL) */
+#totalPhotoCount span {
+    font-family: 'Dancing Script', cursive !important; 
+    font-weight: 700 !important; 
+    font-style: italic !important;
+    font-size: 1.2rem !important; 
+    display: inline-block;
+    transform: translateY(2px); 
+    margin: 0 10px 0 5px; 
+    color: #007bff !important; 
+    letter-spacing: 1px;
+    line-height: 1;
+}
