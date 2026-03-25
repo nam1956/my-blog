@@ -8436,6 +8436,20 @@ const photoData = [
     "filename": "설악서북능_타임라인_199.jpg"
   },
   {
+    "src": "images/result_hiking/설악서북능대문_01.jpg",
+    "theme": "설악산",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "설악서북능대문_01.jpg"
+  },
+  {
+    "src": "images/result_hiking/설악서북능대문_02.jpg",
+    "theme": "설악산",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "설악서북능대문_02.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
