@@ -130,3 +130,11 @@ Filename	Shot Date	Category	Keywords
 60211_04.jpg	.	slide	.
 60211_05.jpg	.	slide	.
 60211_06.jpg	.	slide	.
+60130_01.jpg	.	slide	.
+60130_02.jpg	.	slide	.
+60130_03.jpg	.	slide	.
+60130_04.jpg	.	slide	.
+60130_05.jpg	.	slide	.
+60130_06.jpg	.	slide	.
+60130_07.jpg	.	slide	.
+60130_08.jpg	.	slide	.

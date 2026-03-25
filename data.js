@@ -6903,6 +6903,146 @@ const photoData = [
     "filename": "20051002_도봉산_17.jpg"
   },
   {
+    "src": "images/result_hiking/20060130_설악산_01.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-30",
+    "category": "hiking",
+    "filename": "20060130_설악산_01.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_02.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-30",
+    "category": "hiking",
+    "filename": "20060130_설악산_02.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_03.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_03.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_04.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_04.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_05.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_05.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_06.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_06.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_07.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_07.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_08.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_08.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_09.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_09.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_10.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_10.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_11.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_11.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_12.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_12.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_13.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_13.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_14.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_14.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_15.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-01-31",
+    "category": "hiking",
+    "filename": "20060130_설악산_15.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_16.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-02-01",
+    "category": "hiking",
+    "filename": "20060130_설악산_16.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_17.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-02-01",
+    "category": "hiking",
+    "filename": "20060130_설악산_17.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_18.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-02-01",
+    "category": "hiking",
+    "filename": "20060130_설악산_18.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_19.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-02-01",
+    "category": "hiking",
+    "filename": "20060130_설악산_19.jpg"
+  },
+  {
+    "src": "images/result_hiking/20060130_설악산_20.jpg",
+    "theme": "설악산_서북능선종주",
+    "date": "2006-02-01",
+    "category": "hiking",
+    "filename": "20060130_설악산_20.jpg"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
@@ -11108,5 +11248,61 @@ const photoData = [
     "date": ".",
     "category": "slide",
     "filename": "60211_06.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_01.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_02.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_03.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_04.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_05.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_06.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_07.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_07.jpg"
+  },
+  {
+    "src": "images/result_slide/60130_08.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "60130_08.jpg"
   }
 ];
