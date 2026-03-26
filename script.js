@@ -7,10 +7,12 @@ let slideshowInterval = null;
 let slideIndex = 0;
 let isSlideshowPlaying = false;
 let currentCategory = 'all'; // 카테고리 상태 (이어보기 저장 등에 활용)
+let currentSubCategory = null; // 현재 선택된 하위 카테고리 (동구회 등)
 
 function init() {
     const params = new URLSearchParams(window.location.search);
     currentCategory = params.get('type') || 'all';
+    currentSubCategory = null; // 메인 카테고리 진입 시 하위 카테고리 초기화
     const category = currentCategory;
     const rawData = (typeof photoData !== 'undefined') ? photoData : [];
 
@@ -125,13 +127,23 @@ if (countElement) {
 
 function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    const results = filteredList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
+    
+    // 현재 하위 메뉴(동구회 등)가 선택되어 있다면, 전체 리스트가 아닌 해당 하위 메뉴 사진들 내에서만 검색
+    let baseList = filteredList;
+    if (currentSubCategory) {
+        baseList = filteredList.filter(p => (p.theme || '').includes(currentSubCategory));
+    }
+    
+    const results = baseList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
     renderGallery(1, results);
 }
 
 function filterBySubCategory(subCat) {
     const newUrl = window.location.pathname + '?type=friend';
     window.history.pushState({ path: newUrl }, '', newUrl);
+    
+    // 현재 선택된 서브 카테고리를 저장 (검색 시 이 필터 내에서만 검색되도록 함)
+    currentSubCategory = subCat;
     
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = '🤝 친구 갤러리 (' + subCat + ')';
