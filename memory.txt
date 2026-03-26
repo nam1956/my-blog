@@ -109,3 +109,8 @@ DSC02281.JPG	2005-02-16 13:07:58	memory	윤섭고교졸업
 사진 115.jpg	2004-12-10 16:21:25	memory	어느산장
 회전_DSC02042.JPG	2005-01-09 12:38:05	memory	정동진
 회전_DSC02044.JPG	2005-01-09 13:29:45	memory	정동진
+사본 -e001.jpg	1978-10-20	memory	1978
+사본 -e002.jpg	1979-04-05	memory	1979
+사본 -e003.jpg	1979-04-05	memory	1979
+사본 -e005.jpg	1979-04-06	memory	1979
+mama.jpg	2010-03-10	memory	MAMA

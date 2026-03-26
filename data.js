@@ -2010,6 +2010,216 @@ const photoData = [
     "filename": "IMG_20251206_193701.jpg"
   },
   {
+    "src": "images/result_family/20190511_174445.jpg",
+    "theme": "광명동굴",
+    "date": "2019-05-11",
+    "category": "family",
+    "filename": "20190511_174445.jpg"
+  },
+  {
+    "src": "images/result_family/a119.jpg",
+    "theme": "남산팔각정",
+    "date": "2002-05-30",
+    "category": "family",
+    "filename": "a119.jpg"
+  },
+  {
+    "src": "images/result_family/사본 -124.jpg",
+    "theme": "남서연",
+    "date": "2010-03-12",
+    "category": "family",
+    "filename": "사본 -124.jpg"
+  },
+  {
+    "src": "images/result_family/20181027_105434_HDR.jpg",
+    "theme": "덕진산성",
+    "date": "2018-10-27",
+    "category": "family",
+    "filename": "20181027_105434_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20181027_110820.jpg",
+    "theme": "덕진산성",
+    "date": "2018-10-27",
+    "category": "family",
+    "filename": "20181027_110820.jpg"
+  },
+  {
+    "src": "images/result_family/20181027_110827_HDR.jpg",
+    "theme": "덕진산성",
+    "date": "2018-10-27",
+    "category": "family",
+    "filename": "20181027_110827_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20181027_131315_HDR.jpg",
+    "theme": "도라산역",
+    "date": "2018-10-27",
+    "category": "family",
+    "filename": "20181027_131315_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_161754_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_161754_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_161807_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_161807_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_161827_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_161827_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_161844_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_161844_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_161925_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_161925_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_163012_HDR.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_163012_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20180924_163021.jpg",
+    "theme": "도예농",
+    "date": "2018-09-24",
+    "category": "family",
+    "filename": "20180924_163021.jpg"
+  },
+  {
+    "src": "images/result_family/20190917_165337.jpg",
+    "theme": "버스이동",
+    "date": "2019-09-17",
+    "category": "family",
+    "filename": "20190917_165337.jpg"
+  },
+  {
+    "src": "images/result_family/2019-04-12-21-16-11.jpg",
+    "theme": "두타산",
+    "date": "2019-04-12",
+    "category": "family",
+    "filename": "2019-04-12-21-16-11.jpg"
+  },
+  {
+    "src": "images/result_family/20190601_144019_HDR.jpg",
+    "theme": "바자회",
+    "date": "2019-06-01",
+    "category": "family",
+    "filename": "20190601_144019_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20190601_153749_HDR.jpg",
+    "theme": "바자회",
+    "date": "2019-06-01",
+    "category": "family",
+    "filename": "20190601_153749_HDR.jpg"
+  },
+  {
+    "src": "images/result_family/20190802_122436.jpg",
+    "theme": "수술전",
+    "date": "2019-08-02",
+    "category": "family",
+    "filename": "20190802_122436.jpg"
+  },
+  {
+    "src": "images/result_family/20190802_122448.jpg",
+    "theme": "수술전",
+    "date": "2019-08-02",
+    "category": "family",
+    "filename": "20190802_122448.jpg"
+  },
+  {
+    "src": "images/result_family/20190802_122552.jpg",
+    "theme": "수술전",
+    "date": "2019-08-02",
+    "category": "family",
+    "filename": "20190802_122552.jpg"
+  },
+  {
+    "src": "images/result_family/20190823_164056.jpg",
+    "theme": "수술후",
+    "date": "2019-08-23",
+    "category": "family",
+    "filename": "20190823_164056.jpg"
+  },
+  {
+    "src": "images/result_family/사본 -126-1.jpg",
+    "theme": "엄마",
+    "date": "2010-03-13",
+    "category": "family",
+    "filename": "사본 -126-1.jpg"
+  },
+  {
+    "src": "images/result_family/사본 -126.jpg",
+    "theme": "엄마",
+    "date": "2010-03-14",
+    "category": "family",
+    "filename": "사본 -126.jpg"
+  },
+  {
+    "src": "images/result_family/a0211.jpg",
+    "theme": "은옥",
+    "date": "2002-05-30",
+    "category": "family",
+    "filename": "a0211.jpg"
+  },
+  {
+    "src": "images/result_family/20191005_203114.jpg",
+    "theme": "지하철",
+    "date": "2019-10-05",
+    "category": "family",
+    "filename": "20191005_203114.jpg"
+  },
+  {
+    "src": "images/result_family/사본 -106.jpg",
+    "theme": "진남주",
+    "date": "2010-03-11",
+    "category": "family",
+    "filename": "사본 -106.jpg"
+  },
+  {
+    "src": "images/result_family/20181122_193651.jpg",
+    "theme": "창학생일",
+    "date": "2018-11-22",
+    "category": "family",
+    "filename": "20181122_193651.jpg"
+  },
+  {
+    "src": "images/result_family/20190601_192342.jpg",
+    "theme": "한강유람선",
+    "date": "2019-06-01",
+    "category": "family",
+    "filename": "20190601_192342.jpg"
+  },
+  {
+    "src": "images/result_family/20190601_195250.jpg",
+    "theme": "한강유람선",
+    "date": "2019-06-01",
+    "category": "family",
+    "filename": "20190601_195250.jpg"
+  },
+  {
     "src": "images/result_hiking/20060514_surak_001.JPG",
     "theme": "수락산,내원암",
     "date": "2006-05-13",
@@ -9444,6 +9654,41 @@ const photoData = [
     "filename": "회전_DSC02044.JPG"
   },
   {
+    "src": "images/result_memory/사본 -e001.jpg",
+    "theme": "1978",
+    "date": "1978-10-20",
+    "category": "memory",
+    "filename": "사본 -e001.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e002.jpg",
+    "theme": "1979",
+    "date": "1979-04-05",
+    "category": "memory",
+    "filename": "사본 -e002.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e003.jpg",
+    "theme": "1979",
+    "date": "1979-04-05",
+    "category": "memory",
+    "filename": "사본 -e003.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e005.jpg",
+    "theme": "1979",
+    "date": "1979-04-06",
+    "category": "memory",
+    "filename": "사본 -e005.jpg"
+  },
+  {
+    "src": "images/result_memory/mama.jpg",
+    "theme": "MAMA",
+    "date": "2010-03-10",
+    "category": "memory",
+    "filename": "mama.jpg"
+  },
+  {
     "src": "images/result_travel/20041230_west_001.JPG",
     "theme": "서해일출,2004,2005,은옥",
     "date": "2004-12-30",
@@ -11738,6 +11983,223 @@ const photoData = [
     "date": "2026-03-20",
     "category": "friend",
     "filename": "20260320_125659.jpg"
+  },
+  {
+    "src": "images/result_friend/a113.jpg",
+    "theme": "군동기",
+    "date": "1981-08-08",
+    "category": "friend",
+    "filename": "a113.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_172418.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_172418.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_172424.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_172424.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_172445.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_172445.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_172509.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_172509.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_183112.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_183112.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_184324.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_184324.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_184339.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_184339.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_194425.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_194425.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_194441.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_194441.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_194530.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_194530.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_194542.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_194542.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_212206.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_212206.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_212213.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_212213.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_212216.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_212216.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_212221.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_212221.jpg"
+  },
+  {
+    "src": "images/result_friend/20190111_212243.jpg",
+    "theme": "동구회",
+    "date": "2019-01-11",
+    "category": "friend",
+    "filename": "20190111_212243.jpg"
+  },
+  {
+    "src": "images/result_friend/20190112_125602.jpg",
+    "theme": "동구회",
+    "date": "2019-01-12",
+    "category": "friend",
+    "filename": "20190112_125602.jpg"
+  },
+  {
+    "src": "images/result_friend/20190112_125624_HDR.jpg",
+    "theme": "동구회",
+    "date": "2019-01-12",
+    "category": "friend",
+    "filename": "20190112_125624_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/20190112_125632_HDR.jpg",
+    "theme": "동구회",
+    "date": "2019-01-12",
+    "category": "friend",
+    "filename": "20190112_125632_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/20190112_125705_HDR.jpg",
+    "theme": "동구회",
+    "date": "2019-01-12",
+    "category": "friend",
+    "filename": "20190112_125705_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/20190112_125739.jpg",
+    "theme": "동구회",
+    "date": "2019-01-12",
+    "category": "friend",
+    "filename": "20190112_125739.jpg"
+  },
+  {
+    "src": "images/result_friend/20191012_154711_HDR.jpg",
+    "theme": "동구회",
+    "date": "2019-10-12",
+    "category": "friend",
+    "filename": "20191012_154711_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/20191012_154733_HDR.jpg",
+    "theme": "동구회",
+    "date": "2019-10-12",
+    "category": "friend",
+    "filename": "20191012_154733_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/DSC01861-2-1.jpg",
+    "theme": "동구회",
+    "date": "2019-08-05",
+    "category": "friend",
+    "filename": "DSC01861-2-1.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20190323_1.jpg",
+    "theme": "동구회",
+    "date": "2019-03-23",
+    "category": "friend",
+    "filename": "IMG_20190323_1.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20190907_1.jpg",
+    "theme": "동구회",
+    "date": "2019-09-06",
+    "category": "friend",
+    "filename": "IMG_20190907_1.jpg"
+  },
+  {
+    "src": "images/result_friend/20181124_113516.jpg",
+    "theme": "동보회",
+    "date": "2018-11-24",
+    "category": "friend",
+    "filename": "20181124_113516.jpg"
+  },
+  {
+    "src": "images/result_friend/20190607_221131_HDR.jpg",
+    "theme": "동보회",
+    "date": "2019-06-07",
+    "category": "friend",
+    "filename": "20190607_221131_HDR.jpg"
+  },
+  {
+    "src": "images/result_friend/20190607_221135.jpg",
+    "theme": "동보회",
+    "date": "2019-06-07",
+    "category": "friend",
+    "filename": "20190607_221135.jpg"
+  },
+  {
+    "src": "images/result_friend/20190607_221143_HDR.jpg",
+    "theme": "동보회",
+    "date": "2019-06-07",
+    "category": "friend",
+    "filename": "20190607_221143_HDR.jpg"
   },
   {
     "src": "images/result_slide/412221.jpg",

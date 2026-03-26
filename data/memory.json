@@ -768,5 +768,40 @@
     "date": "2005-01-09",
     "category": "memory",
     "filename": "회전_DSC02044.JPG"
+  },
+  {
+    "src": "images/result_memory/사본 -e001.jpg",
+    "theme": "1978",
+    "date": "1978-10-20",
+    "category": "memory",
+    "filename": "사본 -e001.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e002.jpg",
+    "theme": "1979",
+    "date": "1979-04-05",
+    "category": "memory",
+    "filename": "사본 -e002.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e003.jpg",
+    "theme": "1979",
+    "date": "1979-04-05",
+    "category": "memory",
+    "filename": "사본 -e003.jpg"
+  },
+  {
+    "src": "images/result_memory/사본 -e005.jpg",
+    "theme": "1979",
+    "date": "1979-04-06",
+    "category": "memory",
+    "filename": "사본 -e005.jpg"
+  },
+  {
+    "src": "images/result_memory/mama.jpg",
+    "theme": "MAMA",
+    "date": "2010-03-10",
+    "category": "memory",
+    "filename": "mama.jpg"
   }
 ]
