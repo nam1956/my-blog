@@ -389,32 +389,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 🖼️ 드래그 앤 드롭으로 확대된 사진 패닝하기(이동하기)
+    // 🖼️ 터치 및 마우스로 확대된 사진 패닝하기 (이동하기)
     const imgFull = document.getElementById("imgFull");
     let isDragging = false;
     let isMoved = false;
     let startX = 0, startY = 0;
     let clickX = 0, clickY = 0;
 
-    imgFull.addEventListener('mousedown', (e) => {
+    // mousedown, touchstart 대신 포괄적인 pointerdown 사용
+    imgFull.addEventListener('pointerdown', (e) => {
+        isMoved = false; // 드래그 판별 초기화 (확대/축소 무관하게 무조건 초기화)
+
         if (imgFull.classList.contains('full-size')) {
             isDragging = true;
-            isMoved = false; // 클릭과 드래그 구분용
             clickX = e.clientX;
             clickY = e.clientY;
-            // 현재 translate 좌표 기준으로 시작점 계산
+            
+            // 현재 이동된 거리(Translate)를 포함하여 시작점을 계산
             startX = e.clientX - currentTranslateX;
             startY = e.clientY - currentTranslateY;
+            
             imgFull.style.cursor = 'grabbing';
-            imgFull.style.transition = 'none'; // 드래그 시 버벅임 방지
-            e.preventDefault(); // 기본 이미지 드래그 고스트 방지
+            imgFull.style.transition = 'none'; // 드래그 중 부드러운 이동을 위해 트랜지션 해제
+            imgFull.style.touchAction = 'none'; // [모바일 필수] 터치 시 브라우저 스크롤/스와이프 방지
+            
+            e.preventDefault(); // 고스트 이미지 드래그 등 방지
+            imgFull.setPointerCapture(e.pointerId); // 마우스/손가락이 화면 밖으로 나가도 이벤트를 놓치지 않도록 캡처
         }
     });
 
-    window.addEventListener('mousemove', (e) => {
+    imgFull.addEventListener('pointermove', (e) => {
         if (!isDragging) return;
         
-        // 민감도: 3px 이상 움직여야 드래그로 판정
+        // 민감도: 3px 이상 손가락/마우스가 움직이면 드래그로 판정
         if (!isMoved && (Math.abs(e.clientX - clickX) > 3 || Math.abs(e.clientY - clickY) > 3)) {
             isMoved = true;
         }
@@ -423,29 +430,40 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTranslateX = e.clientX - startX;
             currentTranslateY = e.clientY - startY;
             
-            // CSS transform scale이 2.0이므로 마우스 이동거리와 시각적 거리를 맞추기 위해 나누기 2
+            // CSS transform scale 값이 2.0이므로, 드래그 거리를 똑같이 맞추기 위해 2로 나눔
             imgFull.style.transform = `scale(2.0) translate(${currentTranslateX / 2}px, ${currentTranslateY / 2}px)`;
         }
     });
 
-    window.addEventListener('mouseup', () => {
+    const endPointerDrag = (e) => {
         if (isDragging) {
             isDragging = false;
-            imgFull.style.cursor = 'grab';
-            imgFull.style.transition = 'opacity 0.5s ease-in-out, transform 0.3s ease'; // 트랜지션 복구
+            imgFull.releasePointerCapture(e.pointerId); // 캡처 해제
             
-            // 움직이지 않고 마우스 버튼만 뗐을 때 (단순 클릭) -> 축소
-            if (!isMoved) {
-                resetZoom();
-            }
+            imgFull.style.cursor = 'grab';
+            imgFull.style.transition = 'opacity 0.5s ease-in-out, transform 0.3s ease'; // 트랜지션 원상복구
+            imgFull.style.touchAction = ''; // 터치 동작 원래대로 복원
         }
-    });
+    };
+    
+    imgFull.addEventListener('pointerup', endPointerDrag);
+    imgFull.addEventListener('pointercancel', endPointerDrag);
 
-    // 축소된 상태(단순 클릭)에서 클릭 시 확대
+    // 사진 클릭 시 (확대/축소 제어)
     imgFull.onclick = function (e) {
+        // 드래그(오래 터치해서 끄는 동작) 이후에 발생하는 click이벤트는 씹어줍니다.
+        if (isMoved) {
+            isMoved = false; // 소모 처리
+            return;
+        }
+
         if (!this.classList.contains('full-size')) {
+            // [축소 -> 확대]
             this.classList.add('full-size');
             this.style.cursor = 'grab';
+        } else {
+            // [확대 -> 축소] 움직이지 않고 단순 탭/클릭 했을 때
+            resetZoom();
         }
     };
 
