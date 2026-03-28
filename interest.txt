@@ -31,3 +31,24 @@ Filename	Shot Date	Category	Keywords
 1761391554158.jpg	2025-10-26 05:25:54	interest	추석
 20230811_170334-01-01.png	2023-08-12 07:21:56	interest	이경임인장
 IMG_20230813_185800-01.png	2023-09-03 07:33:02	interest	남창극인장
+acoustic-guitar-149427.png	2026-03-28 05:21:00	interest	기타
+animal-1297704.png	2026-03-28 05:21:00	interest	시베리안
+anniversary-157238.png	2026-03-28 05:21:00	interest	화인
+auto-158795_1280.png	2026-03-28 05:21:00	interest	자동차
+barber-156940_1280.png	2026-03-28 05:21:00	interest	미용사
+bicycle-1294947.png	2026-03-28 05:21:00	interest	배경
+car-40241_1280.png	2026-03-28 05:21:00	interest	Red_car
+cartoon-1297770.png	2026-03-28 05:21:00	interest	팅거벨
+forest-160332.png	2026-03-28 05:21:00	interest	양떼
+giraffe-2257780.png	2026-03-28 05:21:00	interest	아프리카
+knight-1598266.png	2026-03-28 05:21:00	interest	여전사
+knight-1598269_1280.png	2026-03-28 05:21:00	interest	여전사
+lips-35616_1280.png	2026-03-28 05:21:00	interest	입술
+mouse-159568_1280.png	2026-03-28 05:21:00	interest	마우스
+music-3888684.png	2026-03-28 05:21:00	interest	기타
+snowmen-160883.png	2026-03-28 05:21:00	interest	Snow
+young-4811941.png	2026-03-28 05:21:00	interest	악보
+cartoon forest_2679929.png	2026-03-28 05:21:00	interest	배경
+cartoon military aiming pistol illustration_4510270.png	2026-03-28 05:21:00	interest	총
+fresh paper-cut style wedding border_5082467.png	2026-03-28 05:21:00	interest	청첩sheet
+military weapon, firearms, illustration_4727232.png	2026-03-28 05:21:00	interest	총
