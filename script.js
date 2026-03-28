@@ -9,6 +9,21 @@ let isSlideshowPlaying = false;
 let currentCategory = 'all'; // 카테고리 상태 (이어보기 저장 등에 활용)
 let currentSubCategory = null; // 현재 선택된 하위 카테고리 (동구회 등)
 
+// 🖼️ 이미지 드래그 패닝 전역 변수
+let currentTranslateX = 0;
+let currentTranslateY = 0;
+
+function resetZoom() {
+    const imgFull = document.getElementById("imgFull");
+    if (imgFull) {
+        currentTranslateX = 0;
+        currentTranslateY = 0;
+        imgFull.classList.remove('full-size');
+        imgFull.style.transform = '';
+        imgFull.style.cursor = 'zoom-in';
+    }
+}
+
 function init() {
     const params = new URLSearchParams(window.location.search);
     currentCategory = params.get('type') || 'all';
@@ -216,8 +231,8 @@ function openModal(src, index) {
     modal.style.display = "flex";
     img.style.opacity = 1;
     img.classList.remove('ken-burns');
+    resetZoom(); // 모달 열 때 확대 상태 초기화
     img.src = src;
-    img.classList.remove('full-size');
 
     if (typeof index !== 'undefined') {
         slideIndex = index + 1;
@@ -252,7 +267,7 @@ function startSlideshow() {
     }
 
     modal.style.display = "flex";
-    img.classList.remove('full-size');
+    resetZoom(); // 슬라이드쇼 시작 시 확대 초기화
     img.style.opacity = 0; // Fade-in effect preparation
 
     isSlideshowPlaying = true;
@@ -322,6 +337,7 @@ function showSlideNextImage(isManual = false) {
     }
 
     img.classList.remove('ken-burns');
+    resetZoom(); // 다음 사진으로 넘어갈 때 위치 초기화
     img.src = imgSrc;
 
     img.onload = () => {
@@ -341,6 +357,7 @@ function closeModal() {
     const img = document.getElementById("imgFull");
     modal.style.display = "none";
     img.classList.remove('ken-burns');
+    resetZoom(); // 모달 닫을 때 확대/이동 초기화
 
     if (isSlideshowPlaying) {
         clearInterval(slideshowInterval);
@@ -371,7 +388,66 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-    document.getElementById("imgFull").onclick = function () { this.classList.toggle('full-size'); };
+
+    // 🖼️ 드래그 앤 드롭으로 확대된 사진 패닝하기(이동하기)
+    const imgFull = document.getElementById("imgFull");
+    let isDragging = false;
+    let isMoved = false;
+    let startX = 0, startY = 0;
+    let clickX = 0, clickY = 0;
+
+    imgFull.addEventListener('mousedown', (e) => {
+        if (imgFull.classList.contains('full-size')) {
+            isDragging = true;
+            isMoved = false; // 클릭과 드래그 구분용
+            clickX = e.clientX;
+            clickY = e.clientY;
+            // 현재 translate 좌표 기준으로 시작점 계산
+            startX = e.clientX - currentTranslateX;
+            startY = e.clientY - currentTranslateY;
+            imgFull.style.cursor = 'grabbing';
+            imgFull.style.transition = 'none'; // 드래그 시 버벅임 방지
+            e.preventDefault(); // 기본 이미지 드래그 고스트 방지
+        }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        // 민감도: 3px 이상 움직여야 드래그로 판정
+        if (!isMoved && (Math.abs(e.clientX - clickX) > 3 || Math.abs(e.clientY - clickY) > 3)) {
+            isMoved = true;
+        }
+        
+        if (isMoved) {
+            currentTranslateX = e.clientX - startX;
+            currentTranslateY = e.clientY - startY;
+            
+            // CSS transform scale이 2.0이므로 마우스 이동거리와 시각적 거리를 맞추기 위해 나누기 2
+            imgFull.style.transform = `scale(2.0) translate(${currentTranslateX / 2}px, ${currentTranslateY / 2}px)`;
+        }
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            imgFull.style.cursor = 'grab';
+            imgFull.style.transition = 'opacity 0.5s ease-in-out, transform 0.3s ease'; // 트랜지션 복구
+            
+            // 움직이지 않고 마우스 버튼만 뗐을 때 (단순 클릭) -> 축소
+            if (!isMoved) {
+                resetZoom();
+            }
+        }
+    });
+
+    // 축소된 상태(단순 클릭)에서 클릭 시 확대
+    imgFull.onclick = function (e) {
+        if (!this.classList.contains('full-size')) {
+            this.classList.add('full-size');
+            this.style.cursor = 'grab';
+        }
+    };
 
     // 키보드 화살표로 사진 넘기기
     document.addEventListener('keydown', (e) => {

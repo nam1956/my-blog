@@ -247,7 +247,7 @@ body, html {
 /* [6] 모달 */
 .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
 .modal-content { max-width: 90%; max-height: 90vh; border: 3px solid white; cursor: zoom-in; opacity: 1; transition: opacity 0.5s ease-in-out, transform 0.3s ease; }
-.modal-content.full-size { transform: scale(2.0); max-width: none; max-height: none; cursor: zoom-out; }
+.modal-content.full-size { transform: scale(2.0); max-width: none; max-height: none; cursor: grab; }
 .close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
 /* 켄 번스(Ken Burns) 슬라이드 애니메이션 */
