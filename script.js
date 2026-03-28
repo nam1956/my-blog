@@ -143,10 +143,20 @@ function renderGallery(page, listToRender) {
 function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
 
-    // 현재 하위 메뉴(동구회 등)가 선택되어 있다면, 전체 리스트가 아닌 해당 하위 메뉴 사진들 내에서만 검색
     let baseList = filteredList;
     if (currentSubCategory) {
-        baseList = filteredList.filter(p => (p.theme || '').includes(currentSubCategory));
+        // [수정복구] 하위 카테고리(예: 동보회)의 사진은 현재 탭의 카테고리(filteredList)에 속하지 않을 수도 있으므로
+        // 모든 원본 데이터를 펼친 배열(allExpanded)에서 하위 카테고리를 추출한 다음 검색을 진행해야 년도 검색이 오류 없이 작동합니다.
+        const rawData = (typeof photoData !== 'undefined') ? photoData : [];
+        let allExpanded = [];
+        rawData.forEach(p => {
+            if (p.images && Array.isArray(p.images)) {
+                p.images.forEach(img => allExpanded.push({ ...p, filename: img, images: undefined }));
+            } else if (p.filename) {
+                allExpanded.push(p);
+            }
+        });
+        baseList = allExpanded.filter(p => (p.theme || '').includes(currentSubCategory));
     }
 
     const results = baseList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
