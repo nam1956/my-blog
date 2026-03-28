@@ -42,11 +42,11 @@ function init() {
 
 function setActiveMenu() {
     document.querySelectorAll('.side-menu a').forEach(a => a.classList.remove('active-menu'));
-    
+
     // 현재 URL 파라미터 체크
     const params = new URLSearchParams(window.location.search);
     const paramsType = params.get('type');
-    
+
     if (currentCategory === 'all' && !paramsType) {
         // 홈 화면
         const homeLink = document.querySelector('.side-menu a[href="index.html"]');
@@ -88,20 +88,20 @@ function renderGallery(page, listToRender) {
     if (listToRender) { currentDisplayList = listToRender; }
     currentPage = page;
     container.innerHTML = '';
-    
+
     if (currentDisplayList.length === 0) {
         container.innerHTML = `<div class="empty-state">❌ 검색된 사진이 없습니다. 다른 검색어를 입력해 보세요.</div>`;
     }
-    
+
     const displayList = currentDisplayList.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
     displayList.forEach((photo, index) => {
         const globalIndex = (page - 1) * ITEMS_PER_PAGE + index;
         const div = document.createElement('div');
         div.className = 'photo-item'; // [1] 가장 바깥 액자
-        
+
         const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
-        
+
         // [중요] 아래 구조가 CSS의 액자 틀과 100% 일치해야 사진이 안 커집니다!
         div.innerHTML = `
             <div class="photo-item-inner">
@@ -116,24 +116,24 @@ function renderGallery(page, listToRender) {
     });
 
     // 사진 수량 표시 (숫자만 청색으로 포인트)
-const countElement = document.getElementById('totalPhotoCount');
-if (countElement) {
-    // 숫자에만 span 태그를 입혀서 인라인 스타일로 색상을 줍니다.
-    // .toLocaleString()을 붙여주면 1000단위 쉼표가 생겨서 더 전문적으로 보입니다.
-    countElement.innerHTML = `TOTAL : <span style="color: #007bff; margin: 0 5px;">${currentDisplayList.length.toLocaleString()}</span> Pic`;
-}
+    const countElement = document.getElementById('totalPhotoCount');
+    if (countElement) {
+        // 숫자에만 span 태그를 입혀서 인라인 스타일로 색상을 줍니다.
+        // .toLocaleString()을 붙여주면 1000단위 쉼표가 생겨서 더 전문적으로 보입니다.
+        countElement.innerHTML = `TOTAL : <span style="color: #007bff; margin: 0 5px;">${currentDisplayList.length.toLocaleString()}</span> Pic`;
+    }
     displayPagination(currentDisplayList.length);
 }
 
 function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    
+
     // 현재 하위 메뉴(동구회 등)가 선택되어 있다면, 전체 리스트가 아닌 해당 하위 메뉴 사진들 내에서만 검색
     let baseList = filteredList;
     if (currentSubCategory) {
         baseList = filteredList.filter(p => (p.theme || '').includes(currentSubCategory));
     }
-    
+
     const results = baseList.filter(p => (p.theme || '').toLowerCase().includes(query) || (p.date || '').toLowerCase().includes(query));
     renderGallery(1, results);
 }
@@ -141,10 +141,10 @@ function performSearch() {
 function filterBySubCategory(subCat) {
     const newUrl = window.location.pathname + '?type=friend';
     window.history.pushState({ path: newUrl }, '', newUrl);
-    
+
     // 현재 선택된 서브 카테고리를 저장 (검색 시 이 필터 내에서만 검색되도록 함)
     currentSubCategory = subCat;
-    
+
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = '🤝 친구 갤러리 (' + subCat + ')';
 
@@ -160,8 +160,8 @@ function filterBySubCategory(subCat) {
 
     const subResults = allExpanded.filter(p => (p.theme || '').includes(subCat));
     // 동보회 32장 리스트를 renderGallery에 넘겨서 currentDisplayList를 교체합니다.
-    renderGallery(1, subResults); 
-    
+    renderGallery(1, subResults);
+
     // 친구 탭이 선택된 상태 유지
     currentCategory = 'friend';
     setActiveMenu();
@@ -213,12 +213,12 @@ function displayPagination(totalItems) {
 function openModal(src, index) {
     const modal = document.getElementById("imageModal");
     const img = document.getElementById("imgFull");
-    modal.style.display = "flex"; 
+    modal.style.display = "flex";
     img.style.opacity = 1;
     img.classList.remove('ken-burns');
-    img.src = src; 
+    img.src = src;
     img.classList.remove('full-size');
-    
+
     if (typeof index !== 'undefined') {
         slideIndex = index + 1;
     }
@@ -231,13 +231,13 @@ function startSlideshow() {
     }
     const modal = document.getElementById("imageModal");
     const img = document.getElementById("imgFull");
-    
+
     // Play BGM
     let bgAudio = document.getElementById("bgmAudio");
     const volumeSlider = document.getElementById("volumeControl");
     if (bgAudio) {
         // 볼륨 슬라이더 값에 맞춰 재생 (슬라이더가 없으면 기본 최대 1.0)
-        bgAudio.volume = volumeSlider ? parseFloat(volumeSlider.value) : 1.0; 
+        bgAudio.volume = volumeSlider ? parseFloat(volumeSlider.value) : 1.0;
         bgAudio.currentTime = 0; // 항상 처음부터 재생 시작
         let playPromise = bgAudio.play();
         if (playPromise !== undefined) {
@@ -254,9 +254,9 @@ function startSlideshow() {
     modal.style.display = "flex";
     img.classList.remove('full-size');
     img.style.opacity = 0; // Fade-in effect preparation
-    
+
     isSlideshowPlaying = true;
-    
+
     // 이어보기 로직
     let savedIndex = localStorage.getItem(`savedSlideIndex_${currentCategory}`);
     if (savedIndex !== null && parseInt(savedIndex) > 0 && parseInt(savedIndex) < currentDisplayList.length) {
@@ -269,14 +269,14 @@ function startSlideshow() {
     } else {
         slideIndex = 0;
     }
-    
+
     showSlideNextImage();
     slideshowInterval = setInterval(showSlideNextImage, 5500); // 5.5초마다 부드럽게 넘어가도록 시간 연장
 }
 
 function showSlideNextImage(isManual = false) {
     if (!isSlideshowPlaying && !isManual) return;
-    
+
     if (slideIndex >= currentDisplayList.length) {
         slideIndex = 0; // loop back to start
         localStorage.setItem(`savedSlideIndex_${currentCategory}`, 0);
@@ -285,7 +285,7 @@ function showSlideNextImage(isManual = false) {
     if (!photo) return;
     const imgSrc = `images/result_${photo.category || 'family'}/${photo.filename}`;
     const img = document.getElementById("imgFull");
-    
+
     // Create a clone for flashy cross-fade ONLY if slideshow is playing
     if (isSlideshowPlaying && img.src && img.style.opacity !== "0") {
         const clone = img.cloneNode(true);
@@ -294,10 +294,10 @@ function showSlideNextImage(isManual = false) {
         clone.style.zIndex = "2900"; // 슬라이드쇼 컨트롤 패널 아래에 위치
         clone.style.pointerEvents = "none";
         clone.style.transition = "opacity 1.5s ease-in-out, filter 1.2s ease-in, transform 1.5s ease-out";
-        
+
         const modal = document.getElementById("imageModal");
         modal.appendChild(clone);
-        
+
         // 반짝거리면서(brightness) 흐려지며 사라지게 만들기
         requestAnimationFrame(() => {
             clone.style.opacity = "0";
@@ -306,7 +306,7 @@ function showSlideNextImage(isManual = false) {
             const currentTransform = clone.style.transform || "";
             clone.style.transform = currentTransform + " scale(1.1)";
         });
-        
+
         setTimeout(() => {
             if (clone.parentNode) clone.parentNode.removeChild(clone);
         }, 1500);
@@ -320,16 +320,16 @@ function showSlideNextImage(isManual = false) {
         img.style.opacity = 1;
         img.style.transition = "none";
     }
-    
+
     img.classList.remove('ken-burns');
     img.src = imgSrc;
-    
-    img.onload = () => { 
-        img.style.opacity = 1; 
+
+    img.onload = () => {
+        img.style.opacity = 1;
         if (isSlideshowPlaying) {
-            img.classList.add('ken-burns'); 
+            img.classList.add('ken-burns');
         }
-    }; 
+    };
 
     // 현재 보고 있는 사진의 순서를 저장합니다.
     localStorage.setItem(`savedSlideIndex_${currentCategory}`, slideIndex);
@@ -341,12 +341,12 @@ function closeModal() {
     const img = document.getElementById("imgFull");
     modal.style.display = "none";
     img.classList.remove('ken-burns');
-    
+
     if (isSlideshowPlaying) {
         clearInterval(slideshowInterval);
         isSlideshowPlaying = false;
     }
-    
+
     let bgAudio = document.getElementById("bgmAudio");
     if (bgAudio && !bgAudio.paused) {
         bgAudio.pause();
@@ -358,10 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
     document.getElementById('searchInput').onkeyup = (e) => { if (e.key === 'Enter') performSearch(); };
     document.querySelector(".close").onclick = () => closeModal();
-    
-    window.onclick = (e) => { 
-        if (e.target.id === 'imageModal') closeModal(); 
-        
+
+    window.onclick = (e) => {
+        if (e.target.id === 'imageModal') closeModal();
+
         // 모바일 보조 메뉴 바깥 클릭 시 닫힘 처리
         const menu = document.getElementById('sideMenu');
         const btn = document.getElementById('mobile-menu-btn');
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-    document.getElementById("imgFull").onclick = function() { this.classList.toggle('full-size'); };
+    document.getElementById("imgFull").onclick = function () { this.classList.toggle('full-size'); };
 
     // 키보드 화살표로 사진 넘기기
     document.addEventListener('keydown', (e) => {
@@ -394,7 +394,7 @@ function showSlideStrip() {
     if (!container) return;
 
     // 1. 초기화
-    container.innerHTML = ''; 
+    container.innerHTML = '';
     container.className = 'slide-display-zone';
 
     // 2. [핵심] photoData에서 'slide' 카테고리만 쏙 골라내기 (자동!)
@@ -405,20 +405,20 @@ function showSlideStrip() {
     slideList.forEach(photo => {
         const img = document.createElement('img');
         // 파이썬이 만든 경로 그대로 사용
-        img.src = `images/result_slide/${photo.filename}`; 
+        img.src = `images/result_slide/${photo.filename}`;
         img.alt = photo.theme || "추억 슬라이드";
-        
+
         // [추가] 혹시 새로 추가하신 사진들의 확장자 대소문자(.jpg vs .JPG)가 달라서
         // 엑박이 뜨는 불상사를 막기 위해 자동 복구 기능을 연결해 드립니다.
-        img.onerror = function() { handleImageError(this); };
-        
+        img.onerror = function () { handleImageError(this); };
+
         container.appendChild(img);
     });
 
     // 4. 상단 제목 및 수량 자동 업데이트
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = "🎞️ 추억의 슬라이드 전시장";
-    
+
     const countElement = document.getElementById('totalPhotoCount');
     if (countElement) {
         countElement.innerHTML = `TOTAL : <span style="color: #007bff; font-weight: bold;">${slideList.length.toLocaleString()}</span> Pic`;
@@ -453,14 +453,14 @@ function resetSlideshowInterval() {
 function prevSlide(e) {
     if (e) e.stopPropagation(); // 오동작으로 모달이 닫히는 걸 방지
     if (!currentDisplayList || currentDisplayList.length === 0) return;
-    
+
     // 현재 타이머가 막 +1 시켰으므로 원래 보던 사진으로 가기 위해 -2 연산 필요
     slideIndex -= 2;
     if (slideIndex < 0) {
         // 인덱스가 음수일 경우 배열 뒤쪽에서 다시 감기
         slideIndex = currentDisplayList.length - 1 - (Math.abs(slideIndex + 1) % currentDisplayList.length);
     }
-    
+
     showSlideNextImage(true);
     resetSlideshowInterval();
 }
