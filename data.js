@@ -2220,6 +2220,97 @@ const photoData = [
     "filename": "20190601_195250.jpg"
   },
   {
+    "src": "images/result_family/20260327_천안_01.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-28",
+    "category": "family",
+    "filename": "20260327_천안_01.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_02.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-28",
+    "category": "family",
+    "filename": "20260327_천안_02.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_03.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-28",
+    "category": "family",
+    "filename": "20260327_천안_03.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_04.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-28",
+    "category": "family",
+    "filename": "20260327_천안_04.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_05.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_05.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_06.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_06.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_07.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_07.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_08.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_08.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_09.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_09.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_10.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_10.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_11.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_11.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_12.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_12.jpg"
+  },
+  {
+    "src": "images/result_family/20260327_천안_13.jpg",
+    "theme": "엄마2주기",
+    "date": "2026-03-27",
+    "category": "family",
+    "filename": "20260327_천안_13.jpg"
+  },
+  {
     "src": "images/result_hiking/20060514_surak_001.JPG",
     "theme": "수락산,내원암",
     "date": "2006-05-13",
@@ -8658,6 +8749,461 @@ const photoData = [
     "date": "2006-01-31",
     "category": "hiking",
     "filename": "설악서북능대문_02.jpg"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_01.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_01.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_02.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_02.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_03.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_03.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_04.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_04.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_05.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_05.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_06.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_06.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_07.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_07.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_08.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_08.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_09.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_09.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_10.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_10.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_11.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_11.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_12.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_12.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_13.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_13.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_14.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_14.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_15.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_15.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_16.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_16.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_17.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_17.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_18.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_18.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_19.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_19.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_20.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_20.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_21.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_21.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_22.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_22.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_23.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_23.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_24.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_24.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_25.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_25.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_26.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_26.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_27.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_27.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_28.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_28.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_29.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_29.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_30.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_30.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_31.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_31.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_32.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_32.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_33.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_33.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_34.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_34.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_35.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_35.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_36.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_36.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_37.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_37.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_38.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_38.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_39.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_39.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_40.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_40.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_41.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_41.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_42.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_42.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_43.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_43.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_44.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_44.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_45.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_45.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_46.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_46.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_47.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_47.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_48.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_48.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_49.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_49.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_50.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_50.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_51.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_51.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_52.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_52.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_53.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_53.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_54.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_54.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_55.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_55.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_56.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_56.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_57.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_57.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_58.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_58.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_59.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_59.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_60.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_60.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_61.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_61.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_62.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_62.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_63.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_63.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_64.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_64.JPG"
+  },
+  {
+    "src": "images/result_hiking/20050904_북한산_65.JPG",
+    "theme": "북한산",
+    "date": "2005-09-04",
+    "category": "hiking",
+    "filename": "20050904_북한산_65.JPG"
   },
   {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
