@@ -432,3 +432,80 @@ input[type=range]::-webkit-slider-runnable-track {
     letter-spacing: 1px;
     line-height: 1;
 }
+
+/* ==========================================
+   📸 추억(Memory) 갤러리 그리드 레이아웃 (1행 4개)
+   ========================================== */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.memory-item {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #ddd;
+}
+
+.memory-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.memory-img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.memory-title {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #444;
+}
+
+/* 모바일 지원: 1행 2개 */
+@media (max-width: 768px) {
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================
+   🔗 추억(Memory) 전용 상단 링크 버튼
+   ========================================== */
+.memory-nav-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #444;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    border: 1px solid #555;
+}
+
+.memory-nav-btn:hover {
+    background: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-color: #007bff;
+}

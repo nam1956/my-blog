@@ -49,6 +49,10 @@ function init() {
     const titleTag = document.getElementById('gallery-title');
     if (titleTag) titleTag.innerText = (titleMap[category] || '나의 인생') + ' 갤러리';
 
+    // 추억 카테고리 진입 시에만 링크 버튼 보이기
+    const memLinks = document.getElementById('memory-links-container');
+    if (memLinks) memLinks.style.display = (category === 'memory') ? 'flex' : 'none';
+
     // [수정] 초기화 시점에 filteredList를 currentDisplayList에 명시적으로 박아넣습니다.
     currentDisplayList = filteredList;
     renderGallery(1);
