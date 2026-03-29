@@ -9577,6 +9577,41 @@ const photoData = [
     "filename": "20050904_북한산_65.JPG"
   },
   {
+    "src": "images/result_hiking/DSC02097.JPG",
+    "theme": "내원암_쫑바위",
+    "date": "2005-11-20",
+    "category": "hiking",
+    "filename": "DSC02097.JPG"
+  },
+  {
+    "src": "images/result_hiking/DSC02098.JPG",
+    "theme": "내원암_쫑바위",
+    "date": "2005-11-20",
+    "category": "hiking",
+    "filename": "DSC02098.JPG"
+  },
+  {
+    "src": "images/result_hiking/DSC02106.JPG",
+    "theme": "내원암_쫑바위",
+    "date": "2005-11-20",
+    "category": "hiking",
+    "filename": "DSC02106.JPG"
+  },
+  {
+    "src": "images/result_hiking/DSC02107.JPG",
+    "theme": "내원암_쫑바위",
+    "date": "2005-11-20",
+    "category": "hiking",
+    "filename": "DSC02107.JPG"
+  },
+  {
+    "src": "images/result_hiking/DSC02120.JPG",
+    "theme": "내원암_쫑바위",
+    "date": "2005-11-20",
+    "category": "hiking",
+    "filename": "DSC02120.JPG"
+  },
+  {
     "src": "images/result_interest/026bd79a44991b393ffbc0a66bd509fa.jpg",
     "theme": "카드",
     "date": "2023-10-29",
@@ -10751,6 +10786,20 @@ const photoData = [
     "date": "2010-03-10",
     "category": "memory",
     "filename": "mama.jpg"
+  },
+  {
+    "src": "images/result_memory/DSC02020.JPG",
+    "theme": "일산",
+    "date": "2005-11-15",
+    "category": "memory",
+    "filename": "DSC02020.JPG"
+  },
+  {
+    "src": "images/result_memory/DSC02021_1.JPG",
+    "theme": "일산",
+    "date": "2005-11-15",
+    "category": "memory",
+    "filename": "DSC02021_1.JPG"
   },
   {
     "src": "images/result_travel/20041230_west_001.JPG",
@@ -15217,5 +15266,180 @@ const photoData = [
     "date": ".",
     "category": "slide",
     "filename": "60130_08.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_01.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_01.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_02.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_02.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_03.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_03.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_04.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_04.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_05.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_05.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_06.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_06.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_07.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_07.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_08.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_08.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_09.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_09.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_10.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_10.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_11.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_11.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_12.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_12.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_13.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_13.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_14.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_14.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_15.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_15.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_16.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_16.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_17.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_17.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_18.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_18.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_19.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_19.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_20.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_20.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_21.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_21.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_22.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_22.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_23.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_23.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_24.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_24.jpg"
+  },
+  {
+    "src": "images/result_slide/51120_25.jpg",
+    "theme": ".",
+    "date": ".",
+    "category": "slide",
+    "filename": "51120_25.jpg"
   }
 ];

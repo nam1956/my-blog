@@ -803,5 +803,19 @@
     "date": "2010-03-10",
     "category": "memory",
     "filename": "mama.jpg"
+  },
+  {
+    "src": "images/result_memory/DSC02020.JPG",
+    "theme": "일산",
+    "date": "2005-11-15",
+    "category": "memory",
+    "filename": "DSC02020.JPG"
+  },
+  {
+    "src": "images/result_memory/DSC02021_1.JPG",
+    "theme": "일산",
+    "date": "2005-11-15",
+    "category": "memory",
+    "filename": "DSC02021_1.JPG"
   }
 ]
