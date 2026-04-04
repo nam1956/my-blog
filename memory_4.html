@@ -7,61 +7,140 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="gallery-content" style="margin-left:0; padding:40px;">
+
+    <div id="mobile-menu-btn" onclick="toggleMobileMenu()">☰ 메뉴</div>
+    <nav class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 홈으로</a>
+    <a href="gallery.html?type=family">🏠 가족</a>
+    <a href="gallery.html?type=hiking">⛰️ 등반</a>
+    
+    <div class="dropdown">
+        <a href="gallery.html?type=friend" class="dropbtn">👥 친구</a>
+        <div class="dropdown-content">
+            <a href="#" onclick="window.location.href='gallery.html?type=friend'">└ 동구회</a>
+            <a href="#" onclick="window.location.href='gallery.html?type=friend'">└ 동보회</a>
+            <a href="#" onclick="window.location.href='gallery.html?type=friend'">└ 군동기</a>
+        </div>
+    </div>
+
+    <a href="gallery.html?type=travel">✈️ 여행</a>
+    <a href="gallery.html?type=interest">💡 관심</a>
+    <a href="gallery.html?type=memory" class="active-menu">🕰️ 추억</a>
+    </nav>
+
+    <div class="gallery-content">
         <h2 style="text-align:center; margin-bottom:40px; color:#333;">산행</h2>
-        <div class="memory-grid">
-            <div class="memory-item">
-                <img src="photo/p111.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p111.jpg')" style="cursor: zoom-in;">
-                
+        <div class="gallery">
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p111.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p111.jpg')">
+                    </div>
+                </div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p101-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p101.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">마니산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p101.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p101.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">마니산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p102-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p102.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">마니산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p102.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p102.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">마니산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p103-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p103.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">마니산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p103.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p103.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">마니산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p104-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p104.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">마니산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p104.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p104.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">마니산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p105-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p105.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">북한산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p105.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p105.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">북한산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p106-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p106.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">북한산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p106.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p106.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">북한산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p107-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p107.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">치악산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p107.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p107.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">치악산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p108-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p108.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">치악산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p108.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p108.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">치악산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p109-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p109.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">치악산</div>
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p109.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p109.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">치악산</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p110-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p110.jpg')" style="cursor: zoom-in;">
-                <br><div class="memory-title">치악산 
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p110.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p110.jpg')">
+                    </div>
+                </div>
+                <div class="memory-title" style="text-align:center; padding: 10px 5px 0;">치악산 
             구룡사</div>
             </div>
-            <div class="memory-item">
-                <img src="photo/p111-s.jpg" class="memory-img" alt="추억 사진" onclick="openMemoryModal('photo/p111.jpg')" style="cursor: zoom-in;">
-                
+                        <div class="photo-item">
+                <div class="photo-item-inner">
+                    <div class="theme-text">추억</div>
+                    <div class="img-container">
+                        <img src="photo/p111.jpg" class="gallery-img" alt="추억 사진" onclick="openMemoryModal('photo/p111.jpg')">
+                    </div>
+                </div>
             </div>
         </div>
         <div style="text-align:center; margin-top:40px;">
-            <button onclick="window.history.back()" style="padding:10px 20px; border-radius:8px; border:none; background:#007bff; color:white; font-size:16px; cursor:pointer;">뒤로 가기</button>
+            <button onclick="window.location.href='gallery.html?type=memory'" style="padding:10px 20px; border-radius:8px; border:none; background:#007bff; color:white; font-size:16px; cursor:pointer;">추억 목록으로 돌아가기</button>
         </div>
     </div>
 
@@ -83,6 +162,10 @@
             document.getElementById("memoryModal").style.display = "none";
             document.getElementById("memoryModalImg").src = "";
             document.body.style.overflow = "auto";
+        }
+        function toggleMobileMenu() {
+            var menu = document.getElementById("sideMenu");
+            menu.classList.toggle("open");
         }
     </script>
 </body>
