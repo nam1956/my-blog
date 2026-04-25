@@ -15898,6 +15898,76 @@ const photoData = [
     "filename": "화천_학교_19.jpg"
   },
   {
+    "src": "images/result_friend/1777100263524.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "1777100263524.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_141505.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_141505.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_141514.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_141514.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_141518.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_141518.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_150043.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_150043.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_150046.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_150046.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_150130.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_150130.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_154336.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_154336.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_154341.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_154341.jpg"
+  },
+  {
+    "src": "images/result_friend/IMG_20260425_154347.jpg",
+    "theme": "동구회",
+    "date": "2026-04-25",
+    "category": "friend",
+    "filename": "IMG_20260425_154347.jpg"
+  },
+  {
     "src": "images/result_slide/412221.jpg",
     "theme": ".",
     "date": ".",
