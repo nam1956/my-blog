@@ -77,24 +77,48 @@
         <a href="gallery.html?type=interest">💡 관심</a>
         <a href="gallery.html?type=memory">🕰️ 추억</a>
 
-        <!-- 좌측 메뉴 하단 버튼 그룹 구역 -->
+        <!-- 좌측 메뉴 하단 버튼 그룹 구역 (중앙 정렬 및 색상 완전히 통일) -->
         <div class="slide-btn-group"
-            style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #444; text-align: center;">
+            style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #444; display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%;">
+
+            <!-- 1. 슬라이드 펼쳐보기 버튼 -->
             <a href="#" onclick="showSlideStrip()" id="btn-slide-all" style="
-                display: inline-block;
+                display: block;
                 width: 90%;
-                padding: 10px 0;
-                background: #2c3e50; /* 차분한 네이비 톤 */
-                color: #ecf0f1; /* 밝은 회색 글씨 */
+                box-sizing: border-box;
+                padding: 11px 0;
+                background: #1e293b; /* 깊고 세련된 다크 네이비 */
+                color: #ffffff;
                 border-radius: 5px;
                 font-weight: bold;
                 text-decoration: none;
+                font-size: 14px;
+                text-align: center;
                 transition: background 0.3s;
-                margin-bottom: 10px; /* 아래 버튼과 간격 확보 */
-            ">🎞️ 슬라이드 펼쳐보기</a>
+                border: none;
+                cursor: pointer;
+            " onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1e293b'">🎞️ 슬라이드
+                펼쳐보기</a>
 
-            <!-- [추가] 프레지 구동 버튼 -->
-            <button onclick="togglePreziView()" id="btn-prezi-toggle" class="prezi-btn">⭐ 프레지 감상하기</button>
+            <!-- 2. 프레지 구동 버튼 -->
+            <button onclick="togglePreziView()" id="btn-prezi-toggle" class="prezi-btn" style="
+                display: block;
+                width: 90%;
+                box-sizing: border-box;
+                padding: 11px 0;
+                background: #1e293b; /* 위 버튼과 완전히 같은 색상 */
+                color: #ffffff;
+                border-radius: 5px;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 14px;
+                text-align: center;
+                transition: background 0.3s;
+                border: none;
+                cursor: pointer;
+            " onmouseover="this.style.background='#334155'" onmouseout="this.style.background='#1e293b'">⭐ 프레지
+                감상하기</button>
+
         </div>
     </nav>
 
