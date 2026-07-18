@@ -1,50 +1,119 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 인생 갤러리 - 상세보기</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 프레지 전용 추가 스타일 */
+        .prezi-btn {
+            display: inline-block;
+            width: 90%;
+            padding: 10px 0;
+            background: #0070c9;
+            /* 프레지 공식 파란색 톤 */
+            color: #ffffff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .prezi-btn:hover {
+            background: #005194;
+        }
+
+        .prezi-view-container {
+            width: 100%;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .prezi-close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .prezi-close-btn:hover {
+            background: #c0392b;
+        }
+    </style>
 </head>
+
 <body>
     <div id="mobile-menu-btn" onclick="toggleMobileMenu()">☰ 메뉴</div>
     <nav class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 홈으로</a>
-    <a href="gallery.html?type=family">🏠 가족</a>
-    <a href="gallery.html?type=hiking">⛰️ 등반</a>
-    
-    <div class="dropdown">
-        <a href="gallery.html?type=friend" class="dropbtn">👥 친구</a>
-        <div class="dropdown-content">
-            <a href="#" onclick="filterBySubCategory('동구회')">└ 동구회</a>
-            <a href="#" onclick="filterBySubCategory('동보회')">└ 동보회</a>
-            <a href="#" onclick="filterBySubCategory('군동기')">└ 군동기</a>
-            <a href="#" onclick="filterBySubCategory('한옥학교')">└ 한옥학교</a>
-        </div>
-    </div>
+        <a href="index.html">🏠 홈으로</a>
+        <a href="gallery.html?type=family">🏠 가족</a>
+        <a href="gallery.html?type=hiking">⛰️ 등반</a>
 
-    <a href="gallery.html?type=travel">✈️ 여행</a>
-    <a href="gallery.html?type=interest">💡 관심</a>
-    <a href="gallery.html?type=memory">🕰️ 추억</a>
-    <div class="slide-btn-group" style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #444; text-align: center;">
-    <a href="#" onclick="showSlideStrip()" id="btn-slide-all" style="
-        display: inline-block;
-        width: 90%;
-        padding: 10px 0;
-        background: #2c3e50; /* 차분한 네이비 톤 */
-        color: #ecf0f1; /* 밝은 회색 글씨 */
-        border-radius: 5px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: background 0.3s;
-    ">🎞️ 슬라이드 펼쳐보기</a>
-</div>
+        <div class="dropdown">
+            <a href="gallery.html?type=friend" class="dropbtn">👥 친구</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="filterBySubCategory('동구회')">└ 동구회</a>
+                <a href="#" onclick="filterBySubCategory('동보회')">└ 동보회</a>
+                <a href="#" onclick="filterBySubCategory('군동기')">└ 군동기</a>
+                <a href="#" onclick="filterBySubCategory('한옥학교')">└ 한옥학교</a>
+            </div>
+        </div>
+
+        <a href="gallery.html?type=travel">✈️ 여행</a>
+        <a href="gallery.html?type=interest">💡 관심</a>
+        <a href="gallery.html?type=memory">🕰️ 추억</a>
+
+        <!-- 좌측 메뉴 하단 버튼 그룹 구역 -->
+        <div class="slide-btn-group"
+            style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #444; text-align: center;">
+            <a href="#" onclick="showSlideStrip()" id="btn-slide-all" style="
+                display: inline-block;
+                width: 90%;
+                padding: 10px 0;
+                background: #2c3e50; /* 차분한 네이비 톤 */
+                color: #ecf0f1; /* 밝은 회색 글씨 */
+                border-radius: 5px;
+                font-weight: bold;
+                text-decoration: none;
+                transition: background 0.3s;
+                margin-bottom: 10px; /* 아래 버튼과 간격 확보 */
+            ">🎞️ 슬라이드 펼쳐보기</a>
+
+            <!-- [추가] 프레지 구동 버튼 -->
+            <button onclick="togglePreziView()" id="btn-prezi-toggle" class="prezi-btn">⭐ 프레지 감상하기</button>
+        </div>
     </nav>
+
     <div class="gallery-content">
         <header class="gallery-header">
             <h2 id="gallery-title">나의 갤러리</h2>
         </header>
 
+        <!-- [추가] 버튼을 누르면 오른편 본문 공간 제일 위에 나타날 프레지 구역 -->
+        <!-- 처음에는 숨겨져 있으며(display: none), 버튼을 누르면 검색창 위에 슥 나타납니다 -->
+        <div id="prezi-display-zone" class="prezi-view-container" style="display: none; margin-bottom: 25px;">
+            <button class="prezi-close-btn" onclick="togglePreziView()">✕ 닫기</button>
+            <iframe src="https://prezi.com/p/embed/FRmPdtnwbuXURn9efB2i/" id="iframe_container" frameborder="0"
+                webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen"
+                height="500" width="100%">
+            </iframe>
+        </div>
+
+        <!-- 원래 있던 검색창 및 제어부 -->
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="날짜, 제목 등으로 검색...">
         </div>
@@ -56,7 +125,8 @@
             </div>
         </div>
 
-        <div id="memory-links-container" style="display: none; justify-content: center; gap: 10px; margin-bottom: 25px; width: 100%;">
+        <div id="memory-links-container"
+            style="display: none; justify-content: center; gap: 10px; margin-bottom: 25px; width: 100%;">
             <a href="memory_1.html" class="memory-nav-btn">추억 앨범 1</a>
             <a href="memory_2.html" class="memory-nav-btn">추억 앨범 2</a>
             <a href="memory_3.html" class="memory-nav-btn">추억 앨범 3</a>
@@ -69,27 +139,47 @@
         </audio>
 
         <div class="gallery">
-            </div>
+        </div>
 
         <div id="pagination" class="pagination-container">
-            </div>
+        </div>
     </div>
 
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="imgFull">
-        
+
         <div class="slideshow-controls">
             <button onclick="prevSlide(event)" aria-label="이전 사진">❮</button>
             <div class="volume-wrapper" title="볼륨 조절">
                 <span class="volume-icon">🔊</span>
-                <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)">
+                <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="1"
+                    oninput="changeVolume(this.value)">
             </div>
             <button onclick="nextSlide(event)" aria-label="다음 사진">❯</button>
         </div>
     </div>
 
+    <!-- [추가] 프레지 화면을 열고 닫는 간단한 스크립트 기능 -->
+    <script>
+        function togglePreziView() {
+            var preziZone = document.getElementById('prezi-display-zone');
+            var preziBtn = document.getElementById('btn-prezi-toggle');
+
+            if (preziZone.style.display === 'none') {
+                preziZone.style.display = 'block';
+                preziBtn.innerText = '✕ 프레지 닫기';
+                preziBtn.style.background = '#e74c3c'; // 열렸을 때는 버튼을 빨간색으로 변경
+            } else {
+                preziZone.style.display = 'none';
+                preziBtn.innerText = '⭐ 프레지 감상하기';
+                preziBtn.style.background = '#0070c9'; // 닫히면 다시 원래 파란색으로
+            }
+        }
+    </script>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

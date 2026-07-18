@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 인생 갤러리 - 상세보기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="mobile-menu-btn" onclick="toggleMobileMenu()">☰ 메뉴</div>
+    <nav class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 홈으로</a>
+    <a href="gallery.html?type=family">🏠 가족</a>
+    <a href="gallery.html?type=hiking">⛰️ 등반</a>
+    
+    <div class="dropdown">
+        <a href="gallery.html?type=friend" class="dropbtn">👥 친구</a>
+        <div class="dropdown-content">
+            <a href="#" onclick="filterBySubCategory('동구회')">└ 동구회</a>
+            <a href="#" onclick="filterBySubCategory('동보회')">└ 동보회</a>
+            <a href="#" onclick="filterBySubCategory('군동기')">└ 군동기</a>
+            <a href="#" onclick="filterBySubCategory('한옥학교')">└ 한옥학교</a>
+        </div>
+    </div>
+
+    <a href="gallery.html?type=travel">✈️ 여행</a>
+    <a href="gallery.html?type=interest">💡 관심</a>
+    <a href="gallery.html?type=memory">🕰️ 추억</a>
+    <div class="slide-btn-group" style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #444; text-align: center;">
+    <a href="#" onclick="showSlideStrip()" id="btn-slide-all" style="
+        display: inline-block;
+        width: 90%;
+        padding: 10px 0;
+        background: #2c3e50; /* 차분한 네이비 톤 */
+        color: #ecf0f1; /* 밝은 회색 글씨 */
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+    ">🎞️ 슬라이드 펼쳐보기</a>
+</div>
+    </nav>
+    <div class="gallery-content">
+        <header class="gallery-header">
+            <h2 id="gallery-title">나의 갤러리</h2>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="날짜, 제목 등으로 검색...">
+        </div>
+
+        <div class="controls-wrapper">
+            <button id="btn-play-slideshow" onclick="startSlideshow()">▶️ 사진 슬라이드 재생</button>
+            <div class="count-wrapper">
+                <span id="totalPhotoCount">TOTAL : 0</span>
+            </div>
+        </div>
+
+        <div id="memory-links-container" style="display: none; justify-content: center; gap: 10px; margin-bottom: 25px; width: 100%;">
+            <a href="memory_1.html" class="memory-nav-btn">추억 앨범 1</a>
+            <a href="memory_2.html" class="memory-nav-btn">추억 앨범 2</a>
+            <a href="memory_3.html" class="memory-nav-btn">추억 앨범 3</a>
+            <a href="memory_4.html" class="memory-nav-btn">추억 앨범 4</a>
+        </div>
+
+        <audio id="bgmAudio" loop>
+            <source src="dragon-studio-dreamy-guitar-music-316542.mp3" type="audio/mpeg">
+            브라우저가 오디오 태그를 지원하지 않습니다.
+        </audio>
+
+        <div class="gallery">
+            </div>
+
+        <div id="pagination" class="pagination-container">
+            </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="imgFull">
+        
+        <div class="slideshow-controls">
+            <button onclick="prevSlide(event)" aria-label="이전 사진">❮</button>
+            <div class="volume-wrapper" title="볼륨 조절">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)">
+            </div>
+            <button onclick="nextSlide(event)" aria-label="다음 사진">❯</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
